@@ -1,0 +1,6 @@
+@Manahil.Api_HostAddress = http://localhost:5122
+
+GET {{Manahil.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

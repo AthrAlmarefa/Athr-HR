@@ -1,0 +1,15 @@
+
+services:
+  athr.api:
+    build:
+      context: .
+      dockerfile: src/athr.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=${API_PORT_HTTP}
+      - ASPNETCORE_HTTPS_PORTS=${API_PORT_HTTP_ALT}
+      - ConnectionStrings__Database=${APPLICATION_DB_CONNECTION_STRING}
+      - ConnectionStrings__Cache=${REDIS_HOST}:${REDIS_PORT} 
+    ports:
+      - "${API_PORT_HTTP}:${API_PORT_HTTP}"
+      - "${API_PORT_HTTP_ALT}:${API_PORT_HTTP_ALT}"

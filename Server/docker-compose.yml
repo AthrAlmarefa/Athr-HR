@@ -1,0 +1,45 @@
+
+name: 'athr'
+services:
+
+  athr.api:
+    image: ${DOCKER_REGISTRY}${API_IMAGE} #always use the right docker-compose.override file; docker-compose.override fÃ¼r local, docker-compose.remote-dev for remote dev server
+    container_name: athr.Api
+    depends_on:
+      - athr-db
+      - athr-redis
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - ConnectionStrings__Database=Server=${APPLICATION_DB_CONNECTION_STRING}
+      - ConnectionStrings__Cache=redis:${REDIS_PORT}
+      - ASPNETCORE_HTTP_PORTS="${API_PORT_HTTP}
+      - ASPNETCORE_HTTPS_PORTS=${API_PORT_HTTP_ALT}
+    ports:
+      - "${API_PORT_HTTP}:${API_PORT_HTTP}"
+      - "${API_PORT_HTTP_ALT}:${API_PORT_HTTP_ALT}"
+    networks:
+      - athr-dev-net
+  
+  athr-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: ${SQL_HOST}
+    environment:
+      SA_PASSWORD: ${SQL_PASSWORD}
+      ACCEPT_EULA: "Y"
+    ports:
+      - "${SQL_PORT}:${SQL_PORT_INTERNAL}"
+    networks:
+      - athr-dev-net
+
+  athr-redis:
+    image: redis:latest
+    container_name: ${REDIS_HOST}
+    restart: always
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT_INTERNAL}"
+    networks:
+      - athr-dev-net
+  
+networks:
+  athr-dev-net:
+    driver: bridge
