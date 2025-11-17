@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="edit-profile">
+      <div class="grid grid-cols-12 card-gap">
+        <div class="col-span-4 xl:col-span-12">
+            <app-card [headerTitle]="'My Profile'" [border]="true" [padding]="false">
+                <form class="custom-input">
+                  <div class="grid mb-4">
+                    <div class="profile-title">
+                      <div class="flex">                    
+                        <img class="img-70 rounded-full" alt="user" src="assets/images/user/7.jpg">
+                        <div class="grow">
+                          <h5 class="mb-1">WILLIAM C. JENNINGS</h5>
+                          <p>DESIGNER</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-4">
+                    <h6 class="form-label">Bio</h6>
+                    <textarea class="form-control" rows="5" placeholder="On the other hand, we denounce with righteous indignation"></textarea>
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Email Address</label>
+                    <input class="form-control" type="email" placeholder="your-email@domain.com">
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input class="form-control" type="password" value="password">
+                  </div>
+                  <div class="mb-4">
+                    <label class="form-label">Website</label>
+                    <input class="form-control" type="url" placeholder="https://themeforest.net/user/pixelstrap/portfolio">
+                  </div>
+                  <div class="form-footer">
+                    <button class="btn btn-primary btn-block text-white">Save</button>
+                  </div>
+                </form>
+            </app-card>
+        </div>
+        <div class="col-span-8 xl:col-span-12">
+            <app-card [headerTitle]="'Edit Profile'" [header]="'pb-0'" [border]="true" [padding]="false">
+                <form>
+                    <div class="grid grid-cols-12 card-gap custom-input">
+                      <div class="col-span-5 xxl:col-span-12 box-col-12">
+                        <div class="mb-4">
+                          <label class="form-label" for="company_name">Company</label>
+                          <input class="form-control" id="company_name" type="text" placeholder="Company">
+                        </div>
+                      </div>
+                      <div class="col-span-3 xxl:col-span-6 sm:col-span-12 box-col-6">
+                        <div class="mb-4">
+                          <label class="form-label" for="customUsername">Username</label>
+                          <input class="form-control" id="customUsername" type="text" placeholder="Username">
+                        </div>
+                      </div>
+                      <div class="col-span-4 xxl:col-span-6 sm:col-span-12 box-col-6">
+                        <div class="mb-4">
+                          <label class="form-label" for="customAddress">Email Address</label>
+                          <input class="form-control" id="customAddress" type="email" placeholder="Email">
+                        </div>
+                      </div>
+                      <div class="col-span-6 sm:col-span-12">
+                        <div class="mb-4">
+                          <label class="form-label" for="customFirstName">First Name</label>
+                          <input class="form-control" id="customFirstName" type="text" placeholder="Company">
+                        </div>
+                      </div>
+                      <div class="col-span-6 sm:col-span-12">
+                        <div class="mb-4">
+                          <label class="form-label" for="customLastName">Last Name</label>
+                          <input class="form-control" id="customLastName" type="text" placeholder="Last name">
+                        </div>
+                      </div>
+                      <div class="col-span-12">
+                        <div class="mb-4">
+                          <label class="form-label" for="customAddress">Address</label>
+                          <textarea class="form-control" id="customAddress" type="text" rows="2.5" placeholder="Home address"></textarea>
+                        </div>
+                      </div>
+                      <div class="col-span-4 xxl:col-span-6 sm:col-span-12 box-col-6">
+                        <div class="mb-4">
+                          <label class="form-label" for="customCity">City</label>
+                          <input class="form-control" id="customCity" type="text" placeholder="City">
+                        </div>
+                      </div>
+                      <div class="col-span-3 xxl:col-span-6 sm:col-span-12 box-col-6">
+                        <div class="mb-4">
+                          <label class="form-label" for="customPostalCode">Postal Code</label>
+                          <input class="form-control" id="customPostalCode" type="number" placeholder="Postal code">
+                        </div>
+                      </div>
+                      <div class="col-span-5 xxl:col-span-12 box-col-122">
+                        <div class="mb-4">
+                          <label class="form-label" for="customCountry">Country</label>
+                          <select2 [data]="country" placeholder="Select Country" noResultMessage="No Data Found" resettable></select2>
+                        </div>
+                      </div>
+                      <div class="col-span-12">
+                        <div>
+                          <label class="form-label" for="aboutMeDesc">About Me</label>
+                          <textarea class="form-control" id="aboutMeDesc" rows="4" placeholder="Enter about your description"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="card-footer text-end" details>
+                    <button class="btn btn-primary text-white" type="submit">Update Profile</button>
+                  </div>
+            </app-card>
+        </div>
+      </div>
+    </div>
+  </div>

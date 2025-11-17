@@ -13,7 +13,8 @@ internal static class ApplicationBuilderExtensions
 
         try
         {
-            await dbContext.Database.MigrateAsync();
+            var x = dbContext.Database.GetConnectionString();
+            dbContext.Database.Migrate();
             await SeedingBasicData.SeedDataAsync(dbContext);
         }
         catch (Exception ex)

@@ -131,12 +131,12 @@ public static class WebApplicationBuilderExtensions
 
     public static void UseDocumentsStaticFiles(this WebApplication app)
     {
-        string documentsDir = Path.Combine(app.Environment.ContentRootPath, PublicPath);
+        var physicalPath = Path.Combine(app.Environment.ContentRootPath, PublicPath);
         const int cacheSeconds = 60 * 60 * 24 * 7;
         app.UseStaticFiles(new StaticFileOptions
         {
-            FileProvider = new PhysicalFileProvider(documentsDir),
-            RequestPath = documentsDir,
+            FileProvider = new PhysicalFileProvider(physicalPath),
+            RequestPath = $"/{PublicPath}",
             OnPrepareResponse = ctx =>
             {
                 ctx.Context.Response.Headers["Cache-Control"] = $"public,max-age={cacheSeconds}";
