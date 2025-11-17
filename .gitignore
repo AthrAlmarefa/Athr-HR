@@ -408,3 +408,4 @@ FodyWeavers.xsd
 /Clients/Manahil.Client/.angular
 /Clients/Manahil.Client/dist
 Clients/Manahil.Admin/src/environments/environment.ts
+Server/.env

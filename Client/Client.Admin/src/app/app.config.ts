@@ -9,6 +9,10 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
+import {provideStore} from "@ngxs/store";
+import {environment} from "../environments/environment";
+import {withNgxsReduxDevtoolsPlugin} from "@ngxs/devtools-plugin";
+import {NgxsLoggerPlugin, withNgxsLoggerPlugin} from "@ngxs/logger-plugin";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -46,6 +50,13 @@ export const appConfig: ApplicationConfig = {
         provide: DateAdapter,
         useFactory: adapterFactory,
       })
+    ),
+
+    provideStore([], {
+        developmentMode: !environment.production,
+    },
+        withNgxsReduxDevtoolsPlugin({disabled: environment.production}),
+        withNgxsLoggerPlugin({disabled: environment.production}),
     )
   ]
 };
