@@ -16,6 +16,7 @@ model/categoryResponsePaginatedList.ts
 model/logInUserRequest.ts
 model/models.ts
 model/updateCategoryRequest.ts
+model/userRegisterRequest.ts
 param.ts
 provide-api.ts
 variables.ts

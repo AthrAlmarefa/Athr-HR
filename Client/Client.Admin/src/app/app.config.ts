@@ -12,12 +12,13 @@ import { routes } from './app.routes';
 import {provideStore} from "@ngxs/store";
 import {environment} from "../environments/environment";
 import {withNgxsReduxDevtoolsPlugin} from "@ngxs/devtools-plugin";
-import {NgxsLoggerPlugin, withNgxsLoggerPlugin} from "@ngxs/logger-plugin";
+import { withNgxsLoggerPlugin} from "@ngxs/logger-plugin";
+import { CategoryState } from './shared/store/categories/states/CategoryState';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
+console.log('from config: ********************************', environment.name)
 export const MY_NATIVE_FORMATS = {
   fullPickerInput: {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'},
   datePickerInput: {year: 'numeric', month: 'numeric', day: 'numeric'},
@@ -52,11 +53,9 @@ export const appConfig: ApplicationConfig = {
       })
     ),
 
-    provideStore([], {
-        developmentMode: !environment.production,
-    },
+    provideStore([CategoryState],
         withNgxsReduxDevtoolsPlugin({disabled: environment.production}),
-        withNgxsLoggerPlugin({disabled: environment.production}),
+        withNgxsLoggerPlugin({disabled: environment.production, collapsed: true}),
     )
   ]
 };
