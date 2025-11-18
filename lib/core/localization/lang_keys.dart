@@ -1,0 +1,61 @@
+class LangKeys {
+  static const String hello = "hello";
+  static const String monthlyActivity = "monthly_activity";
+  static const String manageLeaves = "manage_leaves";
+  static const String trackAndOrganizeWork = "track_and_organize_work";
+  static const String monthlyPerformanceReport = "monthly_performance_report";
+  static const String leaveAndAdminTasks = "leave_and_admin_tasks";
+  static const String startNow = "start_now";
+  static const String profile = "profile";
+  static const String name = "name";
+  static const String job = "job";
+  static const String id = "id";
+  static const String prefix = "prefix";
+  static const String personalData = "personal_data";
+  static const String leaveBalance = "leave_balance";
+  static const String trackLeaveBalance = "track_leave_balance";
+  static const String notifications = "notifications";
+  static const String controlAppNotifications = "control_app_notifications";
+  static const String securitySettings = "security_settings";
+  static const String changeAccountPassword = "change_account_password";
+  static const String autoAttendance = "auto_attendance";
+  static const String autoAttendanceDescription = "auto_attendance_description";
+  static const String language = "language";
+  static const String english = "english";
+  static const String changeLanguageToEnglish = "change_language_to_english";
+  static const String currentPassword = "current_password";
+  static const String newPassword = "new_password";
+  static const String confirmNewPassword = "confirm_new_password";
+  static const String save = "save";
+  static const String home = "home";
+  static const String times = "times";
+  static const String tasks = "tasks";
+  static const String leaves = "leaves";
+  static const String account = "profile";
+  static const login = 'login';
+  static const email = 'email';
+  static const password = 'password';
+  static const rememberPassword = 'rememberPassword';
+  static const String nationality = "nationality";
+  static const String workingHours = "workingHours";
+  static const String phone = "phone";
+  static const String egyptian = "egyptian";
+  static const String timeRange = "timeRange";
+  static const String phoneNumber = "phoneNumber";
+  static const String salary = "salary";
+  static const String salaryValue = "salaryValue";
+  static const String jobTitle = "jobTitle";
+  static const String flutterDeveloper = "flutterDeveloper";
+  static const String idNumber = "idNumber";
+  static const String idNumberValue = "idNumberValue";
+  static const String workLocation = "workLocation";
+  static const String riyadhOffice = "riyadhOffice";
+  static const String attachments = "attachments";
+  static const String attachmentsCount = "attachmentsCount";
+  static const logout = 'logout';
+  static const gallery = 'gallery';
+  static const camera = 'camera';
+
+
+
+}
