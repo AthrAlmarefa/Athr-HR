@@ -1,5 +1,4 @@
 
-name: 'athr'
 services:
 
   athr.api:
