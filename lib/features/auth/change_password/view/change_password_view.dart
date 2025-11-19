@@ -1,4 +1,5 @@
 import 'package:athr_hr/core/localization/lang_keys.dart';
+import 'package:athr_hr/core/routes/app_routes.dart';
 import 'package:athr_hr/core/styles/colors/my_colors.dart';
 import 'package:athr_hr/core/styles/fonts/my_fonts.dart';
 import 'package:athr_hr/core/utils/extension/my_context.dart';
@@ -128,7 +129,9 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
               height: 54.h,
               child: CustomButton(
                 txt: context.translate(LangKeys.save),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRoutes.profile);
+                },
               ),
             ),
             SizedBox(height: 20.h),
