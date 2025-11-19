@@ -52,6 +52,6 @@ class AthrHr extends StatelessWidget {
 
   String _getInitialRoute() {
     final token = SharedPrefHelper().getString(key: SharedPrefKeys.tokenKey);
-    return token != null ? AppRoutes.personalDataView : AppRoutes.personalDataView;
+    return token != null ? AppRoutes.profile : AppRoutes.profile;
   }
 }

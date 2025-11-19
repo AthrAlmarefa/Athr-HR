@@ -2,6 +2,7 @@ import 'package:athr_hr/core/routes/base_routes.dart';
 import 'package:athr_hr/features/auth/change_password/view/change_password_view.dart';
 import 'package:athr_hr/features/auth/login/view/login_view.dart';
 import 'package:athr_hr/features/profile/view/profile_details_view.dart';
+import 'package:athr_hr/features/profile/view/profile_view.dart';
 import 'package:flutter/material.dart';
 
 
@@ -25,6 +26,8 @@ class AppRoutes {
         return BaseRoute(page: ChangePasswordView());
       case personalDataView:
         return BaseRoute(page: ProfileDetailsView());
+      case profile:
+        return BaseRoute(page: ProfileView());
       default:
         return BaseRoute(page:SizedBox());
     }
