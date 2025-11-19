@@ -1,4 +1,5 @@
 import 'package:athr_hr/core/routes/base_routes.dart';
+import 'package:athr_hr/features/auth/change_password/view/change_password_view.dart';
 import 'package:athr_hr/features/auth/login/view/login_view.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,8 @@ class AppRoutes {
             page:
          const LoginView(),
             );
+      case changePassword:
+        return BaseRoute(page: ChangePasswordView());
       default:
         return BaseRoute(page:SizedBox());
     }
