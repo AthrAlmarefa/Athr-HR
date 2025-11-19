@@ -1,5 +1,6 @@
 import 'package:athr_hr/core/routes/base_routes.dart';
 import 'package:athr_hr/features/auth/login/view/login_view.dart';
+import 'package:athr_hr/features/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,6 +15,8 @@ class AppRoutes {
 
   static Route<void> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case onBoarding:
+        return BaseRoute(page: OnBoarding());
         case login:
         return BaseRoute(
             page:
