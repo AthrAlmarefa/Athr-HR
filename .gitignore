@@ -403,6 +403,7 @@ FodyWeavers.xsd
 *.sln.iml
 
 .containers/
+/Client/Client.Admin
 /Server/src/Manahil.Api/.config
 /Server/src/Manahil.Api/documents/trak_image
 /Clients/Manahil.Client/.angular

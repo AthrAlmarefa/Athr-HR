@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --configuration=development",
+    "serve": "ng serve --configuration=development",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "generate-client-sdk": "openapi-generator-cli generate -i http://localhost:5122/swagger/v1/swagger.json -g typescript-angular --additional-properties=stringEnums=true,basePath=https://localhost:5122 -o src/app/shared/services/AthrHR -t ./openApi-templates",
+    "generate-client-sdk": "openapi-generator-cli generate -i http://92.205.105.35:8040/swagger/v1/swagger.json -g typescript-angular --additional-properties=stringEnums=true,basePath=http://92.205.105.35:8040 -o src/app/shared/services/AthrHR -t ./openApi-templates",
     "test": "ng test"
   },
   "private": true,
