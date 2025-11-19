@@ -117,6 +117,27 @@ class _ProfileViewState extends State<ProfileView> {
                       text: context.translate(LangKeys.changeLanguageToEnglish),
                       mainText: context.translate(LangKeys.language),
                     ),
+                    SizedBox(height: 16.h),
+                    Padding(
+                      padding: EdgeInsets.all(8.sp),
+                      child: Row(
+                        children: [
+                          Text(
+                            context.translate(LangKeys.logout),
+                            style: MyFonts.semiBold600_16.copyWith(
+                              color: MyColors.redColor,
+                            ),
+                          ),
+                          Spacer(),
+                          Image.asset(
+                            Assets.imagesLogout,
+                            width: 40.w,
+                            height: 40.h,
+                            fit: BoxFit.contain,
+                          ),
+                        ],
+                      ),
+                    ),
                     SizedBox(height: 30.h),
                   ],
                 ),
