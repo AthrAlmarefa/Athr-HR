@@ -1,3 +1,5 @@
+import 'package:athr_hr/core/localization/lang_keys.dart';
+import 'package:athr_hr/core/utils/extension/my_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:athr_hr/core/styles/colors/my_colors.dart';
@@ -64,15 +66,15 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   String _getLabel(BuildContext context, int index) {
     switch (index) {
       case 0:
-        return 'الرئيسية';
+        return context.translate(LangKeys.home);
       case 1:
-        return 'الأوقات';
+        return  context.translate(LangKeys.times);
       case 2:
-        return 'المهام';
+        return context.translate(LangKeys.tasks);
       case 3:
-        return 'الاجازات';
+        return context.translate(LangKeys.leaves);
       case 4:
-        return 'البروفايل';
+        return  context.translate(LangKeys.account);
       default:
         return '';
     }

@@ -54,10 +54,21 @@
   "english": "English",
   "logout": "تسجيل خروج",
   "gallery": "الجاليري",
-  "camera": "الكاميرا"
-
-
-
-
-
+  "camera": "الكاميرا",
+  "password_hint_dots": "..........",
+  "is_required": "هذا الحقل مطلوب",
+  "confirm_password_is_required": "تأكيد كلمة المرور مطلوب",
+  "passwords_do_not_match": "كلمتا المرور غير متطابقتين",
+  "email_is_required": "البريد الإلكتروني مطلوب",
+  "password_is_required": "كلمة المرور مطلوبة",
+  "remember_me": "تذكرني",
+  "must_contains": "يجب أن يحتوي على",
+  "invalid_email_address": "عنوان البريد الإلكتروني غير صالح",
+  "enter_email": "أدخل البريد الإلكتروني",
+  "invalid_email": "بريد إلكتروني غير صالح",
+  "enter_password": "أدخل كلمة المرور",
+  "password_complexity": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، حرف كبير واحد، حرف صغير واحد، رقم واحد ورمز خاص واحد",
+  "confirm_password": "تأكيد كلمة المرور",
+  "password_mismatch": "كلمات المرور غير متطابقة",
+  "reset_password_description": "يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف مع حرف كبير ورقم واحد على الأقل"
 }
