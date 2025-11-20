@@ -15,7 +15,7 @@ class ChangePasswordForm extends StatefulWidget {
   final TextEditingController newPasswordController;
   final TextEditingController passwordController;
   final TextEditingController confirmNewPasswordController;
-
+  final ValueChanged<int>? onChangeTab;
 
   const ChangePasswordForm({
     super.key,
@@ -23,6 +23,7 @@ class ChangePasswordForm extends StatefulWidget {
     required this.newPasswordController,
     required this.passwordController,
     required this.confirmNewPasswordController,
+    this.onChangeTab,
   });
 
   @override

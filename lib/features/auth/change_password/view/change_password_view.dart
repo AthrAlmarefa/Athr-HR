@@ -66,6 +66,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                 passwordController: passwordController,
                 newPasswordController: newPasswordController,
                 confirmNewPasswordController: confirmNewPasswordController,
+                onChangeTab: widget.onChangeTab,
               ),
             ],
           ),
