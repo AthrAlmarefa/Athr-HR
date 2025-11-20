@@ -1,4 +1,5 @@
 import 'package:athr_hr/core/localization/lang_keys.dart';
+import 'package:athr_hr/core/routes/app_routes.dart';
 import 'package:athr_hr/core/utils/extension/my_context.dart';
 import 'package:athr_hr/features/on_boarding/on_boarding_card.dart';
 import 'package:athr_hr/generated/assets.dart';
@@ -50,6 +51,16 @@ class _OnBoardingState extends State<OnBoarding> {
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
               );
+            },
+            currentIndex: currentPage,
+          ),
+          CustomOnboardingScreen(
+            title: context.translate(LangKeys.manageLeaves),
+            subtitle:context.translate(LangKeys.leaveAndAdminTasks),
+            imageAsset: Assets.imagesOnBoarding3,
+            buttonText: context.translate(LangKeys.startNow),
+            onButtonPressed: () {
+              Navigator.pushNamed(context, AppRoutes.login);
             },
             currentIndex: currentPage,
           ),
