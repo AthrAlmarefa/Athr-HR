@@ -55,7 +55,18 @@ class LangKeys {
   static const logout = 'logout';
   static const gallery = 'gallery';
   static const camera = 'camera';
-
-
-
+  static const String passwordHintDots = "password_hint_dots";
+  static const String enterEmail = 'enter_email';
+  static const String invalidEmail = 'invalid_email';
+  static const String enterPassword = 'enter_password';
+  static const String passwordComplexity = 'password_complexity';
+  static const String passwordMismatch = 'password_mismatch';
+  static const String isRequired = 'is_required';
+  static const String confirmPasswordIsRequired = 'confirm_password_is_required';
+  static const String passwordsDoNotMatch = 'passwords_do_not_match';
+  static const String emailIsRequired = 'email_is_required';
+  static const String passwordIsRequired = 'password_is_required';
+  static const String rememberMe = 'remember_me';
+  static const String mustContains = 'must_contains';
+  static const String invalidEmailAddress = 'invalid_email_address';
 }

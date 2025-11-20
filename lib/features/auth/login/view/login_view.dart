@@ -96,7 +96,7 @@ class _LoginViewState extends State<LoginView> {
                   fit: BoxFit.contain,
                 ),
                 suffix: InkWell(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
                       isPassword = !isPassword;
                     });
