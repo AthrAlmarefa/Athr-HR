@@ -39,6 +39,20 @@ class _OnBoardingState extends State<OnBoarding> {
             },
             currentIndex: currentPage,
           ),
+          CustomOnboardingScreen(
+            title: context.translate(LangKeys.monthlyActivity),
+            subtitle:context.translate(LangKeys.monthlyPerformanceReport),
+            imageAsset: Assets.imagesOnBoarding2,
+            buttonText: context.translate(LangKeys.startNow),
+            onButtonPressed: () {
+              _controller.animateToPage(
+                2,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            },
+            currentIndex: currentPage,
+          ),
           DotsIndicator(currentIndex: currentPage, totalDots: 3),
         ],
       ),
