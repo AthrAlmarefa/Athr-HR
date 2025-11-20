@@ -54,6 +54,21 @@
   "english": "English",
   "logout": "Logout",
   "gallery": "Gallery",
-  "camera": "Camera"
-
+  "camera": "Camera",
+  "password_hint_dots": "..........",
+  "is_required": "This field is required",
+  "confirm_password_is_required": "Confirm password is required",
+  "passwords_do_not_match": "Passwords do not match",
+  "email_is_required": "Email is required",
+  "password_is_required": "Password is required",
+  "remember_me": "Remember me",
+  "must_contains": "Must contain",
+  "invalid_email_address": "Invalid email address",
+  "enter_email": "Enter email",
+  "invalid_email" : "Invalid email",
+  "enter_password": "Enter password",
+  "password_complexity": "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character",
+  "confirm_password": "Confirm password",
+  "password_mismatch" :"Passwords do not match",
+  "reset_password_description" : "Password must not be empty and must contain 6 characters with upper case letter and one number at least"
 }
