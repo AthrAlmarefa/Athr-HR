@@ -175,6 +175,9 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                     style: MyFonts.semiBold600_18.copyWith(
                       color: MyColors.black,),
                 ),
+                  maxLines: null,
+                  expands: true,
+                //  textAlignVertical: TextAlignVertical.top,
               ),
               ),
             ],

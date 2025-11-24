@@ -14,6 +14,8 @@ class CustomTextFormField extends StatefulWidget {
     this.prefix,
     this.hintStyle,
     this.textStyle,
+    this.maxLines,
+    this.expands,
   });
 
   final String? hintText;
@@ -25,6 +27,8 @@ class CustomTextFormField extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextStyle? hintStyle;
   final TextStyle? textStyle;
+  final int? maxLines;
+  final bool? expands;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -34,6 +38,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: widget.maxLines,
+      expands: widget.expands ?? false,
       obscureText: widget.isPassword ?? false,
       controller: widget.controller,
       style: widget.textStyle ?? TextStyle(color: MyColors.black, fontSize: 14.sp),
