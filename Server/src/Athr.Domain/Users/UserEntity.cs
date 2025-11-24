@@ -1,4 +1,4 @@
-﻿using Athr.Domain.Countries;
+﻿
 using Athr.Domain.Common.Account;
 using Athr.Domain.Users.Authorization;
 using Athr.Domain.Users.Events;
@@ -25,11 +25,10 @@ public sealed class UserEntity : Account
     public string? Password { get; private set; }
     public string? PhoneNumber { get; private set; }
     public string IdentityNumber { get; private set; }
-    public CountryId DialCodeId { get; private set; }
     public IReadOnlyCollection<BusinessRolesPermission> BusinessPermissions => _businessPermissions.ToList();
     public IReadOnlyCollection<AccountId> BusinessRoles => _businessRoles.ToList();
 
-    public static UserEntity CreateInstance(string FirstName, string MidName, string LastName, string Email, string PhoneNumber, string IdentityNum, string DialCodeId = "SA")
+    public static UserEntity CreateInstance(string FirstName, string MidName, string LastName, string Email, string PhoneNumber, string IdentityNum)
     {
         var user = new UserEntity(AccountId.CreateUnique())
         {
@@ -38,8 +37,7 @@ public sealed class UserEntity : Account
             LastName = LastName,
             Email = Email,
             PhoneNumber = PhoneNumber,
-            IdentityNumber = IdentityNum,
-            DialCodeId = CountryId.Create(DialCodeId)
+            IdentityNumber = IdentityNum
         };
         user.Activate();
         user.RaiseDomainEvent(new UserCreatedDomainEvent { Id = user.Id.Value });
@@ -111,7 +109,6 @@ public sealed class UserEntity : Account
         Email = email;
         PhoneNumber = phoneNumber;
         IdentityNumber = identityNumber;
-        DialCodeId = CountryId.Create(DialCodeId);
     }
     public void ChangeAllowedPermissions(IEnumerable<BusinessRolesPermission> businessPermissions)
     {

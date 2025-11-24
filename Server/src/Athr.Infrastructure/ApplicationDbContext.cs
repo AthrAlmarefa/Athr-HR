@@ -92,7 +92,7 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
         //ChangeTracker.Clear()
         try
         {
-            await SaveChangesAsync();
+            await SaveChangesAsync(cancellationToken);
             await _currentTransaction.CommitAsync(cancellationToken);
             await _currentTransaction.DisposeAsync();
             _currentTransaction = null;

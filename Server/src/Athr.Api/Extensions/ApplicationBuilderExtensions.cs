@@ -15,7 +15,6 @@ internal static class ApplicationBuilderExtensions
         {
             var x = dbContext.Database.GetConnectionString();
             dbContext.Database.Migrate();
-            await SeedingBasicData.SeedDataAsync(dbContext);
         }
         catch (Exception ex)
         {

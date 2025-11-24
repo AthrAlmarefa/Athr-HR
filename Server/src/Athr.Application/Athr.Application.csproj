@@ -22,4 +22,8 @@
     <ProjectReference Include="..\Athr.Domain\Athr.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Users\" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,4 @@
-﻿using Athr.Domain.Countries;
-using Athr.Domain.Permissions;
+﻿using Athr.Domain.Permissions;
 using Athr.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -44,15 +43,6 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
         builder.Property(u => u.IdentityNumber)
                 .IsRequired()
                 .HasMaxLength(100);
-
-        // Country dialCode_id (CountryId DialCode)
-        builder.Property(s => s.DialCodeId)
-            .HasColumnName("dialCode_id")
-            .HasConversion(
-                id => id.Value,
-                value => CountryId.Create(value))
-            .HasDefaultValue(CountryId.Create("SA")) // Default to Saudi Arabia
-            .IsRequired();
 
         // RolesPermissions Configuration
         builder.OwnsMany(
