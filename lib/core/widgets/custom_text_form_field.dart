@@ -24,6 +24,8 @@ class CustomTextFormField extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextStyle? hintStyle;
 
+
+
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
