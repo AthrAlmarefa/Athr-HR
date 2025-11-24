@@ -1,4 +1,5 @@
 import 'package:athr_hr/core/localization/lang_keys.dart';
+import 'package:athr_hr/core/routes/app_routes.dart';
 import 'package:athr_hr/core/utils/extension/my_context.dart';
 import 'package:athr_hr/features/tasks/widgets/design_request_leave_row.dart';
 import 'package:athr_hr/generated/assets.dart';
@@ -20,7 +21,11 @@ class RequestsTypes extends StatefulWidget {
          RequestLeaveRow(
              rightImage: Assets.imagesLeaveRequest,
              leftImage: Assets.imagesArrowIcon,
-             text: context.translate(LangKeys.leaveRequest)),
+             text: context.translate(LangKeys.leaveRequest),
+             onPressed: (){
+               Navigator.pushNamed(context,AppRoutes.leaveRequestView);
+             } ,
+         ),
          SizedBox(height: 20.h,),
          RequestLeaveRow(
              rightImage: Assets.imagesMission,

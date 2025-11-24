@@ -119,5 +119,18 @@ class LangKeys {
   static const String specialRequest = "special_request";
   static const String createRequest = "create_request";
   static const String selectRequestType = "select_request_type";
-
+  static const String leaveType = "leave_type";
+  static const String sickLeave = "sick_leave";
+  static const String leaveStart = "leave_start";
+  static const String leaveEnd = "leave_end";
+  static const String noteOptional = "note_optional";
+  static const String generalNote = "general_note";
+  static const String medicalConsultation = "medical_consultation";
+  static const String addAttachments = "add_attachments";
+  static const String submitRequest = "submit_request";
+  static const String annualLeave = "annual_leave";
+  static const String familyLeave = "family_leave";
+  static const String emergencyLeave = "emergency_leave";
+  static const String dateExampleMonday = "date_example_monday";
+  static const String dateExampleThursday = "date_example_thursday";
 }

@@ -120,5 +120,19 @@
   "letter_request": "طلب خطاب",
   "special_request": "طلب خاص",
   "create_request": "إنشاء طلب",
-  "select_request_type": "اختر نوع الطلب"
+  "select_request_type": "اختر نوع الطلب",
+  "leave_type": "نوع الإجازة",
+  "sick_leave": "مرضية",
+  "leave_start": "بداية الإجازة",
+  "leave_end": "نهاية الإجازة",
+  "note_optional": "ملاحظة (إختياري)",
+  "general_note": "إذا كان لديك أي ملاحظة يرجي إعلامنا بها",
+  "medical_consultation": "إستشارة طبية",
+  "add_attachments": "إضافة مرفقات",
+  "submit_request": "إرسال الطلب",
+  "annual_leave": "سنوية",
+  "family_leave": "عائلية",
+  "emergency_leave": "طارئة",
+  "date_example_monday": "الإثنين 20 مارس 2025",
+  "date_example_thursday": "الخميس 23 مارس 2025"
 }

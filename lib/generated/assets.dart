@@ -18,6 +18,7 @@ class Assets {
   static const String imagesCase = 'assets/images/case.png';
   static const String imagesClock = 'assets/images/clock.png';
   static const String imagesDownload = 'assets/images/download.png';
+  static const String imagesDropdownarrow = 'assets/images/dropdownarrow.png';
   static const String imagesExistance = 'assets/images/existance.png';
   static const String imagesEye = 'assets/images/eye.png';
   static const String imagesEyeSlash = 'assets/images/eye-slash.png';

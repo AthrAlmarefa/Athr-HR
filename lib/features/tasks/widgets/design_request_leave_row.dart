@@ -7,12 +7,15 @@ class RequestLeaveRow extends StatelessWidget {
   final String rightImage;
   final String leftImage;
   final String text;
+  final VoidCallback? onPressed;
+
 
   const RequestLeaveRow({
     super.key,
     required this.rightImage,
     required this.leftImage,
     required this.text,
+    this.onPressed,
   });
 
   @override
@@ -41,10 +44,13 @@ class RequestLeaveRow extends StatelessWidget {
             ),
           ),
           SizedBox(width: 10.w),
-          Image.asset(
-            leftImage,
-            width: 28,
-            height: 28,
+          InkWell(
+            onTap: onPressed,
+            child: Image.asset(
+              leftImage,
+              width: 28,
+              height: 28,
+            ),
           ),
         ],
       ),

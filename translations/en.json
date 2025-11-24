@@ -120,5 +120,19 @@
   "letter_request": "Letter Request",
   "special_request": "Special Request",
   "create_request": "Create Request",
-  "select_request_type": "Select Request Type"
+  "select_request_type": "Select Request Type",
+  "leave_type": "Leave Type",
+  "sick_leave": "Sick Leave",
+  "leave_start": "Leave Start",
+  "leave_end": "Leave End",
+  "note_optional": "Note (Optional)",
+  "general_note": "If you have any notes, please inform us",
+  "medical_consultation": "Medical Consultation",
+  "add_attachments": "Add Attachments",
+  "submit_request": "Submit Request",
+  "annual_leave": "Annual Leave",
+  "family_leave": "Family Leave",
+  "emergency_leave": "Emergency Leave",
+  "date_example_monday": "Monday 20 March 2025",
+  "date_example_thursday": "Thursday 23 March 2025"
 }
