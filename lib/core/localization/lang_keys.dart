@@ -70,7 +70,4 @@ class LangKeys {
   static const String mustContains = 'must_contains';
   static const String invalidEmailAddress = 'invalid_email_address';
 
-
-
-
 }

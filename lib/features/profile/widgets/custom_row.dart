@@ -27,7 +27,7 @@ class CustomRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(12.sp),
+      padding: EdgeInsets.all(18.sp),
       child: Row(
         children: [
           SizedBox(width: 40.w, height: 40.h, child: widget),

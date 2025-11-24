@@ -99,7 +99,7 @@ class ProfileWidget extends StatefulWidget {
                mainText: context.translate(LangKeys.language),
              ),
              Padding(
-               padding: EdgeInsets.all(8.sp),
+               padding: EdgeInsets.all(12.sp),
                child: Row(
                  children: [
                    Text(
