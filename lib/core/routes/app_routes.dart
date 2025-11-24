@@ -5,6 +5,7 @@ import 'package:athr_hr/features/main/main_view.dart';
 import 'package:athr_hr/features/on_boarding/on_boarding.dart';
 import 'package:athr_hr/features/profile/view/profile_details_view.dart';
 import 'package:athr_hr/features/profile/view/profile_view.dart';
+import 'package:athr_hr/features/tasks/view/create_request_view.dart';
 import 'package:flutter/material.dart';
 
 
@@ -16,6 +17,8 @@ class AppRoutes {
   static const String changePassword = 'changePassword';
   static const String mainView = 'main';
   static const String personalDataView = 'personalDataView';
+  static const String createRequestView = 'createRequestView';
+
 
   static Route<void> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -49,6 +52,11 @@ class AppRoutes {
             page:
          const ProfileDetailsView(),
             );
+      case createRequestView:
+        return BaseRoute(
+          page:
+          const CreateRequestView(),
+        );
       default:
         return BaseRoute(page:SizedBox());
     }
