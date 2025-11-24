@@ -22,69 +22,6 @@ namespace Athr.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Athr.Application.Abstractions.Tracking.TraceLog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AffectedColumns")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("affected_columns");
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date_time");
-
-                    b.Property<string>("EntryString")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("entry_string");
-
-                    b.Property<string>("InterceptionUniqueId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("interception_unique_id");
-
-                    b.Property<string>("NewValues")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("new_values");
-
-                    b.Property<string>("OldValues")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("old_values");
-
-                    b.Property<string>("PrimaryKey")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("primary_key");
-
-                    b.Property<string>("TableName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("table_name");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("type");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id")
-                        .HasName("pk_trace_logs");
-
-                    b.ToTable("trace_logs", (string)null);
-                });
-
             modelBuilder.Entity("Athr.Domain.BusinessRoles.BusinessRole", b =>
                 {
                     b.Property<Guid>("Id")
@@ -147,100 +84,6 @@ namespace Athr.Infrastructure.Migrations
                     b.ToTable("businessRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Athr.Domain.Categories.Category", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("id");
-
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset")
-                        .HasColumnName("deleted_at");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("deleted_by");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false)
-                        .HasColumnName("is_deleted");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)")
-                        .HasColumnName("name");
-
-                    b.HasKey("Id")
-                        .HasName("pk_categories");
-
-                    b.HasIndex("Name")
-                        .IsUnique()
-                        .HasDatabaseName("ix_categories_name");
-
-                    b.ToTable("categories", (string)null);
-                });
-
-            modelBuilder.Entity("Athr.Domain.Countries.Country", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("id")
-                        .HasComment("Country IsoCode");
-
-                    b.Property<string>("DialCode")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)")
-                        .HasColumnName("dial_code");
-
-                    b.HasKey("Id")
-                        .HasName("pk_countries");
-
-                    b.ToTable("countries", (string)null);
-                });
-
-            modelBuilder.Entity("Athr.Domain.Countries.CountryName", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CountryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("country_id");
-
-                    b.Property<string>("Culture")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)")
-                        .HasColumnName("culture");
-
-                    b.Property<bool>("IsDefault")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_default");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
-                        .HasColumnName("name");
-
-                    b.HasKey("Id")
-                        .HasName("pk_country_names");
-
-                    b.HasIndex("CountryId")
-                        .HasDatabaseName("ix_country_names_country_id");
-
-                    b.ToTable("country_names", (string)null);
-                });
-
             modelBuilder.Entity("Athr.Domain.Permissions.Permission", b =>
                 {
                     b.Property<Guid>("Id")
@@ -280,27 +123,6 @@ namespace Athr.Infrastructure.Migrations
                     b.ToTable("permissions", (string)null);
                 });
 
-            modelBuilder.Entity("Athr.Domain.Qualification.Qualification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("name");
-
-                    b.HasKey("Id")
-                        .HasName("pk_qualifications");
-
-                    b.ToTable("qualifications", (string)null);
-                });
-
             modelBuilder.Entity("Athr.Domain.Users.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -323,13 +145,6 @@ namespace Athr.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("deleted_by");
 
-                    b.Property<string>("DialCodeId")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("SA")
-                        .HasColumnName("dialCode_id");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -351,12 +166,6 @@ namespace Athr.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("identity_number");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true)
-                        .HasColumnName("is_active");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
@@ -437,7 +246,7 @@ namespace Athr.Infrastructure.Migrations
 
             modelBuilder.Entity("Athr.Domain.BusinessRoles.BusinessRole", b =>
                 {
-                    b.OwnsMany("Athr.Domain.BusinessRoles.AllowedPermission", "AllowedPermissions", b1 =>
+                    b.OwnsMany("Athr.Domain.BusinessRoles.BusinessRole.AllowedPermissions#Athr.Domain.BusinessRoles.AllowedPermission", "AllowedPermissions", b1 =>
                         {
                             b1.Property<Guid>("Id")
                                 .ValueGeneratedOnAdd()
@@ -473,47 +282,9 @@ namespace Athr.Infrastructure.Migrations
                     b.Navigation("AllowedPermissions");
                 });
 
-            modelBuilder.Entity("Athr.Domain.Countries.CountryName", b =>
-                {
-                    b.HasOne("Athr.Domain.Countries.Country", null)
-                        .WithMany("Names")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_country_names_countries_country_id");
-                });
-
             modelBuilder.Entity("Athr.Domain.Users.UserEntity", b =>
                 {
-                    b.OwnsMany("Athr.Domain.Users.AccountId", "BusinessRoles", b1 =>
-                        {
-                            b1.Property<Guid>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("id");
-
-                            b1.Property<Guid>("Value")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("business_id");
-
-                            b1.Property<Guid>("user_id")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("user_id");
-
-                            b1.HasKey("Id")
-                                .HasName("pk_user_businesses");
-
-                            b1.HasIndex("user_id")
-                                .HasDatabaseName("ix_user_businesses_user_id");
-
-                            b1.ToTable("user_businesses", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("user_id")
-                                .HasConstraintName("fk_user_businesses_users_user_id");
-                        });
-
-                    b.OwnsMany("Athr.Domain.Users.Authorization.BusinessRolesPermission", "BusinessPermissions", b1 =>
+                    b.OwnsMany("Athr.Domain.Users.UserEntity.BusinessPermissions#Athr.Domain.Users.Authorization.BusinessRolesPermission", "BusinessPermissions", b1 =>
                         {
                             b1.Property<Guid>("Id")
                                 .ValueGeneratedOnAdd()
@@ -550,14 +321,37 @@ namespace Athr.Infrastructure.Migrations
                                 .HasConstraintName("fk_user_roles_permissions_users_user_id");
                         });
 
+                    b.OwnsMany("Athr.Domain.Users.UserEntity.BusinessRoles#Athr.Domain.Users.AccountId", "BusinessRoles", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("id");
+
+                            b1.Property<Guid>("Value")
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("business_id");
+
+                            b1.Property<Guid>("user_id")
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("user_id");
+
+                            b1.HasKey("Id")
+                                .HasName("pk_user_businesses");
+
+                            b1.HasIndex("user_id")
+                                .HasDatabaseName("ix_user_businesses_user_id");
+
+                            b1.ToTable("user_businesses", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("user_id")
+                                .HasConstraintName("fk_user_businesses_users_user_id");
+                        });
+
                     b.Navigation("BusinessPermissions");
 
                     b.Navigation("BusinessRoles");
-                });
-
-            modelBuilder.Entity("Athr.Domain.Countries.Country", b =>
-                {
-                    b.Navigation("Names");
                 });
 #pragma warning restore 612, 618
         }
