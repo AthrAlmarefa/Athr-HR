@@ -69,6 +69,15 @@ export const menuItems: Menu[] = [
     level: 1,
   },
   {
+    title: 'categories',
+    id: 'categories',
+    icon: 'file',
+    type: 'link',
+    path: '/categories',
+    bookmark: true,
+    level: 1,
+  },
+  {
     title: 'kanban_board',
     id: 'kanban-board',
     icon: 'board',
