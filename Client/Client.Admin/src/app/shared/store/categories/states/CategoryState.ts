@@ -1,5 +1,4 @@
 import { DeleteCategory } from "./../actions/DeleteCategory";
-import { state } from "./../../../data/form-widgets";
 import {
   CategoryResponse,
   CategoryResponsePaginatedList,
@@ -36,6 +35,7 @@ export interface CategoryStateModel {
   selectedCategory: CategoryResponse | null;
   currentPage: number;
   perPage: number;
+  pageSize: number;
   total: number;
   loading: boolean;
   error: any;
@@ -48,6 +48,7 @@ export interface CategoryStateModel {
     selectedCategory: null,
     currentPage: 1,
     perPage: 10,
+    pageSize: 10,
     total: 0,
     loading: false,
     error: null,
@@ -87,6 +88,16 @@ export class CategoryState {
     return state.selectedCategory;
   }
 
+  @Selector()
+  static perPage(state: CategoryStateModel): number {
+    return state.perPage;
+  }
+
+  @Selector()
+  static pageSize(state: CategoryStateModel): number {
+    return state.pageSize;
+  }
+
   @Action(GetAllCategories)
   getAllCategories(
     context: StateContext<CategoryStateModel>,
@@ -95,14 +106,14 @@ export class CategoryState {
     context.patchState({ loading: true, error: null });
 
     return this.categoryService
-      .getCategories(action.payload.currentPage, action.payload.perPage)
+      .getCategories(action.payload.currentPage, action.payload.perPage, action.payload.pageSize)
       .pipe(
         tap((response: CategoryResponsePaginatedList) => {
           context.dispatch(new GetAllCategoriesSuccess(response));
         }),
         catchError((error) => {
           context.dispatch(new GetAllCategoriesFailure(error));
-          return throwError(error);
+          return throwError(() => error);
         })
       );
   }
@@ -142,7 +153,7 @@ export class CategoryState {
       }),
       catchError((error) => {
         context.dispatch(new GetCategoryByIdFailure(error));
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -251,12 +262,6 @@ export class CategoryState {
       loading: false,
       error: null,
     });
-
-    const state = context.getState();
-    // const categoryListRequest = {
-    //   currentPage: state.currentPage,
-    //   perPage: state.perPage,
-    // };
     context.dispatch(new GetAllCategories({}));
   }
 
