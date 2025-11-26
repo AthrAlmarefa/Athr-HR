@@ -3,7 +3,7 @@ import 'package:athr_hr/core/styles/colors/my_colors.dart';
 import 'package:athr_hr/core/styles/fonts/my_fonts.dart';
 import 'package:athr_hr/core/utils/extension/my_context.dart';
 import 'package:athr_hr/core/widgets/custom_app_bar_row.dart';
-import 'package:athr_hr/features/tasks/widgets/request_types.dart';
+import 'package:athr_hr/features/leaves/widgets/request_types.dart';
 import 'package:athr_hr/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

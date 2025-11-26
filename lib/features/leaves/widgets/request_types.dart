@@ -1,6 +1,6 @@
 import 'package:athr_hr/core/localization/lang_keys.dart';
 import 'package:athr_hr/core/utils/extension/my_context.dart';
-import 'package:athr_hr/features/tasks/widgets/design_request_leave_row.dart';
+import 'package:athr_hr/features/leaves/widgets/design_request_leave_row.dart';
 import 'package:athr_hr/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
