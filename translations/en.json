@@ -6,7 +6,6 @@
   "monthly_performance_report": "Get a detailed monthly report of your performance",
   "leave_and_admin_tasks": "Leave requests and other administrative tasks in one place",
   "start_now": "Start Now",
-  "profile": "Profile",
   "name": "Abdullah Elbestamy",
   "job": "Flutter Developer",
   "id": "ID: ",
@@ -30,7 +29,6 @@
   "times": "Times",
   "tasks": "Tasks",
   "leaves": "Leaves",
-  "account": "Profile",
   "login": "Login",
   "email": "Email",
   "password": "Password",
@@ -134,5 +132,9 @@
   "family_leave": "Family Leave",
   "emergency_leave": "Emergency Leave",
   "date_example_monday": "Monday 20 March 2025",
-  "date_example_thursday": "Thursday 23 March 2025"
+  "date_example_thursday": "Thursday 23 March 2025",
+  "profile": "Profile",
+  "account": "Account",
+  "cancel": "Cancel",
+  "confirm_exit": "Confirm Exit"
 }

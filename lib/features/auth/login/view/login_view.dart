@@ -34,6 +34,7 @@ class _LoginViewState extends State<LoginView> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 10.h,),
               Align(
                 alignment: Alignment.center,
                 child: Padding(

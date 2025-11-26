@@ -6,7 +6,6 @@ class LangKeys {
   static const String monthlyPerformanceReport = "monthly_performance_report";
   static const String leaveAndAdminTasks = "leave_and_admin_tasks";
   static const String startNow = "start_now";
-  static const String profile = "profile";
   static const String name = "name";
   static const String job = "job";
   static const String id = "id";
@@ -31,7 +30,6 @@ class LangKeys {
   static const String times = "times";
   static const String tasks = "tasks";
   static const String leaves = "leaves";
-  static const String account = "profile";
   static const login = 'login';
   static const email = 'email';
   static const password = 'password';
@@ -133,4 +131,8 @@ class LangKeys {
   static const String emergencyLeave = "emergency_leave";
   static const String dateExampleMonday = "date_example_monday";
   static const String dateExampleThursday = "date_example_thursday";
+  static const String profile = "profile";
+  static const String account = "account";
+  static const String cancel = "cancel";
+  static const String confirmExit = "confirm_exit";
 }

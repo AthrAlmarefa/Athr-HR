@@ -13,11 +13,13 @@ class Assets {
   static const String imagesAccount = 'assets/images/account.png';
   static const String imagesArrow = 'assets/images/arrow.png';
   static const String imagesArrowIcon = 'assets/images/arrowIcon.png';
+  static const String imagesAttachmentsbutton = 'assets/images/attachmentsbutton.png';
   static const String imagesCalendar = 'assets/images/calendar.png';
   static const String imagesCall = 'assets/images/call.png';
   static const String imagesCase = 'assets/images/case.png';
   static const String imagesClock = 'assets/images/clock.png';
   static const String imagesDownload = 'assets/images/download.png';
+  static const String imagesDownloadpdf = 'assets/images/downloadpdf.png';
   static const String imagesDropdownarrow = 'assets/images/dropdownarrow.png';
   static const String imagesExistance = 'assets/images/existance.png';
   static const String imagesEye = 'assets/images/eye.png';
@@ -43,6 +45,7 @@ class Assets {
   static const String imagesOnBoarding3 = 'assets/images/onBoarding3.png';
   static const String imagesPassword = 'assets/images/password.png';
   static const String imagesPdf = 'assets/images/pdf.png';
+  static const String imagesPdffile = 'assets/images/pdffile.png';
   static const String imagesPermissionRequest = 'assets/images/permissionRequest.png';
   static const String imagesProfile = 'assets/images/profile.png';
   static const String imagesProfileIcon = 'assets/images/profileIcon.png';

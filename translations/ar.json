@@ -6,7 +6,6 @@
   "monthly_performance_report": "احصل على تقرير شهري \n      مفصل لأدائك",
   "leave_and_admin_tasks": "طلبات الإجازات وغيرها من\n الإداريات فى مكان واحد",
   "start_now": "إبدأ الآن",
-  "profile": "الملف الشخصي",
   "name": "عبدالله البسطامي",
   "job": "مصمم واجهات الإستخدام",
   "id": "ID: ",
@@ -29,7 +28,6 @@
   "home": "الرئيسية",
   "tasks": "المهام",
   "leaves": "الإجازات",
-  "account": "البروفايل",
   "login": "تسجيل الدخول",
   "email": "البريد الإلكتروني",
   "password": "كلمة المرور",
@@ -48,7 +46,7 @@
   "idNumberValue": "35268745213698",
   "workLocation": "موقع العمل",
   "riyadhOffice": "مكتب الرياض",
-  "attachments": "المرفقات",
+  "attachments": "مرفقات",
   "attachmentsCount": "3+",
   "english": "English",
   "logout": "تسجيل خروج",
@@ -134,5 +132,10 @@
   "family_leave": "عائلية",
   "emergency_leave": "طارئة",
   "date_example_monday": "الإثنين 20 مارس 2025",
-  "date_example_thursday": "الخميس 23 مارس 2025"
+  "date_example_thursday": "الخميس 23 مارس 2025",
+  "profile": "الملف الشخصي",
+  "account": "البروفايل",
+  "cancel": "إلغاء",
+  "confirm_exit": "تأكيد الخروج"
 }
+

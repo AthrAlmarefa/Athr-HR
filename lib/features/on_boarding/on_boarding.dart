@@ -4,6 +4,7 @@ import 'package:athr_hr/core/utils/extension/my_context.dart';
 import 'package:athr_hr/features/on_boarding/on_boarding_card.dart';
 import 'package:athr_hr/generated/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -54,15 +55,18 @@ class _OnBoardingState extends State<OnBoarding> {
             },
             currentIndex: currentPage,
           ),
-          CustomOnboardingScreen(
-            title: context.translate(LangKeys.manageLeaves),
-            subtitle:context.translate(LangKeys.leaveAndAdminTasks),
-            imageAsset: Assets.imagesOnBoarding3,
-            buttonText: context.translate(LangKeys.startNow),
-            onButtonPressed: () {
-              Navigator.pushNamed(context, AppRoutes.login);
-            },
-            currentIndex: currentPage,
+          Padding(
+            padding:EdgeInsets.only(left: 6.w,right: 6.w),
+            child: CustomOnboardingScreen(
+              title: context.translate(LangKeys.manageLeaves),
+              subtitle:context.translate(LangKeys.leaveAndAdminTasks),
+              imageAsset: Assets.imagesOnBoarding3,
+              buttonText: context.translate(LangKeys.startNow),
+              onButtonPressed: () {
+                Navigator.pushNamed(context, AppRoutes.login);
+              },
+              currentIndex: currentPage,
+            ),
           ),
           DotsIndicator(currentIndex: currentPage, totalDots: 3),
         ],

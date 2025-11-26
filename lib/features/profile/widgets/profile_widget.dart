@@ -2,6 +2,7 @@ import 'package:athr_hr/core/localization/lang_keys.dart';
 import 'package:athr_hr/core/styles/colors/my_colors.dart';
 import 'package:athr_hr/core/styles/fonts/my_fonts.dart';
 import 'package:athr_hr/core/utils/extension/my_context.dart';
+import 'package:athr_hr/features/profile/widgets/build_logout_dialog.dart';
 import 'package:athr_hr/features/profile/widgets/custom_profile_data.dart';
 import 'package:athr_hr/features/profile/widgets/custom_row.dart';
 import 'package:athr_hr/features/profile/widgets/custom_switch_icon.dart';
@@ -58,8 +59,8 @@ class ProfileWidget extends StatefulWidget {
                widget: Image.asset(Assets.imagesNotifications),
                text: context.translate(LangKeys.controlAppNotifications),
                mainText: context.translate(LangKeys.notifications),
-               imageHeight: 34.h,
-               imageWidth: 52.w,
+               imageHeight: 28.h,
+               imageWidth: 46.w,
              ),
              CustomRow(
                imageIcon: Image.asset(Assets.imagesArrowIcon),
@@ -82,8 +83,8 @@ class ProfileWidget extends StatefulWidget {
                  LangKeys.autoAttendanceDescription,
                ),
                mainText: context.translate(LangKeys.autoAttendance),
-               imageHeight: 34.h,
-               imageWidth: 52.w,
+               imageHeight: 28.h,
+               imageWidth: 46.w,
              ),
              CustomRow(
                imageIcon: Text(
@@ -109,11 +110,16 @@ class ProfileWidget extends StatefulWidget {
                      ),
                    ),
                    Spacer(),
-                   Image.asset(
-                     Assets.imagesLogout,
-                     width: 40.w,
-                     height: 40.h,
-                     fit: BoxFit.contain,
+                   InkWell(
+                     onTap: (){
+                       showLogoutDialog(context);
+                     },
+                     child: Image.asset(
+                       Assets.imagesLogout,
+                       width: 40.w,
+                       height: 40.h,
+                       fit: BoxFit.contain,
+                     ),
                    ),
                  ],
                ),

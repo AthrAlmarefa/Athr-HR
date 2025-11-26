@@ -27,11 +27,11 @@ class CustomRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(18.sp),
+      padding: EdgeInsets.all(12.sp),
       child: Row(
         children: [
           SizedBox(width: 40.w, height: 40.h, child: widget),
-          SizedBox(width: 16.w),
+          SizedBox(width: 10.w),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

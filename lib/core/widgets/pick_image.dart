@@ -47,7 +47,10 @@ Future<File?> pickImage(BuildContext context) async {
 
   if (source == null) return null;
 
-  final pickedFile = await picker.pickImage(source: source);
+  final pickedFile = await picker.pickImage(
+    source: source,
+    preferredCameraDevice: CameraDevice.front,
+  );
 
   if (pickedFile == null) return null;
 

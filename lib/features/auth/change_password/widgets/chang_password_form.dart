@@ -70,7 +70,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                   });
                 },
                 child: Image.asset(
-                  isCurrentPassword ? Assets.imagesEye : Assets.imagesEyeSlash,
+                  isCurrentPassword ?Assets.imagesEye : Assets.imagesEyeSlash,
                   width: 20.w,
                   height: 20.h,
                   fit: BoxFit.contain,
@@ -100,7 +100,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                   });
                 },
                 child: Image.asset(
-                  isNewPassword ? Assets.imagesEye : Assets.imagesEyeSlash,
+                  isNewPassword ?Assets.imagesEye : Assets.imagesEyeSlash,
                   width: 20.w,
                   height: 20.h,
                   fit: BoxFit.contain,
@@ -135,8 +135,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                 },
                 child: Image.asset(
                   isNewPasswordConfirm
-                      ? Assets.imagesEye
-                      : Assets.imagesEyeSlash,
+                      ? Assets.imagesEye : Assets.imagesEyeSlash,
                   width: 20.w,
                   height: 20.h,
                   fit: BoxFit.contain,
@@ -146,8 +145,8 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
             SizedBox(height: 10.h,),
             SizedBox(height: 24.h),
             SizedBox(
-              width: 280.w,
-              height: 54.h,
+              width: 285.w,
+              height: 58.h,
               child: CustomButton(
                 txt: context.translate(LangKeys.save),
                 onPressed: () {

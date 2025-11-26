@@ -16,6 +16,10 @@ class CustomTextFormField extends StatefulWidget {
     this.textStyle,
     this.maxLines,
     this.expands,
+    this.textAlignVertical,
+    this.contentPadding,
+    this.readOnly,
+    this.showCursor,
   });
 
   final String? hintText;
@@ -29,6 +33,10 @@ class CustomTextFormField extends StatefulWidget {
   final TextStyle? textStyle;
   final int? maxLines;
   final bool? expands;
+  final TextAlignVertical? textAlignVertical;
+  final EdgeInsets? contentPadding;
+  final bool? readOnly;
+  final bool? showCursor;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -38,9 +46,16 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      maxLines: widget.maxLines,
-      expands: widget.expands ?? false,
+      readOnly: widget.readOnly ?? false,
+      showCursor: widget.showCursor ?? true,
       obscureText: widget.isPassword ?? false,
+      maxLines: (widget.isPassword ?? false)
+          ? 1
+          : widget.maxLines,
+
+      expands: (widget.isPassword ?? false)
+          ? false
+          : (widget.expands ?? false),
       controller: widget.controller,
       style: widget.textStyle ?? TextStyle(color: MyColors.black, fontSize: 14.sp),
       decoration: InputDecoration(

@@ -79,6 +79,34 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         return '';
     }
   }
+  Widget gradientText({
+    required String text,
+    required bool isActive,
+    required TextStyle style,
+  }) {
+    if (!isActive) {
+      return Text(
+        text,
+        style: style.copyWith(color: const Color(0xFF99A4B3)),
+      );
+    }
+
+    return ShaderMask(
+      shaderCallback: (bounds) => const LinearGradient(
+        colors: [
+          Color(0xFF1BABB6),
+          Color(0xCC005157),
+        ],
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+      ).createShader(bounds),
+      child: Text(
+        text,
+        style: style.copyWith(color: Colors.white),
+      ),
+    );
+  }
+
 
   Widget _navItem({
     required String activeImagePath,
@@ -103,13 +131,10 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             width: 28.w,
           ),
           SizedBox(height: 4.h),
-          Text(
-            label,
-            style: MyFonts.semiBold600_12.copyWith(
-              color: isActive
-                  ? MyColors.navigationIconsActiveColor.withOpacity(0.8)
-                  : MyColors.navigationIconsInActiveColor,
-            ),
+          gradientText(
+            text: label,
+            isActive: isActive,
+            style: MyFonts.semiBold600_12,
           ),
         ],
       ),
