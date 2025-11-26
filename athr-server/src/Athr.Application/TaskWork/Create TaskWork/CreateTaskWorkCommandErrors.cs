@@ -1,7 +1,7 @@
 ﻿using Athr.Application.Exceptions;
 namespace Athr.Application.TaskWork.Create_TaskWork
 {
-    public class CreateTaskWorkCommandErrors
+    public static class CreateTaskWorkCommandErrors
     {
         public static readonly ApplicationError InvalidPriority =
              new("CreateTaskWork.InvalidPriority", "Invalid priority key.");

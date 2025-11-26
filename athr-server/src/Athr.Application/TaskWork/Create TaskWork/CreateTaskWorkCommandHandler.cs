@@ -7,7 +7,7 @@ using Athr.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 namespace Athr.Application.TaskWork.Create_TaskWork
 {
-    public class CreateTaskWorkCommandHandler : ICommandHandler<CreateTaskWorkCommand, Guid>
+    public sealed class CreateTaskWorkCommandHandler : ICommandHandler<CreateTaskWorkCommand, Guid>
     {
         private readonly ITaskWorkRepository _taskRepo;
         private readonly IUnitOfWork _unitOfWork;

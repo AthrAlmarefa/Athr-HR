@@ -6,5 +6,7 @@ namespace Athr.Infrastructure.Repositories
         public TaskWorkRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
+       
+
     }
 }

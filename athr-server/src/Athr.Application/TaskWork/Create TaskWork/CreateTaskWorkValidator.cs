@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 namespace Athr.Application.TaskWork.Create_TaskWork
 {
-    public class CreateTaskWorkValidator : AbstractValidator<CreateTaskWorkCommand>
+    public sealed class CreateTaskWorkValidator : AbstractValidator<CreateTaskWorkCommand>
     {
         public CreateTaskWorkValidator()
         {
