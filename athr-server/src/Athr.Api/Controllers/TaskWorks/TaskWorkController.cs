@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using Athr.Application.TaskWork.Change_Priorty;
 using Athr.Application.TaskWork.Create_TaskWork;
 using Athr.Application.TaskWork.UpdateTaskWork;
 using MediatR;
@@ -31,7 +32,15 @@ namespace Athr.Api.Controllers.TaskWorks
             UpdateTaskWorkCommand command = request;
             return await _sender.Send(command);
         }
+        [HttpPatch("{id:guid}/priority")]
+        public async Task<IActionResult> ChangePriority(Guid id, [FromBody] ChangeTaskPriorityRequest request)
+        {
+            var command = new ChangeTaskPriorityCommand(id, request.PriorityKey);
 
+            await _sender.Send(command);
+
+            return NoContent();
+        }
     }
 
 }
