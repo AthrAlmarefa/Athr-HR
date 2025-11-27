@@ -60,10 +60,11 @@ class BuildLeaveTypeFormField extends StatefulWidget {
                    context: context,
                    controller: leaveController,
                    options: [
-                     context.translate(LangKeys.familyLeave),
                      context.translate(LangKeys.annualLeave),
                      context.translate(LangKeys.sickLeave),
                      context.translate(LangKeys.emergencyLeave),
+                     context.translate(LangKeys.workLeave),
+                     context.translate(LangKeys.permission),
                    ],
                    fieldKey: leaveTypeFieldKey,
                  );

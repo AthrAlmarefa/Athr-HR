@@ -128,9 +128,6 @@
   "medical_consultation": "إستشارة طبية",
   "add_attachments": "إضافة مرفقات",
   "submit_request": "إرسال الطلب",
-  "annual_leave": "سنوية",
-  "family_leave": "عائلية",
-  "emergency_leave": "طارئة",
   "date_example_monday": "الإثنين 20 مارس 2025",
   "date_example_thursday": "الخميس 23 مارس 2025",
   "profile": "الملف الشخصي",
@@ -148,6 +145,11 @@
   "fileTypePdf": "PDF",
   "fileTypeJpg": "JPG",
   "fileTypeJpeg": "JPEG",
-  "fileTypePng": "PNG"
+  "fileTypePng": "PNG",
+  "permission": "إذن",
+  "workLeave": "مغادرة خاصة بالعمل",
+  "annualLeave": "إجازة سنوية",
+  "emergencyLeave": "إجازة طارئة",
+  "sickLeave": "إجازة مرضية"
 }
 

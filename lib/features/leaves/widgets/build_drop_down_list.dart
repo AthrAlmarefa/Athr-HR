@@ -19,7 +19,7 @@ void showLeaveDropdown({
     builder: (context) => Positioned(
       left: offset.dx,
       top: offset.dy + renderBox.size.height + 5,
-      width: fieldWidth, // match the field width
+      width: fieldWidth,
       child: Material(
         elevation: 4,
         borderRadius: BorderRadius.circular(8.sp),

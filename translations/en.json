@@ -128,9 +128,6 @@
   "medical_consultation": "Medical Consultation",
   "add_attachments": "Add Attachments",
   "submit_request": "Submit Request",
-  "annual_leave": "Annual Leave",
-  "family_leave": "Family Leave",
-  "emergency_leave": "Emergency Leave",
   "date_example_monday": "Monday 20 March 2025",
   "date_example_thursday": "Thursday 23 March 2025",
   "profile": "Profile",
@@ -148,5 +145,12 @@
   "fileTypePdf": "PDF",
   "fileTypeJpg": "JPG",
   "fileTypeJpeg": "JPEG",
-  "fileTypePng": "PNG"
+  "fileTypePng": "PNG",
+  "workLeave": "Work Leave",
+  "annualLeave": "Annual Leave Permission",
+  "emergencyLeave": "Emergency Leave",
+  "sickLeave": "Sick Leave",
+  "permission": "Permission"
+
+
 }
