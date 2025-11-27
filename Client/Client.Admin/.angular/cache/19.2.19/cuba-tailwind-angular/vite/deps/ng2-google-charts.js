@@ -20,13 +20,13 @@ import {
   ɵɵelement,
   ɵɵinject,
   ɵɵinvalidFactory
-} from "./chunk-4SGPMRR7.js";
-import "./chunk-5KXDAEEK.js";
-import "./chunk-VMI3K6GE.js";
-import "./chunk-WD6C567C.js";
+} from "./chunk-72K37ONP.js";
+import "./chunk-7J22WABE.js";
+import "./chunk-5PA5UEDQ.js";
+import "./chunk-ETBEKOXV.js";
 import {
   __awaiter
-} from "./chunk-HM5YLMWO.js";
+} from "./chunk-55JZBEKM.js";
 import "./chunk-TXDUYLVM.js";
 
 // node_modules/ng2-google-charts/fesm2015/ng2-google-charts.js

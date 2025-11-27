@@ -1,25 +1,21 @@
 import {
-  toSignal
-} from "./chunk-JZ2Z2ZAY.js";
-import {
   ContentObserver
-} from "./chunk-WFQMTQ67.js";
+} from "./chunk-JHR6EEFH.js";
 import {
-  Directionality
-} from "./chunk-BENNISM6.js";
-import {
+  Directionality,
   Platform,
   coerceElement
-} from "./chunk-FFO3NTFS.js";
-import "./chunk-7BPCEMNR.js";
+} from "./chunk-YH3DE3VK.js";
+import "./chunk-KKKUIQ6R.js";
 import {
   DOCUMENT,
   isPlatformBrowser
-} from "./chunk-YXMYO7DL.js";
+} from "./chunk-XLJ7AJ6Q.js";
 import {
   ApplicationRef,
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   Directive,
   ElementRef,
   Injectable,
@@ -30,7 +26,10 @@ import {
   PLATFORM_ID,
   Renderer2,
   RendererFactory2,
+  RuntimeError,
   afterRenderEffect,
+  assertInInjectionContext,
+  assertNotInReactiveContext,
   booleanAttribute,
   computed,
   contentChild,
@@ -71,13 +70,13 @@ import {
   ɵɵstyleProp,
   ɵɵtemplate,
   ɵɵviewQuerySignal
-} from "./chunk-4SGPMRR7.js";
-import "./chunk-5KXDAEEK.js";
+} from "./chunk-72K37ONP.js";
 import {
   animationFrameScheduler,
   fromEvent,
   merge
-} from "./chunk-VMI3K6GE.js";
+} from "./chunk-7J22WABE.js";
+import "./chunk-5PA5UEDQ.js";
 import {
   EMPTY,
   Observable,
@@ -98,8 +97,8 @@ import {
   takeWhile,
   tap,
   throttleTime
-} from "./chunk-WD6C567C.js";
-import "./chunk-HM5YLMWO.js";
+} from "./chunk-ETBEKOXV.js";
+import "./chunk-55JZBEKM.js";
 import {
   __async,
   __spreadValues
@@ -217,6 +216,72 @@ var SharedResizeObserver = class _SharedResizeObserver {
     }]
   }], () => [], null);
 })();
+
+// node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+function toSignal(source, options) {
+  typeof ngDevMode !== "undefined" && ngDevMode && assertNotInReactiveContext(toSignal, "Invoking `toSignal` causes new subscriptions every time. Consider moving `toSignal` outside of the reactive context and read the signal value where needed.");
+  const requiresCleanup = !options?.manualCleanup;
+  requiresCleanup && !options?.injector && assertInInjectionContext(toSignal);
+  const cleanupRef = requiresCleanup ? options?.injector?.get(DestroyRef) ?? inject(DestroyRef) : null;
+  const equal = makeToSignalEqual(options?.equal);
+  let state;
+  if (options?.requireSync) {
+    state = signal({
+      kind: 0
+      /* StateKind.NoValue */
+    }, {
+      equal
+    });
+  } else {
+    state = signal({
+      kind: 1,
+      value: options?.initialValue
+    }, {
+      equal
+    });
+  }
+  let destroyUnregisterFn;
+  const sub = source.subscribe({
+    next: (value) => state.set({
+      kind: 1,
+      value
+    }),
+    error: (error) => {
+      if (options?.rejectErrors) {
+        throw error;
+      }
+      state.set({
+        kind: 2,
+        error
+      });
+    },
+    complete: () => {
+      destroyUnregisterFn?.();
+    }
+    // Completion of the Observable is meaningless to the signal. Signals don't have a concept of
+    // "complete".
+  });
+  if (options?.requireSync && state().kind === 0) {
+    throw new RuntimeError(601, (typeof ngDevMode === "undefined" || ngDevMode) && "`toSignal()` called with `requireSync` but `Observable` did not emit synchronously.");
+  }
+  destroyUnregisterFn = cleanupRef?.onDestroy(sub.unsubscribe.bind(sub));
+  return computed(() => {
+    const current = state();
+    switch (current.kind) {
+      case 1:
+        return current.value;
+      case 2:
+        throw current.error;
+      case 0:
+        throw new RuntimeError(601, (typeof ngDevMode === "undefined" || ngDevMode) && "`toSignal()` called with `requireSync` but `Observable` did not emit synchronously.");
+    }
+  }, {
+    equal: options?.equal
+  });
+}
+function makeToSignalEqual(userEquality = Object.is) {
+  return (a, b) => a.kind === 1 && b.kind === 1 && userEquality(a.value, b.value);
+}
 
 // node_modules/ngx-scrollbar/fesm2022/ngx-scrollbar-smooth-scroll.mjs
 var NEWTON_ITERATIONS = 4;
@@ -2325,4 +2390,13 @@ export {
   provideScrollbarOptions,
   provideScrollbarPolyfill
 };
+/*! Bundled license information:
+
+@angular/core/fesm2022/rxjs-interop.mjs:
+  (**
+   * @license Angular v19.2.15
+   * (c) 2010-2025 Google LLC. https://angular.io/
+   * License: MIT
+   *)
+*/
 //# sourceMappingURL=ngx-scrollbar.js.map
