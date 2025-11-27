@@ -1,5 +1,6 @@
 import 'package:athr_hr/athr_hr.dart';
 import 'package:athr_hr/core/app_cubit/app_cubit.dart';
+import 'package:athr_hr/core/localization/translation_loader.dart';
 import 'package:athr_hr/core/services/shared_preferences/shared_preferences_helper.dart';
 import 'package:athr_hr/core/utils/abb_bloc_observer.dart';
 import 'package:athr_hr/di/di.dart';
@@ -13,6 +14,7 @@ void main() async{
   configureDependencies();
   final cubit = getIt<AppCubit>();
   await cubit.getSavedLanguage();
+  await TranslationsLoader.loadTranslations(cubit.currentLanguage);
   runApp(AthrHr(appCubit: cubit));
 }
 

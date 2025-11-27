@@ -136,5 +136,17 @@
   "profile": "Profile",
   "account": "Account",
   "cancel": "Cancel",
-  "confirm_exit": "Confirm Exit"
+  "confirm_exit": "Confirm Exit",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "fileSavedSuccessfully": "File saved successfully",
+  "fileUploadedSuccessfully": "File uploaded successfully",
+  "failedToUploadFile": "Failed Upload File",
+  "noFileFoundToDownload": "No file found to download",
+  "failedToDownloadFile": "Failed to download file",
+  "fileDownloadedSuccessfully": "File downloaded successfully",
+  "fileTypePdf": "PDF",
+  "fileTypeJpg": "JPG",
+  "fileTypeJpeg": "JPEG",
+  "fileTypePng": "PNG"
 }

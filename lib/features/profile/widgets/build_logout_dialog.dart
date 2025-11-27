@@ -16,10 +16,11 @@ void showLogoutDialog(BuildContext context) {
         return Center(
           child: SizedBox(
             width: 800.w,
-            height: 200.h,
+            height: 230.h,
             child: AlertDialog(
               content: Column(
                 children: [
+                  SizedBox(height: 4.h,),
                   Text(
                     context.translate(LangKeys.logout),
                     style: MyFonts.semiBold600_18.copyWith(
@@ -42,7 +43,7 @@ void showLogoutDialog(BuildContext context) {
                           txt: context.translate(LangKeys.cancel),
                         ),
                       ),
-                      SizedBox(width: 18.w,),
+                      SizedBox(width: 10.w,),
                       SizedBox(
                         width: 115.w,
                         height: 55.h,

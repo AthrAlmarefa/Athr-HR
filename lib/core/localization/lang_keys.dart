@@ -135,4 +135,16 @@ class LangKeys {
   static const String account = "account";
   static const String cancel = "cancel";
   static const String confirmExit = "confirm_exit";
+  static const thursday = 'thursday';
+  static const friday = 'friday';
+  static const String fileSavedSuccessfully = 'fileSavedSuccessfully';
+  static const String fileUploadedSuccessfully = 'fileUploadedSuccessfully';
+  static const String noFileFoundToDownload = 'noFileFoundToDownload';
+  static const String failedToDownloadFile = 'failedToDownloadFile';
+  static const String failedToUploadFile = 'failedToUploadFile';
+  static const String fileDownloadedSuccessfully = 'fileDownloadedSuccessfully';
+  static const String fileTypePdf = 'fileTypePdf';
+  static const String fileTypeJpg = 'fileTypeJpg';
+  static const String fileTypeJpeg = 'fileTypeJpeg';
+  static const String fileTypePng = 'fileTypePng';
 }

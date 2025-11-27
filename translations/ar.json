@@ -136,6 +136,18 @@
   "profile": "الملف الشخصي",
   "account": "البروفايل",
   "cancel": "إلغاء",
-  "confirm_exit": "تأكيد الخروج"
+  "confirm_exit": "تأكيد الخروج",
+  "thursday": "الخميس",
+  "friday": "الجمعة",
+  "fileSavedSuccessfully": "تم حفظ الملف بنجاح",
+  "fileUploadedSuccessfully": "تم رفع الملف بنجاح",
+  "noFileFoundToDownload": "لا يوجد ملف للتحميل",
+  "failedToDownloadFile": "فشل تحميل الملف",
+  "failedToUploadFile": "فشل رفع الملف",
+  "fileDownloadedSuccessfully": "تم تحميل الملف بنجاح",
+  "fileTypePdf": "PDF",
+  "fileTypeJpg": "JPG",
+  "fileTypeJpeg": "JPEG",
+  "fileTypePng": "PNG"
 }
 

@@ -1,5 +1,4 @@
 import 'package:athr_hr/core/localization/lang_keys.dart';
-import 'package:athr_hr/core/routes/app_routes.dart';
 import 'package:athr_hr/core/utils/extension/my_context.dart';
 import 'package:athr_hr/core/widgets/custom_app_bar_row.dart';
 import 'package:athr_hr/features/leaves/widgets/build_leave_type_form_field.dart';
@@ -10,9 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LeaveRequestWidget extends StatefulWidget {
-  final ValueChanged<int>? onChangeTab;
 
-  const LeaveRequestWidget({super.key, this.onChangeTab});
+  const LeaveRequestWidget({super.key,});
 
   @override
   State<LeaveRequestWidget> createState() => _LeaveRequestWidgetState();
@@ -36,9 +34,7 @@ class _LeaveRequestWidgetState extends State<LeaveRequestWidget> {
                     height: 24.h,
                     fit: BoxFit.contain,
                   ),
-                  onPressed: (){
-                    Navigator.pushNamed(context, AppRoutes.mainView);
-                  },
+                  onPressed: (){},
                 ),
                 SizedBox(height: 36.h),
                 BuildLeaveTypeFormField(),

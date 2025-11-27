@@ -1,6 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 
-abstract class OfflineFileDataSource {
+abstract class OfflineDataSource {
   Future<void> cacheFile(PlatformFile file);
 
   Future<String?> getCachedFilePath();

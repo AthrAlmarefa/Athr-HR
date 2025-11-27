@@ -5,11 +5,13 @@ import 'package:athr_hr/core/styles/colors/my_colors.dart';
 
 List<String> getArabicWeekDays(BuildContext context) {
   return [
-    context.translate(LangKeys.saturday),
-    context.translate(LangKeys.sunday),
     context.translate(LangKeys.monday),
     context.translate(LangKeys.tuesday),
     context.translate(LangKeys.wednesday),
+    context.translate(LangKeys.thursday),
+    context.translate(LangKeys.friday),
+    context.translate(LangKeys.saturday),
+    context.translate(LangKeys.sunday),
   ];
 }
 
@@ -67,7 +69,7 @@ String formatDateToArabic(BuildContext context, DateTime date) {
   final weekDays = getArabicWeekDays(context);
   final months = getArabicMonths(context);
 
-  String weekDay = weekDays[date.weekday % 7];
+  String weekDay = weekDays[date.weekday - 1];
   String month = months[date.month - 1];
 
   return "$weekDay ${date.day} $month ${date.year}";

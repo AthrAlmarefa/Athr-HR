@@ -49,6 +49,8 @@ class BuildLeaveTypeFormField extends StatefulWidget {
            child: CustomTextFormField(
              key: leaveTypeFieldKey,
              controller: leaveController,
+             readOnly: true,
+             showCursor: false,
              textStyle: MyFonts.semiBold600_18.copyWith(
                color: MyColors.black,
              ),
@@ -91,6 +93,8 @@ class BuildLeaveTypeFormField extends StatefulWidget {
            height: 64.h,
            child: CustomTextFormField(
              controller: leaveStartDayController,
+             readOnly: true,
+             showCursor: false,
              key: leaveStartDayKey,
              textStyle: MyFonts.semiBold600_18.copyWith(
                color: MyColors.black,
@@ -130,6 +134,8 @@ class BuildLeaveTypeFormField extends StatefulWidget {
            height: 64.h,
            child: CustomTextFormField(
              controller: leaveFinalDayController,
+             readOnly: true,
+             showCursor: false,
              key: leaveFinalDayKey,
              textStyle: MyFonts.semiBold600_18.copyWith(
                color: MyColors.black,
