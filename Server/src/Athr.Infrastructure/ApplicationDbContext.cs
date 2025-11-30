@@ -88,8 +88,7 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
         if (_currentTransaction == null)
             throw new InvalidOperationException("No transaction started.");
 
-        // Save changes
-        //ChangeTracker.Clear()
+        
         try
         {
             await SaveChangesAsync(cancellationToken);
