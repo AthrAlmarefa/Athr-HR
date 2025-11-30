@@ -1,43 +1,61 @@
-import { HttpClient, provideHttpClient } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
-import { OWL_DATE_TIME_LOCALE } from '@danielmoncada/angular-datetime-picker';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { provideToastr } from 'ngx-toastr';
-import { routes } from './app.routes';
-import {provideStore} from "@ngxs/store";
-import {environment} from "../environments/environment";
-import {withNgxsReduxDevtoolsPlugin} from "@ngxs/devtools-plugin";
-import { withNgxsLoggerPlugin} from "@ngxs/logger-plugin";
-import { CategoryState } from './shared/store/categories/states/CategoryState';
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptors,
+} from "@angular/common/http";
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideZoneChangeDetection,
+} from "@angular/core";
+import { provideAnimations } from "@angular/platform-browser/animations";
+import { provideRouter, withInMemoryScrolling } from "@angular/router";
+import { OWL_DATE_TIME_LOCALE } from "@danielmoncada/angular-datetime-picker";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { CalendarModule, DateAdapter } from "angular-calendar";
+import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
+import { provideToastr } from "ngx-toastr";
+import { routes } from "./app.routes";
+import { provideStore } from "@ngxs/store";
+import { environment } from "../environments/environment";
+import { withNgxsReduxDevtoolsPlugin } from "@ngxs/devtools-plugin";
+import { withNgxsLoggerPlugin } from "@ngxs/logger-plugin";
+import { CategoryState } from "./shared/store/categories/states/CategoryState";
+import { interceptorGlobalHandlerInterceptor } from "./shared/interceptor/interceptor-global-handler.interceptor";
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
-console.log('from config: ********************************', environment.name)
+console.log("from config: ********************************", environment.name);
 export const MY_NATIVE_FORMATS = {
-  fullPickerInput: {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'},
-  datePickerInput: {year: 'numeric', month: 'numeric', day: 'numeric'},
-  timePickerInput: {hour: 'numeric', minute: 'numeric'},
-  monthYearLabel: {year: 'numeric', month: 'short'},
-  dateA11yLabel: {year: 'numeric', month: 'long', day: 'numeric'},
-  monthYearA11yLabel: {year: 'numeric', month: 'long'},
+  fullPickerInput: {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  },
+  datePickerInput: { year: "numeric", month: "numeric", day: "numeric" },
+  timePickerInput: { hour: "numeric", minute: "numeric" },
+  monthYearLabel: { year: "numeric", month: "short" },
+  dateA11yLabel: { year: "numeric", month: "long", day: "numeric" },
+  monthYearA11yLabel: { year: "numeric", month: "long" },
 };
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    {provide: OWL_DATE_TIME_LOCALE, useValue: 'en'},
+    { provide: OWL_DATE_TIME_LOCALE, useValue: "en" },
     provideAnimations(),
     provideToastr(),
-    provideRouter(routes, withInMemoryScrolling({
-      scrollPositionRestoration: "top",
-    })),
-    provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideHttpClient(),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: "top",
+      })
+    ),
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideHttpClient(withInterceptors([interceptorGlobalHandlerInterceptor])),
     provideRouter(routes),
     importProvidersFrom(
       TranslateModule.forRoot({
@@ -53,9 +71,13 @@ export const appConfig: ApplicationConfig = {
       })
     ),
 
-    provideStore([CategoryState],
-        withNgxsReduxDevtoolsPlugin({disabled: environment.production}),
-        withNgxsLoggerPlugin({disabled: environment.production, collapsed: true}),
-    )
-  ]
+    provideStore(
+      [CategoryState],
+      withNgxsReduxDevtoolsPlugin({ disabled: environment.production }),
+      withNgxsLoggerPlugin({
+        disabled: environment.production,
+        collapsed: true,
+      })
+    ),
+  ],
 };
