@@ -11,21 +11,5 @@ namespace Athr.Api.Controllers.TaskWorks
         DateTime StartDate,
         DateTime EndDate,
         string Description
-    )
-    {
-        public static implicit operator UpdateTaskWorkCommand(UpdateTaskWorkRequest request)
-        {
-            
-            return new UpdateTaskWorkCommand(
-                request.TaskId,
-                request.Name,
-                request.UserId,
-                request.PriorityKey,
-                request.StartDate,
-                request.EndDate,
-                request.Description
-            );
-        }
-
-    }
+    );
 }

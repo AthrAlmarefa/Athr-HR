@@ -26,12 +26,22 @@ namespace Athr.Api.Controllers.TaskWorks
                 var taskId = await _sender.Send(command);
                 return taskId;
             }
-        [HttpPut]
-        public async Task<Guid> UpdateTask(UpdateTaskWorkRequest request)
+        [HttpPut("{taskId:guid}/user/{userId:guid}")]
+        public async Task<Guid> UpdateTask(Guid taskId, Guid userId, [FromBody] UpdateTaskWorkRequest request)
         {
-            UpdateTaskWorkCommand command = request;
+            var command = new UpdateTaskWorkCommand(
+                taskId,
+                request.Name,
+                userId,
+                request.PriorityKey,
+                request.StartDate,
+                request.EndDate,
+                request.Description
+            );
+
             return await _sender.Send(command);
         }
+
         [HttpPatch("{id:guid}/priority")]
         public async Task<IActionResult> ChangePriority(Guid id, [FromBody] ChangeTaskPriorityRequest request)
         {
