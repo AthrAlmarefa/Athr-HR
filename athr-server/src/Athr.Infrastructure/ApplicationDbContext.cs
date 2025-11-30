@@ -4,6 +4,7 @@ using Athr.Domain.BuildingBlocks;
 using Athr.Domain.BusinessRoles;
 using Athr.Domain.Common.Account;
 using Athr.Domain.Permissions;
+using Athr.Domain.TaskWork;
 using Athr.Domain.Users;
 using Athr.Domain.Users.Authorization;
 using Athr.Infrastructure.Outbox;
@@ -47,8 +48,7 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);    
         base.OnModelCreating(modelBuilder);
     }
 

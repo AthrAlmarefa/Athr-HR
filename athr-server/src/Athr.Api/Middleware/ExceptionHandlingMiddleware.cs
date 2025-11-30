@@ -16,7 +16,7 @@ internal sealed class ExceptionHandlingMiddleware
         _next = next;
         _logger = logger;
     }
-
+   
     public async Task InvokeAsync(HttpContext context)
     {
         try

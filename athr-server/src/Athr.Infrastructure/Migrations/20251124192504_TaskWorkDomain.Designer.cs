@@ -4,6 +4,7 @@ using Athr.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Athr.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251124192504_TaskWorkDomain")]
+    partial class TaskWorkDomain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,16 +219,16 @@ namespace Athr.Infrastructure.Migrations
 
                     b.Property<DateTimeOffset?>("DeletedAt")
                         .HasColumnType("datetimeoffset")
-                        .HasColumnName("deletedat");
+                        .HasColumnName("DeletedAt");
 
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
-                        .HasColumnName("deletedby");
+                        .HasColumnName("DeletedBy");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2")
-                        .HasColumnName("enddate");
+                        .HasColumnName("EndDate");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -237,21 +240,21 @@ namespace Athr.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false)
-                        .HasColumnName("isdeleted");
+                        .HasColumnName("IsDeleted");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)")
-                        .HasColumnName("name");
+                        .HasColumnName("Name");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2")
-                        .HasColumnName("startdate");
+                        .HasColumnName("StartDate");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("userid");
+                        .HasColumnName("UserId");
 
                     b.HasKey("Id")
                         .HasName("pk_task_works");
@@ -435,7 +438,7 @@ namespace Athr.Infrastructure.Migrations
                             b1.Property<string>("Value")
                                 .HasMaxLength(1000)
                                 .HasColumnType("nvarchar(1000)")
-                                .HasColumnName("description");
+                                .HasColumnName("Description");
 
                             b1.HasKey("TaskWorkId");
 
@@ -454,13 +457,13 @@ namespace Athr.Infrastructure.Migrations
 
                             b1.Property<int>("Key")
                                 .HasColumnType("int")
-                                .HasColumnName("prioritykey");
+                                .HasColumnName("PriorityKey");
 
                             b1.Property<string>("Value")
                                 .IsRequired()
                                 .HasMaxLength(20)
                                 .HasColumnType("nvarchar(20)")
-                                .HasColumnName("priorityvalue");
+                                .HasColumnName("PriorityValue");
 
                             b1.HasKey("TaskWorkId");
 
