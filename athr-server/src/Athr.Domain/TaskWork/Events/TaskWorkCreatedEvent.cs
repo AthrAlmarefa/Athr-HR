@@ -3,11 +3,14 @@ namespace Athr.Domain.TaskWork.Events
 {
     public sealed class TaskWorkCreatedEvent :IDomainEvent
     {
-        public TaskWork TaskWork { get; }
-
-        public TaskWorkCreatedEvent(TaskWork taskWork)
+        public Guid TaskWorkId { get; }
+        public string Name { get; }
+        public Guid UserId { get; }
+        public TaskWorkCreatedEvent(Guid taskWorkId,string name, Guid userId)
         {
-            TaskWork = taskWork;
+            TaskWorkId = taskWorkId;
+            Name = name;
+            UserId = userId;
         }
     }
 }

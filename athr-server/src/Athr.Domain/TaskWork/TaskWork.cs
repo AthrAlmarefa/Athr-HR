@@ -6,9 +6,9 @@ using Athr.Domain.Users;
 
 namespace Athr.Domain.TaskWork
 {
-    public sealed class TaskWork : Entity<TaskWorkId>, IRecoverable, IHasEvents
+    public sealed class TaskWork : Entity<TaskWorkId>, IRecoverable
     {
-        private readonly List<IDomainEvent> _domainEvents = new();
+        
 
         public string Name { get; private set; }
         public AccountId UserId { get; private set; }
@@ -17,7 +17,7 @@ namespace Athr.Domain.TaskWork
         public Priority Priority { get; private set; }
         public Description Description { get; private set; }
 
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; private set; } 
         public bool IsDeleted { get; private set; }
         public DateTimeOffset? DeletedAt { get; set; }
         public string? DeletedBy { get; set; }
@@ -36,7 +36,7 @@ namespace Athr.Domain.TaskWork
             EndDate = endDate;
             Description = description;
 
-            AddDomainEvent(new TaskWorkCreatedEvent(this));
+            RaiseDomainEvent(new TaskWorkCreatedEvent(Id.Value, Name, UserId.Value));
         }
 
         public static TaskWork CreateInstance(string name, AccountId userId, Priority priority, DateTime startDate, DateTime endDate, Description description)
@@ -55,17 +55,26 @@ namespace Athr.Domain.TaskWork
             EndDate = endDate;
             Description = description;
 
-            AddDomainEvent(new TaskWorkUpdatedEvent(this));
+            RaiseDomainEvent(new TaskWorkUpdatedEvent(Id.Value));
         }
 
-        public void Activate() => IsActive = true;
-        public void Deactivate() => IsActive = false;
+        public void Activate()
+        {
+            IsActive = true;
+        }
 
-        public void MarkAsDeleted()
+        public void Deactivate()
+        {
+            IsActive = false;
+        }
+
+        public void MarkAsDeleted(string deletedBy)
         {
             IsDeleted = true;
             DeletedAt = DateTimeOffset.UtcNow;
-            AddDomainEvent(new TaskWorkDeletedEvent(this));
+            DeletedBy = deletedBy;
+
+            RaiseDomainEvent(new TaskWorkDeletedEvent(Id.Value));
         }
 
         public void Recover()
@@ -76,23 +85,13 @@ namespace Athr.Domain.TaskWork
         }
         public void UpdatePriority(Priority newPriority)
         {
-            if (Priority.Key != newPriority.Key)
-            {
-                var oldPriority = Priority;
-                Priority = newPriority;
-                AddDomainEvent(new PriorityChangedEvent(this, oldPriority, newPriority));
-            }
+            var oldPriority = Priority;
+            Priority = newPriority;
+
+            RaiseDomainEvent(new PriorityChangedEvent(Id.Value, oldPriority, newPriority));
         }
 
-        public void AddDomainEvent(IDomainEvent @event) => _domainEvents.Add(@event);
-        public void ClearDomainEvents() => _domainEvents.Clear();
-        public IReadOnlyList<IDomainEvent> GetDomainEvents() => _domainEvents.AsReadOnly();
 
-        private void CheckRule(IBusinessRule rule)
-        {
-            if (rule.IsBroken())
-                throw new BusinessRuleValidationException(rule);
-        }
     }
 }
 

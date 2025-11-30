@@ -4,11 +4,12 @@ namespace Athr.Domain.TaskWork.Events
 {
     public sealed class TaskWorkUpdatedEvent: IDomainEvent
     {
-        public TaskWork TaskWork { get; }
-
-        public TaskWorkUpdatedEvent(TaskWork taskWork)
+        public Guid TaskWorkId { get; }
+        public Guid UserId { get; }
+        public TaskWorkUpdatedEvent(Guid taskWorkId, Guid userId)
         {
-            TaskWork = taskWork;
+            TaskWorkId = taskWorkId;
+            UserId = userId;
         }
     }
 }

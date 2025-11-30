@@ -25,54 +25,54 @@ namespace Athr.Infrastructure.Configurations
             builder.Property(t => t.Name)
                    .HasMaxLength(200)
                    .IsRequired()
-                   .HasColumnName("Name");
+                   .HasColumnName("name");
 
             builder.Property(t => t.UserId)
                    .HasConversion(
                        id => id.Value,
                        value => AccountId.Create(value))
-                   .HasColumnName("UserId")
+                   .HasColumnName("userid")
                    .IsRequired();
 
             builder.OwnsOne(t => t.Priority, p =>
               {
                 p.Property(pp => pp.Key)
-                 .HasColumnName("PriorityKey")
+                 .HasColumnName("prioritykey")
                  .IsRequired();
 
             p.Property(pp => pp.Value)
-                 .HasColumnName("PriorityValue")
+                 .HasColumnName("priorityvalue")
                  .HasMaxLength(20)
                  .IsRequired();
                  });
 
             builder.Property(s => s.StartDate)
-                   .HasColumnName("StartDate")
+                   .HasColumnName("startdate")
                    .IsRequired();
 
             builder.Property(s => s.EndDate)
-                   .HasColumnName("EndDate")
+                   .HasColumnName("enddate")
                    .IsRequired();
 
    
            builder.OwnsOne(t => t.Description, d =>
             {
                 d.Property(dd => dd.Value)
-                 .HasColumnName("Description")
+                 .HasColumnName("description")
                  .HasMaxLength(1000)
                  .IsRequired(false);
                  });
 
            builder.Property(t => t.IsDeleted)
                 .HasDefaultValue(false)
-                .HasColumnName("IsDeleted");
+                .HasColumnName("isdeleted");
 
             builder.Property(t => t.DeletedAt)
-              .HasColumnName("DeletedAt")
+              .HasColumnName("deletedat")
               .IsRequired(false);
 
              builder.Property(t => t.DeletedBy)
-               .HasColumnName("DeletedBy")
+               .HasColumnName("deletedby")
                .HasMaxLength(100)
               .IsRequired(false);
 
