@@ -4,6 +4,7 @@ using Athr.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Athr.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251124165419_update-base-entities")]
+    partial class updatebaseentities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,69 @@ namespace Athr.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Athr.Application.Abstractions.Tracking.TraceLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AffectedColumns")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("affected_columns");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("date_time");
+
+                    b.Property<string>("EntryString")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("entry_string");
+
+                    b.Property<string>("InterceptionUniqueId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("interception_unique_id");
+
+                    b.Property<string>("NewValues")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("new_values");
+
+                    b.Property<string>("OldValues")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("old_values");
+
+                    b.Property<string>("PrimaryKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("primary_key");
+
+                    b.Property<string>("TableName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("table_name");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("type");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_trace_logs");
+
+                    b.ToTable("trace_logs", (string)null);
+                });
 
             modelBuilder.Entity("Athr.Domain.BusinessRoles.BusinessRole", b =>
                 {
@@ -123,6 +189,27 @@ namespace Athr.Infrastructure.Migrations
                     b.ToTable("permissions", (string)null);
                 });
 
+            modelBuilder.Entity("Athr.Domain.Qualification.Qualification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id")
+                        .HasName("pk_qualifications");
+
+                    b.ToTable("qualifications", (string)null);
+                });
+
             modelBuilder.Entity("Athr.Domain.Users.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -166,6 +253,12 @@ namespace Athr.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("identity_number");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit")
@@ -246,7 +339,7 @@ namespace Athr.Infrastructure.Migrations
 
             modelBuilder.Entity("Athr.Domain.BusinessRoles.BusinessRole", b =>
                 {
-                    b.OwnsMany("Athr.Domain.BusinessRoles.BusinessRole.AllowedPermissions#Athr.Domain.BusinessRoles.AllowedPermission", "AllowedPermissions", b1 =>
+                    b.OwnsMany("Athr.Domain.BusinessRoles.AllowedPermission", "AllowedPermissions", b1 =>
                         {
                             b1.Property<Guid>("Id")
                                 .ValueGeneratedOnAdd()
@@ -284,7 +377,35 @@ namespace Athr.Infrastructure.Migrations
 
             modelBuilder.Entity("Athr.Domain.Users.UserEntity", b =>
                 {
-                    b.OwnsMany("Athr.Domain.Users.UserEntity.BusinessPermissions#Athr.Domain.Users.Authorization.BusinessRolesPermission", "BusinessPermissions", b1 =>
+                    b.OwnsMany("Athr.Domain.Users.AccountId", "BusinessRoles", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("id");
+
+                            b1.Property<Guid>("Value")
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("business_id");
+
+                            b1.Property<Guid>("user_id")
+                                .HasColumnType("uniqueidentifier")
+                                .HasColumnName("user_id");
+
+                            b1.HasKey("Id")
+                                .HasName("pk_user_businesses");
+
+                            b1.HasIndex("user_id")
+                                .HasDatabaseName("ix_user_businesses_user_id");
+
+                            b1.ToTable("user_businesses", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("user_id")
+                                .HasConstraintName("fk_user_businesses_users_user_id");
+                        });
+
+                    b.OwnsMany("Athr.Domain.Users.Authorization.BusinessRolesPermission", "BusinessPermissions", b1 =>
                         {
                             b1.Property<Guid>("Id")
                                 .ValueGeneratedOnAdd()
@@ -319,34 +440,6 @@ namespace Athr.Infrastructure.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("user_id")
                                 .HasConstraintName("fk_user_roles_permissions_users_user_id");
-                        });
-
-                    b.OwnsMany("Athr.Domain.Users.UserEntity.BusinessRoles#Athr.Domain.Users.AccountId", "BusinessRoles", b1 =>
-                        {
-                            b1.Property<Guid>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("id");
-
-                            b1.Property<Guid>("Value")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("business_id");
-
-                            b1.Property<Guid>("user_id")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("user_id");
-
-                            b1.HasKey("Id")
-                                .HasName("pk_user_businesses");
-
-                            b1.HasIndex("user_id")
-                                .HasDatabaseName("ix_user_businesses_user_id");
-
-                            b1.ToTable("user_businesses", (string)null);
-
-                            b1.WithOwner()
-                                .HasForeignKey("user_id")
-                                .HasConstraintName("fk_user_businesses_users_user_id");
                         });
 
                     b.Navigation("BusinessPermissions");
