@@ -55,7 +55,7 @@ namespace Athr.Domain.TaskWork
             EndDate = endDate;
             Description = description;
 
-            RaiseDomainEvent(new TaskWorkUpdatedEvent(Id.Value));
+            RaiseDomainEvent(new TaskWorkUpdatedEvent(Id.Value, UserId.Value));
         }
 
         public void Activate()
@@ -74,7 +74,7 @@ namespace Athr.Domain.TaskWork
             DeletedAt = DateTimeOffset.UtcNow;
             DeletedBy = deletedBy;
 
-            RaiseDomainEvent(new TaskWorkDeletedEvent(Id.Value));
+            RaiseDomainEvent(new TaskWorkDeletedEvent(Id.Value, UserId.Value));
         }
 
         public void Recover()
