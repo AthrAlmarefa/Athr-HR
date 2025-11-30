@@ -410,3 +410,4 @@ Client/Client.Admin/.angular/
 Clients/Client.Admin/src/environments/environment.ts
 Server/.env
 
+/Client/Client.Admin/.angular
