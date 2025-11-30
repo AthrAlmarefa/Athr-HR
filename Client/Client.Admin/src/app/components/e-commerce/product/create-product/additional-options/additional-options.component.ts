@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { InventoryComponent } from "./inventory/inventory.component";
-import { PublishComponent } from "./publish/publish.component";
+// import { PublishComponent } from "./publish/publish.component";
 import { SeoTagsComponent } from "./seo-tags/seo-tags.component";
 import { ShippingComponent } from "./shipping/shipping.component";
 import { VariationsComponent } from "./variations/variations.component";
@@ -10,7 +10,7 @@ import { additionalOptions } from '../../../../../shared/data/product';
 @Component({
   selector: 'app-additional-options',
   imports: [InventoryComponent, SeoTagsComponent,
-            ShippingComponent, VariationsComponent, PublishComponent],
+            ShippingComponent, VariationsComponent],
   templateUrl: './additional-options.component.html',
   styleUrl: './additional-options.component.scss'
 })

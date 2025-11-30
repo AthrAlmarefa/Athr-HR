@@ -28,7 +28,7 @@ import {
   CreateCategory,
   CreateCategoryFailure,
   CreateCategorySuccess,
-} from "../actions/CreateCategory";
+} from "../actions/createCategory";
 
 export interface CategoryStateModel {
   categories: CategoryResponse[];
@@ -288,7 +288,7 @@ export class CategoryState {
       error: null,
     });
     const deleteCategory = this.categoryService
-      .deleteCategory(action.categoryId)
+      .deleteCategory(action.payload.categoryId)
       .pipe(
         tap((_) => {
           context.dispatch(new GetAllCategories({}));
