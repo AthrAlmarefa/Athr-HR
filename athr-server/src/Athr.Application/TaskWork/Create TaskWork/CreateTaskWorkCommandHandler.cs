@@ -33,6 +33,7 @@ namespace Athr.Application.TaskWork.Create_TaskWork
             var user = await _userRepo.GetByIdAsync(accountId, cancellationToken);
             if (user is null)
                 throw new ApplicationFlowException(new[] { CreateTaskWorkCommandErrors.UserNotFound });
+          
             Priority priority = request.PriorityKey switch
             {
                 100 => Priority.Low,
@@ -46,11 +47,20 @@ namespace Athr.Application.TaskWork.Create_TaskWork
             if (request.StartDate >= request.EndDate)
                 throw new ApplicationFlowException(new[] { CreateTaskWorkCommandErrors.InvalidDateRange });
 
-         
-            bool exists = await _taskRepo.All().AnyAsync(t => t.Name == request.Name, cancellationToken);
-            if (exists)
-                throw new ApplicationFlowException(new[] { new ApplicationError("CreateTaskWork.NameAlreadyExists", "A task with this name already exists.") });
+            if (request.StartDate < DateTime.UtcNow)
+                throw new ApplicationFlowException(new[] { CreateTaskWorkCommandErrors.StartDateInPast });
 
+            bool nameExists = await _taskRepo.All()
+                   .AnyAsync(t => t.Name == request.Name && t.UserId.Value == request.UserId, cancellationToken);
+            if (nameExists)
+                throw new ApplicationFlowException(new[] { CreateTaskWorkCommandErrors.NameAlreadyExistsForUser });
+
+            bool priorityExists = await _taskRepo.All()
+       .AnyAsync(t => t.Name == request.Name && t.UserId.Value == request.UserId && t.Priority == priority, cancellationToken);
+
+            if (priorityExists)
+                throw new ApplicationFlowException(new[] { CreateTaskWorkCommandErrors.SamePriorityExists});
+           
             Description description = Description.Create(request.Description);
             AccountId userId = AccountId.Create(request.UserId);
 

@@ -15,11 +15,13 @@ namespace Athr.Application.TaskWork.Create_TaskWork
         public static readonly ApplicationError StartDateInPast =
             new("CreateTaskWork.StartDateInPast", "Start date cannot be in the past.");
 
-        public static readonly ApplicationError NameAlreadyExists =
-            new("CreateTaskWork.NameAlreadyExists", "A task with this name already exists.");
+        public static readonly ApplicationError NameAlreadyExistsForUser =
+            new("CreateTaskWork.NameAlreadyExistsForUser", "You already have a task with this name.");
 
         public static readonly ApplicationError UserNotFound =
             new("CreateTaskWork.UserNotFound", "User not found.");
+        public static readonly ApplicationError SamePriorityExists =
+           new("CreateTaskWork.SamePriorityExists", "A task with this priority already exists for this user.");
     }
 }
 
