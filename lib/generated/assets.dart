@@ -24,11 +24,14 @@ class Assets {
   static const String imagesFiles = 'assets/images/files.png';
   static const String imagesHome = 'assets/images/home.png';
   static const String imagesLanguage = 'assets/images/language.png';
+  static const String imagesLeaveRequest = 'assets/images/leaveRequest.png';
   static const String imagesLeavesIcon = 'assets/images/leavesIcon.png';
+  static const String imagesLetterRequest = 'assets/images/letterRequest.png';
   static const String imagesLocation = 'assets/images/location.png';
   static const String imagesLock = 'assets/images/lock.png';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesLogout = 'assets/images/logout.png';
+  static const String imagesMission = 'assets/images/mission.png';
   static const String imagesMobile = 'assets/images/mobile.png';
   static const String imagesMoneys = 'assets/images/moneys.png';
   static const String imagesNote = 'assets/images/note.png';
@@ -39,6 +42,7 @@ class Assets {
   static const String imagesOnBoarding3 = 'assets/images/onBoarding3.png';
   static const String imagesPassword = 'assets/images/password.png';
   static const String imagesPdf = 'assets/images/pdf.png';
+  static const String imagesPermissionRequest = 'assets/images/permissionRequest.png';
   static const String imagesProfile = 'assets/images/profile.png';
   static const String imagesProfileIcon = 'assets/images/profileIcon.png';
   static const String imagesProfilePhoto = 'assets/images/profilePhoto.png';
@@ -48,6 +52,7 @@ class Assets {
   static const String imagesSelectednote = 'assets/images/selectednote.png';
   static const String imagesSlider = 'assets/images/slider.png';
   static const String imagesSms = 'assets/images/sms.png';
+  static const String imagesSpecialRequest = 'assets/images/specialRequest.png';
   static const String imagesSwitchClosed = 'assets/images/switchClosed.png';
   static const String imagesSwitchOpen = 'assets/images/switchOpen.png';
   static const String imagesTimer = 'assets/images/timer.png';

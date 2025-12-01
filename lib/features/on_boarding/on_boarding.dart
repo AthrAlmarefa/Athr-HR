@@ -61,6 +61,8 @@ class _OnBoardingState extends State<OnBoarding> {
             buttonText: context.translate(LangKeys.startNow),
             onButtonPressed: () {
              Navigator.pushNamed(context, AppRoutes.login);
+
+              Navigator.pushNamed(context, AppRoutes.login);
             },
             currentIndex: currentPage,
           ),
