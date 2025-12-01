@@ -6,9 +6,15 @@ import 'package:athr_hr/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class StateLeavesColumn extends StatelessWidget {
+class StateLeavesColumn extends StatefulWidget {
   const StateLeavesColumn({super.key});
 
+  @override
+  State<StateLeavesColumn> createState() => _StateLeavesColumnState();
+}
+
+class _StateLeavesColumnState extends State<StateLeavesColumn> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +28,10 @@ class StateLeavesColumn extends StatelessWidget {
               titleColor: MyColors.white,
               valueTextColor: MyColors.white,
               valueContainerColor: MyColors.containerColor.withOpacity(0.1),
-              isInitiallySelected: true,
+              isSelected: selectedIndex == 0,
+              onSelect: () {
+                setState(() => selectedIndex = 0);
+              },
             ),
             SizedBox(width: 6.w),
             SelectableStateCard(title: context.translate(LangKeys.remaining),
@@ -31,6 +40,10 @@ class StateLeavesColumn extends StatelessWidget {
               titleColor: MyColors.black,
               valueTextColor: MyColors.green,
               valueContainerColor: MyColors.containerColor.withOpacity(0.1),
+              isSelected: selectedIndex == 1,
+              onSelect: () {
+                setState(() => selectedIndex = 1);
+              },
             ),
           ],
         ),
@@ -44,6 +57,10 @@ class StateLeavesColumn extends StatelessWidget {
               titleColor: MyColors.black,
               valueTextColor: MyColors.pendingTextColor,
               valueContainerColor: MyColors.containerColor.withOpacity(0.1),
+              isSelected: selectedIndex == 2,
+              onSelect: () {
+                setState(() => selectedIndex = 2);
+              },
             ),
             SizedBox(width: 6.w),
             SelectableStateCard(title: context.translate(LangKeys.used),
@@ -52,6 +69,10 @@ class StateLeavesColumn extends StatelessWidget {
               titleColor: MyColors.black,
               valueTextColor: MyColors.usedTextColor,
               valueContainerColor: MyColors.containerColor.withOpacity(0.1),
+              isSelected: selectedIndex == 3,
+              onSelect: () {
+                setState(() => selectedIndex = 3);
+              },
             ),
           ],
         ),

@@ -70,7 +70,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                   });
                 },
                 child: Image.asset(
-                  isCurrentPassword ?Assets.imagesEye : Assets.imagesEyeSlash,
+                  isCurrentPassword ?Assets.imagesEyeSlash : Assets.imagesEye,
                   width: 20.w,
                   height: 20.h,
                   fit: BoxFit.contain,
@@ -100,7 +100,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                   });
                 },
                 child: Image.asset(
-                  isNewPassword ?Assets.imagesEye : Assets.imagesEyeSlash,
+                  isNewPassword ?Assets.imagesEyeSlash : Assets.imagesEye,
                   width: 20.w,
                   height: 20.h,
                   fit: BoxFit.contain,
@@ -135,7 +135,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                 },
                 child: Image.asset(
                   isNewPasswordConfirm
-                      ? Assets.imagesEye : Assets.imagesEyeSlash,
+                      ? Assets.imagesEyeSlash : Assets.imagesEye,
                   width: 20.w,
                   height: 20.h,
                   fit: BoxFit.contain,
