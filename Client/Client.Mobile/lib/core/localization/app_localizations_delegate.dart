@@ -21,5 +21,5 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
 
   // Override method to determine whether the localization should be reloaded.
   @override
-  bool shouldReload(LocalizationsDelegate<AppLocalizations> old) => false;
+  bool shouldReload(LocalizationsDelegate<AppLocalizations> old) => true;
 }
