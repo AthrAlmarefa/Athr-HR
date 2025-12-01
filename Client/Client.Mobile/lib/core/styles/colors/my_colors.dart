@@ -22,5 +22,8 @@ class MyColors {
   static const absentColor = Color(0xffE1B000);
   static const pendingTextColor = Color(0xffE17100);
   static const usedTextColor = Color(0xffF83600);
+  static const deleteColor = Color(0xffFF5252);
+  static const deleteTextColor = Color(0xff053BFA);
+  static const confirmLogoutColor = Color(0xffE7E8EA);
 
 }
