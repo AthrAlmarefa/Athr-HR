@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { PaginatedResponse } from "../interface/table/PaginatedResponse";
 import { BehaviorSubject, combineLatest, map, Observable } from "rxjs";
 import { TableState } from "../interface/table/TableState";
+import { TableBuilder } from "./TableBuilder";
 
 @Injectable({
   providedIn: "root",
@@ -31,8 +32,9 @@ export class TableService<T> {
     );
   }
 
-  setData(data: T[]): void {
+  setData(data: T[],total?: number): void {
     this.dataSource.next(data);
+    this.setTableState({total})
   }
 
   getData(): Observable<T[]> {
@@ -70,6 +72,7 @@ export class TableService<T> {
   }
 
   reset(): void {
+    this.dataSource.next([]);
     this.tableState.next({
       pageSize: 10,
       currentPage: 1,
@@ -77,4 +80,8 @@ export class TableService<T> {
     });
     this.dataSource.next([]);
   }
+
+  createBuilder(): TableBuilder<T> {
+  return new TableBuilder<T>(this);
+}
 }

@@ -40,8 +40,7 @@ import { TableService } from "../../service/Table.service";
   styleUrls: ["./table.component.scss"],
 })
 export class MyTableComponent<T> implements OnChanges, OnDestroy {
-  @Input() tableConfig?: TableConfigs;
-  @Input() externalData: T[] = [];
+  @Input() tableConfig: TableConfigs;
   @Input() pageSize: number = 10;
   @Input() total: number = 0;
   @Input() currentPage: number = 1;
@@ -57,6 +56,8 @@ export class MyTableComponent<T> implements OnChanges, OnDestroy {
     total: 0,
   };
 
+  protected destroy$ = new Subject<void>();
+
   public pageSizeOptions: PageSizeOptions[] = [
     { title: 10, value: 10 },
     { title: 15, value: 15 },
@@ -65,19 +66,11 @@ export class MyTableComponent<T> implements OnChanges, OnDestroy {
     { title: 100, value: 100 },
   ];
 
-  protected destroy$ = new Subject<void>();
-
   constructor(protected readonly tableService: TableService<T>) {
     this.subscribeToTableState();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes["tableConfig"]?.currentValue?.data) {
-      this.handleDataChange(this.tableConfig!.data);
-    } else if (changes["externalData"]?.currentValue) {
-      this.handleDataChange(this.externalData);
-    }
-
     if (changes["pageSize"]?.currentValue) {
       this.tableService.setTableState({ pageSize: this.pageSize });
     }
@@ -87,15 +80,10 @@ export class MyTableComponent<T> implements OnChanges, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
   protected subscribeToTableState(): void {
     this.tableService.paginatedData$
       .pipe(takeUntil(this.destroy$))
-      .subscribe((paginatedResponse:any) => {
+      .subscribe((paginatedResponse: any) => {
         this.paginatedData = paginatedResponse.data;
         this.tableState = {
           pageSize: paginatedResponse.pageSize,
@@ -135,17 +123,10 @@ export class MyTableComponent<T> implements OnChanges, OnDestroy {
   }
 
   setPage(page: number) {
-    if (page >= 1 && page <= this.totalPages) {
-      this.tableService.setTableState({ currentPage: page });
-      this.pageChange.emit(page);
-    }
+    this.pageChange.emit(page);
   }
 
   changePageSize(newPageSize: number) {
-    this.tableService.setTableState({
-      pageSize: newPageSize,
-      currentPage: 1,
-    });
     this.pageSizeChange.emit(newPageSize);
   }
 
@@ -164,5 +145,10 @@ export class MyTableComponent<T> implements OnChanges, OnDestroy {
 
   trackByIndex(index: number): any {
     return index;
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

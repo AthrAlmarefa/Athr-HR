@@ -1,0 +1,9 @@
+<Myapp-table
+  [tableConfig]="tableConfig"
+  [total]="total"
+  [pageSize]="pageSize"
+  [currentPage]="1"
+  (pageChange)="onPageChange($event)"
+  (pageSizeChange)="onPageSizeChange($event)"
+  (action)="handleAction($event)"
+></Myapp-table>
