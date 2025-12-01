@@ -16,9 +16,6 @@ using Athr.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Quartz;
-using System.Globalization;
-using Athr.Domain.TaskWork;
 using ArgumentNullException = System.ArgumentNullException;
 using Athr.Application.Abstractions.Authentication;
 using Athr.Infrastructure.Authentication;
@@ -77,7 +74,7 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IQualificationRepository, QualificationRepository>();
-        services.AddScoped<ITaskWorkRepository, TaskWorkRepository>();
+
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
         services.AddSingleton<ISqlConnectionFactory>(_ => new SqlConnectionFactory(connectionString));
         SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());

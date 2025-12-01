@@ -207,58 +207,6 @@ namespace Athr.Infrastructure.Migrations
                     b.ToTable("qualifications", (string)null);
                 });
 
-            modelBuilder.Entity("Athr.Domain.TaskWork.TaskWork", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("id");
-
-                    b.Property<DateTimeOffset?>("DeletedAt")
-                        .HasColumnType("datetimeoffset")
-                        .HasColumnName("DeletedAt");
-
-                    b.Property<string>("DeletedBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasColumnName("DeletedBy");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("EndDate");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false)
-                        .HasColumnName("is_active");
-
-                    b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false)
-                        .HasColumnName("IsDeleted");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
-                        .HasColumnName("Name");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("StartDate");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
-
-                    b.HasKey("Id")
-                        .HasName("pk_task_works");
-
-                    b.ToTable("task_works", (string)null);
-                });
-
             modelBuilder.Entity("Athr.Domain.Users.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -422,60 +370,6 @@ namespace Athr.Infrastructure.Migrations
                         });
 
                     b.Navigation("AllowedPermissions");
-                });
-
-            modelBuilder.Entity("Athr.Domain.TaskWork.TaskWork", b =>
-                {
-                    b.OwnsOne("Athr.Domain.Common.Description", "Description", b1 =>
-                        {
-                            b1.Property<Guid>("TaskWorkId")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("id");
-
-                            b1.Property<string>("Value")
-                                .HasMaxLength(1000)
-                                .HasColumnType("nvarchar(1000)")
-                                .HasColumnName("Description");
-
-                            b1.HasKey("TaskWorkId");
-
-                            b1.ToTable("task_works");
-
-                            b1.WithOwner()
-                                .HasForeignKey("TaskWorkId")
-                                .HasConstraintName("fk_task_works_task_works_id");
-                        });
-
-                    b.OwnsOne("Athr.Domain.TaskWork.Priority", "Priority", b1 =>
-                        {
-                            b1.Property<Guid>("TaskWorkId")
-                                .HasColumnType("uniqueidentifier")
-                                .HasColumnName("id");
-
-                            b1.Property<int>("Key")
-                                .HasColumnType("int")
-                                .HasColumnName("PriorityKey");
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)")
-                                .HasColumnName("PriorityValue");
-
-                            b1.HasKey("TaskWorkId");
-
-                            b1.ToTable("task_works");
-
-                            b1.WithOwner()
-                                .HasForeignKey("TaskWorkId")
-                                .HasConstraintName("fk_task_works_task_works_id");
-                        });
-
-                    b.Navigation("Description")
-                        .IsRequired();
-
-                    b.Navigation("Priority")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Athr.Domain.Users.UserEntity", b =>
