@@ -15,5 +15,10 @@ class MyColors {
   static const redColor = Color(0xffF44336);
   static const cardColor = Color(0xffFAFAFA);
   static const bottomSheetColor = Color(0x047EFE33);
+  static const backgroundColor = Color(0xffF7F9FB);
+  static const containerColor = Color(0x08AF2D12);
+  static const yellow = Color(0xffFFC806);
+  static const green = Color(0xff08AF2D);
+  static const absentColor = Color(0xffE1B000);
 
 }
