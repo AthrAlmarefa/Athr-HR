@@ -1,4 +1,4 @@
-import { DeleteCategory } from "./../actions/DeleteCategory";
+import { DeleteCategory } from "../actions/DeleteCategory";
 import {
   CategoryResponse,
   CategoryResponsePaginatedList,
@@ -13,7 +13,7 @@ import {
 import { catchError, tap } from "rxjs/operators";
 import { throwError } from "rxjs";
 import {
-  GetCategoryById as GetCategoryById,
+  GetCategoryById,
   GetCategoryByIdFailure,
   GetCategoryByIdSuccess,
 } from "../actions/GetCategory";
@@ -24,11 +24,7 @@ import {
   UpdateCategoryFailure,
   UpdateCategorySuccess,
 } from "../actions/UpdateCategory";
-import {
-  CreateCategory,
-  CreateCategoryFailure,
-  CreateCategorySuccess,
-} from "../actions/createCategory";
+
 
 export interface CategoryStateModel {
   categories: CategoryResponse[];
@@ -178,54 +174,9 @@ export class CategoryState {
     context.patchState({ loading: false, error: error });
   }
 
-  // =====================Create Category=============================
 
-  @Action(CreateCategory)
-  createCategory(
-    context: StateContext<CategoryStateModel>,
-    action: CreateCategory
-  ) {
-    context.patchState({ loading: true, error: null });
 
-    return this.categoryService.addCategory(action.payload).pipe(
-      tap((response: string) => {
-        context.dispatch(new CreateCategorySuccess(response));
-      }),
-      catchError((error) => {
-        context.patchState({ loading: false, error: error });
-        return throwError(() => error);
-      })
-    );
-  }
 
-  @Action(CreateCategorySuccess)
-  createCategorySuccess(
-    context: StateContext<CategoryStateModel>,
-    action: CreateCategorySuccess
-  ) {
-    context.patchState({
-      loading: false,
-      error: null,
-    });
-
-    const state = context.getState();
-    const categoryListRequest = {
-      currentPage: state.currentPage,
-      perPage: state.perPage,
-    };
-    context.dispatch(new GetAllCategories(categoryListRequest));
-  }
-
-  @Action(CreateCategoryFailure)
-  createCategoryFailure(
-    context: StateContext<CategoryStateModel>,
-    action: CreateCategoryFailure
-  ) {
-    context.patchState({
-      loading: false,
-      error: action.error,
-    });
-  }
 
   // =====================Update Category=============================
 
@@ -288,7 +239,7 @@ export class CategoryState {
       error: null,
     });
     const deleteCategory = this.categoryService
-      .deleteCategory(action.payload.categoryId)
+      .deleteCategory(action.payload.categoryId.toString())
       .pipe(
         tap((_) => {
           context.dispatch(new GetAllCategories({}));
