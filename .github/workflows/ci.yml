@@ -10,6 +10,9 @@ env:
   NODE_VERSION: '20'
   DOTNET_VERSION: '8.0.x'
   RUN_SONAR: 'true'
+  API_IMAGE_NAME: athr.api
+  DOCKER_REGISTRY: ""
+  API_TAG: latest
 
 jobs:
   code-quality:
