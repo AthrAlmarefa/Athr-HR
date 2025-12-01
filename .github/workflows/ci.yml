@@ -80,8 +80,8 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.projectKey=athralmarefa_Althr-HR
-            -Dsonar.organization=athralmarefa
+            -Dsonar.projectKey=Athr-HR
+            -Dsonar.organization=AthrAlmarefa
             -Dsonar.sources=Client/Client.Admin,Server
             -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/wwwroot/**,**/bin/**,**/obj/**
             -Dsonar.cpd.exclusions=**/Migrations/**
