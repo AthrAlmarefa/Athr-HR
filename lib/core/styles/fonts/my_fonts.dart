@@ -10,6 +10,10 @@ class MyFonts {
     fontWeight: FontWeight.w700,
     fontSize: 32.sp,
   );
+  static TextStyle styleBold700_18 =  TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 18.sp,
+  );
   static TextStyle styleBold700_20 =  TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 20.sp,

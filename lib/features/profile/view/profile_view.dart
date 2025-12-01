@@ -37,6 +37,7 @@ class _ProfileViewState extends State<ProfileView> {
               ),
             ),
             ProfileWidget(),
+            ProfileWidget(onChangeTab: widget.onChangeTab,),
           ],
         ),
       ),
