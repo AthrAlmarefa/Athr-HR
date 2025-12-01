@@ -2,6 +2,8 @@
 class Assets {
   Assets._();
 
+  static const String assetsTranslationsAr = 'assets/translations/ar.json';
+  static const String assetsTranslationsEn = 'assets/translations/en.json';
   static const String fontsCairoBlack = 'assets/fonts/Cairo-Black.ttf';
   static const String fontsCairoBold = 'assets/fonts/Cairo-Bold.ttf';
   static const String fontsCairoExtraBold = 'assets/fonts/Cairo-ExtraBold.ttf';

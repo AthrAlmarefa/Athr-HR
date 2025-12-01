@@ -169,6 +169,7 @@ class LangKeys {
   static const String remainingValue = 'remainingValue';
   static const String pendingValue = 'pendingValue';
   static const String approvedValue = 'approvedValue';
+  static const logoutConfirmation = 'logout_confirmation';
 
 
 }

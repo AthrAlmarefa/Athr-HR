@@ -63,5 +63,13 @@ class MyFonts {
     fontWeight: FontWeight.w500,
     fontSize: 11.sp,
   );
+  static TextStyle styleRegular400_22 =  TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 22.sp,
+  );
+  static TextStyle styleRegular400_14 =  TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 14.sp,
+  );
 
 }
