@@ -16,7 +16,6 @@ class ChangePasswordForm extends StatefulWidget {
   final TextEditingController passwordController;
   final TextEditingController confirmNewPasswordController;
   final ValueChanged<int>? onChangeTab;
-
   const ChangePasswordForm({
     super.key,
     required this.formKey,
@@ -39,6 +38,11 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
   Widget build(BuildContext context) {
     return Form(
       key: widget.formKey,
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.sp),
+            child: Align(
       child: Padding(
         padding: EdgeInsets.all(16.sp),
         child: Column(
@@ -52,6 +56,10 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                 ),
               ),
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(12.sp),
+            child: CustomTextFormField(
             SizedBox(height: 10.h,),
             CustomTextFormField(
               validator: (value) {
@@ -62,6 +70,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
               },
               controller: widget.passwordController,
               isPassword: isCurrentPassword,
+              hintText: context.translate(LangKeys.passwordHintDots),
               hintText: context.translate(LangKeys.currentPassword),
               suffix: InkWell(
                 onTap: () {
@@ -77,6 +86,10 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                 ),
               ),
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(8.sp),
+            child: Align(
             SizedBox(height: 10.h,),
             Align(
               alignment: Alignment.centerRight,
@@ -87,6 +100,14 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                 ),
               ),
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(12.sp),
+            child: CustomTextFormField(
+              validator: (value) => Validators.validatePassword(value, context),
+              controller: widget.newPasswordController,
+              isPassword: isNewPassword,
+              hintText: context.translate(LangKeys.passwordHintDots),
             SizedBox(height: 10.h,),
             CustomTextFormField(
               validator: (value) => Validators.validatePassword(value, context),
@@ -107,6 +128,10 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                 ),
               ),
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(8.sp),
+            child: Align(
             SizedBox(height: 10.h,),
             Align(
               alignment: Alignment.centerRight,
@@ -117,6 +142,12 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                 ),
               ),
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(12.sp),
+            child: CustomTextFormField(
+              validator:
+                  (value) => Validators.validatePasswordConfirmation(
             SizedBox(height: 10.h,),
             CustomTextFormField(
               validator: (value) => Validators.validatePasswordConfirmation(
@@ -126,6 +157,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
               ),
               controller: widget.confirmNewPasswordController,
               isPassword: isNewPasswordConfirm,
+              hintText: context.translate(LangKeys.passwordHintDots),
               hintText: context.translate(LangKeys.confirmNewPassword),
               suffix: InkWell(
                 onTap: () {
@@ -143,6 +175,22 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
                 ),
               ),
             ),
+          ),
+          SizedBox(height: 48.h),
+          SizedBox(
+            width: 280.w,
+            height: 54.h,
+            child: CustomButton(
+              txt: context.translate(LangKeys.save),
+              onPressed: () {
+                if(widget.formKey.currentState!.validate()){
+                  Navigator.pushNamed(context,AppRoutes.profile);
+                }
+              },
+            ),
+          ),
+          SizedBox(height: 20.h),
+        ],
             SizedBox(height: 10.h,),
             SizedBox(height: 24.h),
             SizedBox(

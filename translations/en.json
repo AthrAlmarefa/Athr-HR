@@ -70,6 +70,7 @@
   "password_complexity": "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character",
   "confirm_password": "Confirm password",
   "password_mismatch" :"Passwords do not match",
+  "reset_password_description" : "Password must not be empty and must contain 6 characters with upper case letter and one number at least"
   "reset_password_description" : "Password must not be empty and must contain 6 characters with upper case letter and one number at least",
   "current_month_statistics": "Current Month Statistics",
   "attendance_days": "Attendance Days",

@@ -35,6 +35,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       obscureText: widget.isPassword ?? false,
       controller: widget.controller,
       decoration: InputDecoration(
+        errorStyle: TextStyle(fontSize: 12.sp, color: MyColors.redColor),
         errorStyle: TextStyle(fontSize: 14.sp, color: MyColors.redColor),
         prefixIcon: widget.prefix == null
             ? null

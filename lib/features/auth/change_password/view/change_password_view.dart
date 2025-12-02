@@ -53,6 +53,11 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                   },
                 ),
               ),
+              SizedBox(height: 32.h),
+              Image.asset(
+                Assets.imagesMobile,
+                width: 192.w,
+                height: 140.h,
               SizedBox(height: 24.h),
               Image.asset(
                 Assets.imagesMobile,

@@ -46,6 +46,82 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(height: 16.h),
+            Image.asset(
+              Assets.imagesLogo,
+              width: 247.w,
+              height: 175.h,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(height: 30.h),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: EdgeInsets.all(8.sp),
+                child: Text(
+                  context.translate(LangKeys.email),
+                  style: MyFonts.styleMedium500_16.copyWith(
+                    color: MyColors.black,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.sp),
+              child: CustomTextFormField(
+                prefix: Image.asset(
+                  Assets.imagesSms,
+                  width: 28.w,
+                  height: 28.h,
+                  fit: BoxFit.contain,
+                ),
+                hintText: context.translate(LangKeys.email),
+                hintStyle: MyFonts.semiBold600_16.copyWith(
+                  color: MyColors.jobColor,
+                ),
+              ),
+            ),
+            SizedBox(height: 10.h),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: EdgeInsets.all(8.sp),
+                child: Text(
+                  context.translate(LangKeys.password),
+                  style: MyFonts.styleMedium500_16.copyWith(
+                    color: MyColors.black,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.sp),
+              child: CustomTextFormField(
+                isPassword: isPassword,
+                prefix: Image.asset(
+                  Assets.imagesPassword,
+                  width: 28.w,
+                  height: 28.h,
+                  fit: BoxFit.contain,
+                ),
+                suffix: InkWell(
+                  onTap: () {
+                    setState(() {
+                      isPassword = !isPassword;
+                    });
+                  },
+                  child: Image.asset(
+                    isPassword ? Assets.imagesEye : Assets.imagesEyeSlash,
+                    width: 28.w,
+                    height: 28.h,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                hintText: context.translate(LangKeys.password),
+                hintStyle: MyFonts.semiBold600_16.copyWith(
+                  color: MyColors.jobColor,
+                ),
               SizedBox(height: 16.h),
               Image.asset(
                 Assets.imagesLogo,
