@@ -10,5 +10,6 @@ namespace Athr.Application.User.UserRegister
         string password,
         string phoneNumber,
         string dialCodeId,
-        string identityType): ICommand<Guid>;
+        string identityType,
+        string identityNumber): ICommand<Guid>;
 }

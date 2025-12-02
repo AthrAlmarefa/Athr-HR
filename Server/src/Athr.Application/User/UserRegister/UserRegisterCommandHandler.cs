@@ -1,32 +1,24 @@
 ﻿using Athr.Application.Abstractions.Behaviors;
 using Athr.Application.Abstractions.Messaging;
+using Athr.Application.Exceptions;
 using Athr.Application.User.UserRegister;
 using Athr.Domain.BuildingBlocks;
+using Athr.Domain.BusinessRoles;
 using Athr.Domain.Enumerations;
 using Athr.Domain.Users;
-using BCrypt.Net;
+using Athr.Domain.Users.Authorization;
+using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Athr.Application.Users.UserRegister;
 
-public sealed class UserRegisterCommandHandler : ICommandHandler<UserRegisterCommand, Guid>
+public sealed class UserRegisterCommandHandler(
+        IUnitOfWork _unitOfWork,
+        IUserRepository _userRepository,
+        IBusinessRoleRepository _businessRuleRepository) : ICommandHandler<UserRegisterCommand, Guid>
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IUserRepository _userRepository;
-
-    public UserRegisterCommandHandler(
-        IUnitOfWork unitOfWork,
-        IUserRepository userRepository)
-    {
-        _unitOfWork = unitOfWork;
-        _userRepository = userRepository;
-    }
-
     public async Task<Guid> Handle(UserRegisterCommand request, CancellationToken cancellationToken)
     {
-        Console.WriteLine($"Email: {request.email}");
-        Console.WriteLine($"Password: {request.password}");
-
         var userId = AccountId.CreateUnique();
 
         // Check for unique conflicts
@@ -34,16 +26,13 @@ public sealed class UserRegisterCommandHandler : ICommandHandler<UserRegisterCom
             userId,
             request.email,
             request.phoneNumber,
-            string.Empty,
+            request.identityNumber,
             cancellationToken);
 
-        if (!IdentityType.TryFromName(request.identityType, out var identityType))
-        {
-            throw new ApplicationException($"Invalid identity type: {request.identityType}. Valid values: ST, AD, INS, PR");
-        }
-
-        //temp untill externally provided
-        var tempIdentityNumber = $"TEMP-{userId.Value}";
+        //if (!IdentityType.TryFromName(request.identityType, out var identityType))
+        //{
+        //    throw new ApplicationException($"Invalid identity type: {request.identityType}. Valid values: ST, AD, INS, PR");
+        //}
 
         // Hash password
         var hashedPassword = PasswordHasher.HashPassword(request.password);
@@ -54,12 +43,23 @@ public sealed class UserRegisterCommandHandler : ICommandHandler<UserRegisterCom
             request.midName,
             request.lastName,
             request.email,
-            hashedPassword,
             request.phoneNumber,
-            tempIdentityNumber,
-            request.dialCodeId);
-        user.SetIdentityId(identityType); 
+            request.identityNumber);
 
+        user.ChangePassword(hashedPassword);
+
+        var businessRole = await _businessRuleRepository.All().SingleOrDefaultAsync(r => r.Alias.Equals(Constants.RoleAdminAlias))
+            ?? throw new ApplicationFlowException([UserRegisterCommandErrors.InvalidBusinessRole]);
+        
+        user.AddBusinessRole(businessRole.Id);
+
+        var permissions = businessRole.AllowedPermissions.Select(p => BusinessRolesPermission.Create(p.PermissionId,businessRole.Id,p.Name)).ToList()
+                      ?? throw new ApplicationFlowException([UserRegisterCommandErrors.InvalidBusinessRole]);
+
+        user.AssignPermissions(permissions);
+
+        user.SetIdentityId(IdentityType.Admin); 
+        
         await _userRepository.AddAsync(user);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 

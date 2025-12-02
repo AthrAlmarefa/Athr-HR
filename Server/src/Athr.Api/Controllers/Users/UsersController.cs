@@ -23,34 +23,14 @@ public class UsersController : ControllerBase
 
     [HttpPost("register")]
     [AllowAnonymous]
-    [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Register(
+    public async Task<Guid> Register(
         [FromBody] UserRegisterRequest request,
         CancellationToken cancellationToken)
     {
-        if (!ModelState.IsValid)
-        {
-            var errors = ModelState.Values.SelectMany(v => v.Errors);
-            foreach (var error in errors)
-            {
-                Console.WriteLine($"ModelState Error: {error.ErrorMessage}");
-            }
-            return BadRequest(ModelState);
-        }
-        var command = new UserRegisterCommand(
-            request.email,
-            request.firstName,
-            request.midName,
-            request.lastName,
-            request.password,
-            request.phoneNumber,
-            request.dialCodeId ?? "SA",
-            request.identityType);
-
+        UserRegisterCommand command = request;
         var userId = await _sender.Send(command, cancellationToken);
 
-        return CreatedAtAction(nameof(Register), new { id = userId }, userId);
+        return userId;
     }
 
     [HttpPost("login")]

@@ -14,7 +14,7 @@ public abstract class Account : Entity<AccountId>, IAggregateRoot, IAuditableEnt
     protected Account()
     {
     }
-    public string IdentityId { get; private set; } = null!;
+    public string IdentityId { get; private set; }
     public DateTime CreatedAtUtc { get; set; }
     public DateTime? LastModifiedAtUtc { get; set; }
     public string CreatedBy { get; set; } = null!;

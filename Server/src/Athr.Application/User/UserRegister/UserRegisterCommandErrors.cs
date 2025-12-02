@@ -9,5 +9,7 @@ namespace Athr.Application.Users.UserRegister
         public static readonly ApplicationError IsExistBefore = new(
             $"{nameof(UserRegisterCommand)}.IsExistBefore", "User Is Exist Before"
             );
+        public static readonly ApplicationError InvalidBusinessRole = new(
+            $"{nameof(UserRegisterCommand)}.InvalidBusinessRole", "Invalid Business Rule Credintials");
     }
 }

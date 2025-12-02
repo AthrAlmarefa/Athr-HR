@@ -14,56 +14,35 @@ public sealed class UserEntity : Account
     private readonly List<AccountId> _businessRoles = [];
 
     //delete createdBy or keep it?
-    private UserEntity(AccountId id,
-    string firstName,
-    string midName,
-    string lastName,
-    string email,
-    string password,
-    string phoneNumber,
-    string identityNum) : base(id)
+    private UserEntity(AccountId id) : base(id)
     {
-        CheckRule(new EmailFormatRule(email));
-        CheckRule(new PhoneNumberFormatRule(phoneNumber));
-
-        FirstName = firstName;
-        MidName = midName;
-        LastName = lastName;
-        Email = email;
-        Password = password;
-        PhoneNumber = phoneNumber;
-        IdentityNumber = identityNum;
     }
 
     private UserEntity()
     {
     }
 
-    public string FirstName { get; private set; } = null!;
-    public string MidName { get; private set; } = null!;
-    public string LastName { get; private set; } = null!;
-    public string Email { get; private set; } = null!;
-    public string Password { get; private set; } = null!;
-    public string PhoneNumber { get; private set; } = null!;
-    public string IdentityNumber { get; private set; } = null!;
-    //public CountryId DialCodeId { get; private set; }
+    public string FirstName { get; private set; }
+    public string MidName { get; private set; }
+    public string LastName { get; private set; }
+    public string Email { get; private set; } 
+    public string Password { get; private set; }
+    public string PhoneNumber { get; private set; } 
+    public string IdentityNumber { get; private set; }
     public IReadOnlyCollection<BusinessRolesPermission> BusinessPermissions => _businessPermissions.ToList();
     public IReadOnlyCollection<AccountId> BusinessRoles => _businessRoles.ToList();
 
-    public static UserEntity CreateInstance(string firstName, string midName, string lastName, string email, string password, string phoneNumber, string identityNum, string dialCodeId = "SA")
+    public static UserEntity CreateInstance(string firstName, string midName, string lastName, string email, string phoneNumber, string identityNum)
     {
-        if (string.IsNullOrWhiteSpace(firstName))
-            throw new BusinessRuleException([UserErrors.FirstNameRequired]);
-        if (string.IsNullOrWhiteSpace(midName))
-            throw new BusinessRuleException([UserErrors.MidNameRequired]);
-        if (string.IsNullOrWhiteSpace(lastName))
-            throw new BusinessRuleException([UserErrors.LastNameRequired]);
-        if (string.IsNullOrWhiteSpace(password))
-            throw new BusinessRuleException([UserErrors.PasswordRequired]);
-
-        var user = new UserEntity(AccountId.CreateUnique(), firstName, midName, lastName, email, password, phoneNumber, identityNum);
-            //DialCodeId = CountryId.Create(DialCodeId)
-
+        var user = new UserEntity(AccountId.CreateUnique())
+        {
+            FirstName = firstName,
+            MidName = midName,
+            LastName = lastName,
+            Email = email,
+            PhoneNumber = phoneNumber,
+            IdentityNumber = identityNum
+        };
         user.RaiseDomainEvent(new UserCreatedDomainEvent(user.Id));
 
         return user;
@@ -71,9 +50,6 @@ public sealed class UserEntity : Account
 
     public void ChangePassword(string newPassword) 
     {
-        if (newPassword == null)
-            throw new BusinessRuleException([UserErrors.PasswordRequired]);
-
         Password = newPassword;
         RaiseDomainEvent(new UserPasswordChangedDomainEvent(Id));
     }
@@ -139,16 +115,6 @@ public sealed class UserEntity : Account
     public void ChangeBasics(string firstName, string midName, string lastName,
     string email, string phoneNumber, string identityNumber)  
     {
-        if (IsDeleted)
-            throw new BusinessRuleException([UserErrors.CannotUpdateDeletedUser]);
-        if (string.IsNullOrWhiteSpace(firstName))
-            throw new BusinessRuleException([UserErrors.FirstNameRequired]);
-        if (string.IsNullOrWhiteSpace(lastName))
-            throw new BusinessRuleException([UserErrors.LastNameRequired]);
-
-        CheckRule(new EmailFormatRule(email));
-        CheckRule(new PhoneNumberFormatRule(phoneNumber));
-
         FirstName = firstName;
         MidName = midName ?? string.Empty;
         LastName = lastName;
