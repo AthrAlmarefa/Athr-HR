@@ -2,16 +2,16 @@ import { CategoryResponse } from "../../../../../shared/services/AthrHR";
 
 
 export class GetCategoryById {
-    static readonly type = '[Category] Get By Id';
+    static readonly type = '[Category] Get Category By Id';
     constructor(public categoryId: string) {}
 }
 
 export class GetCategoryByIdSuccess {
-    static readonly type = '[Category] Get By Id Success';
+    static readonly type = '[Category] Get Category By Id Success';
     constructor(public payload: CategoryResponse) {}
 }
 
 export class GetCategoryByIdFailure {
-    static readonly type = '[Category] Get By Id Failure';
+    static readonly type = '[Category] Get Category By Id Failure';
     constructor(public error: any) {}
 }

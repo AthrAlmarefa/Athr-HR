@@ -1,8 +1,7 @@
 import { CategoryResponsePaginatedList } from "../../../../../shared/services/AthrHR";
 
-
 export class GetAllCategories {
-  static readonly type = "[Category] Get All";
+  static readonly type = "[Category] Get All Categories";
   constructor(
     public payload: {
       currentPage?: number;
@@ -13,11 +12,11 @@ export class GetAllCategories {
 }
 
 export class GetAllCategoriesSuccess {
-  static readonly type = "[Category] Get All Success";
+  static readonly type = "[Category] Get All Categories Success";
   constructor(public payload: CategoryResponsePaginatedList) {}
 }
 
 export class GetAllCategoriesFailure {
-  static readonly type = "[Category] Get All Failure";
+  static readonly type = "[Category] Get All Categories Failure";
   constructor(public error: any) {}
 }
