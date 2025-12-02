@@ -29,20 +29,36 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
             .HasMaxLength(100);
 
         builder.Property(u => u.Password)
-            .IsRequired()
-            .HasMaxLength(255);
+        .IsRequired()
+        .HasMaxLength(255);
 
         builder.Property(u => u.Email)
-            .IsRequired()
-            .HasMaxLength(255);
+        .IsRequired()
+        .HasMaxLength(255);
 
         builder.Property(u => u.PhoneNumber)
-            .IsRequired()
-            .HasMaxLength(20);
+        .IsRequired()
+        .HasMaxLength(20);
+
+        builder.Property(u => u.IdentityId)
+        .HasMaxLength(450);
 
         builder.Property(u => u.IdentityNumber)
                 .IsRequired()
                 .HasMaxLength(100);
+
+        builder.Property(u => u.CreatedAtUtc)
+        .IsRequired();
+
+        builder.Property(u => u.IsActive)
+            .IsRequired();
+
+        builder.Property(u => u.IsDeleted)
+            .IsRequired();
+
+        builder.Property(u => u.LastModifiedBy);
+
+        builder.Property(u => u.LastModifiedAtUtc);
 
         // RolesPermissions Configuration
         builder.OwnsMany(
@@ -71,8 +87,8 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<UserEntity>
 
                 permissionsBuilder.HasKey("Id");
 
-                builder.Property(bp => bp.IsActive)
-                    .HasDefaultValue(true);
+                //builder.Property(bp => bp.IsActive)
+                //    .HasDefaultValue(true);
             });
 
         builder.OwnsMany(b => b.BusinessRoles, _businessRoles =>

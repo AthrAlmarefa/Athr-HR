@@ -8,17 +8,20 @@ internal static class ClaimsPrincipalExtensions
     public static Guid? GetUserId(this ClaimsPrincipal? principal)
     {
         string? userId = principal?.FindFirstValue(JwtRegisteredClaimNames.Sub);
-
         return Guid.TryParse(userId, out Guid parsedUserId) ? parsedUserId : null;
     }
-
     public static string GetIdentityId(this ClaimsPrincipal? principal)
     {
         return principal?.FindFirstValue(ClaimTypes.NameIdentifier);
     }
-
+    public static string GetEmail(this ClaimsPrincipal principal)
+    {
+        return principal.FindFirstValue(JwtRegisteredClaimNames.Email)
+            ?? throw new ApplicationException("Email claim not found");
+    }
     public static string GetRoleType(this ClaimsPrincipal? principal)
     {
-        return principal?.FindFirstValue(ClaimTypes.Role);
+        return principal?.FindFirstValue(ClaimTypes.Role)
+            ?? throw new ApplicationException("Role claim not found");
     }
 }

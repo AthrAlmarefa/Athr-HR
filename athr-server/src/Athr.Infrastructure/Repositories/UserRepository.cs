@@ -21,7 +21,7 @@ internal sealed class UserRepository : Repository<UserEntity, AccountId>, IUserR
             .Where(a =>
                 (a.Email.ToLower().Equals(Email))
                 || (a.PhoneNumber.Equals(PhoneNumber))
-                || (a.IdentityId.Equals(IdentityNumber))
+                || (a.IdentityNumber.Equals(IdentityNumber))
             )
             .Select(a => new
             {
@@ -33,11 +33,11 @@ internal sealed class UserRepository : Repository<UserEntity, AccountId>, IUserR
 
         if (conflictExists is null)
             return; // all clear
-
+       
         var conflicts = new List<ApplicationError>();
         if (conflictExists.Email.Equals(Email, StringComparison.OrdinalIgnoreCase)) conflicts.Add(new ApplicationError(nameof(UserEntity.Email), "Email Is Used Before"));
         if (conflictExists.PhoneNumber!.Equals(PhoneNumber, StringComparison.OrdinalIgnoreCase)) conflicts.Add(new ApplicationError(nameof(UserEntity.PhoneNumber), "PhoneNumber Is Used Before"));
-        if (conflictExists.IdentityNumber!.Equals(PhoneNumber, StringComparison.OrdinalIgnoreCase)) conflicts.Add(new ApplicationError(nameof(UserEntity.IdentityNumber), "PhoneNumber Is Used Before"));
+        if (conflictExists.IdentityNumber!.Equals(IdentityNumber, StringComparison.OrdinalIgnoreCase)) conflicts.Add(new ApplicationError(nameof(UserEntity.IdentityNumber), "Identity Number Is Used Before"));
 
         throw new ApplicationFlowException(conflicts);
     }

@@ -16,11 +16,11 @@ internal sealed class UserContext : IUserContext
 
     public ClaimsPrincipal? User => _httpContextAccessor.HttpContext?.User;
 
-    public Guid UserId => User?.GetUserId() ?? throw new ApplicationException("User context is unavailable");
+    public Guid? UserId => User?.GetUserId();
 
     public bool IsAuthenticated => User?.Identity?.IsAuthenticated ?? throw new ApplicationException("User context is unavailable");
 
-    public string IdentityId => User.GetIdentityId() ?? throw new ApplicationException("User context is unavailable");
+    public string IdentityId => User.GetIdentityId();
 
     public string RoleName => User.GetRoleType() ?? throw new ApplicationException("User context is unavailable");
 

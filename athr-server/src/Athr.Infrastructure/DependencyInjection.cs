@@ -21,6 +21,12 @@ using Athr.Application.Abstractions.Authentication;
 using Athr.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Athr.Infrastructure.Authorization;
+using Athr.Application.Abstractions.Caching;
+using Athr.Infrastructure.Caching;
+using StackExchange.Redis;
 
 namespace Athr.Infrastructure;
 
@@ -34,7 +40,7 @@ public static class DependencyInjection
         services.AddTransient<IEmailService, EmailService>();
 
         AddPersistence(services, configuration);
-
+        AddCaching(services, configuration);
         AddHealthChecks(services, configuration);
 
         AddApiVersioning(services);
@@ -51,9 +57,8 @@ public static class DependencyInjection
         bool logSensitiveData = configuration.GetValue<bool>("Logs:LogSensitiveData");
 
         services.AddScoped<SoftDeletionInterceptor>();
-
+        
         services.AddScoped<AuditingInterceptor>();
-
         services.AddScoped<TrackingInterceptor>();
 
         services.AddDbContext<ApplicationDbContext>((serviceProvider, options) =>
@@ -78,7 +83,34 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
         services.AddSingleton<ISqlConnectionFactory>(_ => new SqlConnectionFactory(connectionString));
         SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
+        services.AddScoped<AuthorizationService>();
+    }
+    private static void AddCaching(IServiceCollection services, IConfiguration configuration)
+    {
+        var cacheConnectionString = configuration.GetConnectionString("Cache");
 
+        try
+        {
+            services.AddSingleton<IConnectionMultiplexer>(sp =>
+            {
+                var configOptions = ConfigurationOptions.Parse(cacheConnectionString);
+                configOptions.AbortOnConnectFail = false;
+                configOptions.ReconnectRetryPolicy = new ExponentialRetry(5000);
+                configOptions.ConnectTimeout = 5000;
+                configOptions.SyncTimeout = 5000;
+
+                return ConnectionMultiplexer.Connect(configOptions);
+            });
+
+            services.AddSingleton<ICacheService, RedisCacheService>();
+
+            Console.WriteLine("Redis cache configured successfully");
+        }
+        catch (Exception ex)
+        {
+            // Fallback to Memory Cache
+            Console.WriteLine($"Redis failed: {ex.Message}, falling back to Memory Cache");
+        }
     }
 
     private static void AddHealthChecks(IServiceCollection services, IConfiguration configuration)
@@ -90,7 +122,50 @@ public static class DependencyInjection
     {
         services.AddHttpContextAccessor();
 
+        // ⭐⭐⭐ استخدم JwtOptions section ⭐⭐⭐
+        services.Configure<JwtOptions>(configuration.GetSection("JwtOptions"));
+
         services.AddScoped<IUserContext, UserContext>();
+        services.AddScoped<IJwtService, JwtService>();
+        services.AddScoped<IClaimsTransformation, CustomClaimsTransformation>();
+        services.AddScoped<Application.Abstractions.Authentication.IAuthenticationService,
+            Athr.Infrastructure.Authentication.AuthenticationService>();
+
+        // ⭐⭐⭐ جيب الـ JwtOptions ⭐⭐⭐
+        var jwtOptions = configuration.GetSection("JwtOptions").Get<JwtOptions>()
+            ?? throw new InvalidOperationException("JwtOptions configuration is missing");
+
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtOptions.Issuer, // ⭐⭐⭐ من JwtOptions ⭐⭐⭐
+                    ValidAudience = jwtOptions.Audience, // ⭐⭐⭐ من JwtOptions ⭐⭐⭐
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(jwtOptions.SecretKey)), // ⭐⭐⭐ من JwtOptions ⭐⭐⭐
+                    ClockSkew = TimeSpan.Zero
+                };
+
+                // ⭐⭐⭐ Claims Transformation Events ⭐⭐⭐
+                options.Events = new JwtBearerEvents
+                {
+                    OnTokenValidated = async context =>
+                    {
+                        var transformation = context.HttpContext.RequestServices
+                            .GetRequiredService<IClaimsTransformation>();
+
+                        if (context.Principal?.Identity?.IsAuthenticated == true)
+                        {
+                            context.Principal = await transformation.TransformAsync(context.Principal);
+                        }
+                    }
+                };
+            });
     }
 
     private static void AddApiVersioning(IServiceCollection services)
