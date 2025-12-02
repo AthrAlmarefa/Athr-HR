@@ -402,11 +402,12 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+Client/Client.Admin/.angular/
 .containers/
-/Client/Client.Admin
-/Server/src/Manahil.Api/.config
-/Server/src/Manahil.Api/documents/trak_image
-/Clients/Manahil.Client/.angular
-/Clients/Manahil.Client/dist
-Clients/Manahil.Admin/src/environments/environment.ts
+/Server/src/Client.Api/.config
+/Server/src/Client.Api/documents
+/Clients/Client.Client/dist
+Clients/Client.Admin/src/environments/environment.ts
 Server/.env
+
+/Client/Client.Admin/.angular
