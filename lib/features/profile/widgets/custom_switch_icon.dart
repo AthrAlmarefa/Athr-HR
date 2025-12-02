@@ -1,4 +1,3 @@
-import 'package:athr_hr/core/styles/colors/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -36,40 +35,65 @@ class _CustomSwitchState extends State<CustomSwitch> {
         setState(() => isOn = !isOn);
         widget.onChanged(isOn);
       },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: widget.width.w,
-        height: widget.height.h,
-        decoration: BoxDecoration(
-          color: MyColors.bottomSheetColor.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(40.r),
-          border: Border.all(
-            color: isOn ? Colors.teal : const Color(0xFFCBCBCB),
-            width: 2,
-          ),
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 2.w),
-        child: AnimatedAlign(
-          duration: const Duration(milliseconds: 200),
-          curve: Curves.easeOut,
-          alignment: isOn ? Alignment.centerRight : Alignment.centerLeft,
-          child: Container(
-            width: (widget.height - 10).w,
-            height: (widget.height - 10).h,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isOn ? Colors.teal : const Color(0xFFCBCBCB),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.18),
-                  blurRadius: 2,
-                  offset: const Offset(0, 2),
-                ),
+      child:
+      GestureDetector(
+        onTap: () {
+          setState(() => isOn = !isOn);
+          widget.onChanged(isOn);
+        },
+        child: Container(
+          width: widget.width.w,
+          height: widget.height.h,
+          padding: EdgeInsets.all(1.w),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100.r),
+            gradient: isOn
+                ? const LinearGradient(
+              colors: [
+                Color(0xCC1BABB6),
+                Color(0xCC005157),
               ],
+            )
+                : null,
+            color: isOn ? null : const Color(0xFFCBCBCB),
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100.r),
+              color: Colors.white,
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 2.w),
+            child: AnimatedAlign(
+              duration: const Duration(milliseconds: 200),
+              curve: Curves.easeOut,
+              alignment: isOn ? Alignment.centerRight : Alignment.centerLeft,
+              child: Container(
+                width: (widget.height - 10).w,
+                height: (widget.height - 10).h,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: isOn
+                      ? const LinearGradient(
+                    colors: [
+                      Color(0xCC1BABB6),
+                      Color(0xCC005157),
+                    ],
+                  )
+                      : null,
+                  color: isOn ? null : const Color(0xFFCBCBCB),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.18),
+                      blurRadius: 2,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
-      ),
+      )
     );
   }
 }

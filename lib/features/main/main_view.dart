@@ -15,6 +15,7 @@ class MainScreen extends StatefulWidget {
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
+
 class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
 
@@ -23,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
     Assets.imagesSelectedclock,
     Assets.imagesSelectednote,
     Assets.imagesSelectedcalendar,
-    Assets.imagesAccount
+    Assets.imagesAccount,
   ];
 
   final List<String> inactiveIcons = [
@@ -31,14 +32,20 @@ class _MainScreenState extends State<MainScreen> {
     Assets.imagesClock,
     Assets.imagesNote,
     Assets.imagesCalendar,
-    Assets.imagesNotselecteprofile
+    Assets.imagesNotselecteprofile,
   ];
 
   late final List<Widget> screens = [
     HomeView(),
     TimeView(),
     TasksView(),
-    LeavesView(),
+    LeavesView(
+      onChangeTab: (index) {
+        setState(() {
+          currentIndex = index;
+        });
+      },
+    ),
     ProfileView(
       onChangeTab: (index) {
         setState(() {
@@ -65,10 +72,8 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: currentIndex,
-        children: screens,
-      ),
+      extendBody: true,
+      body: IndexedStack(index: currentIndex, children: screens),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: currentIndex,
         activeIcons: activeIcons,

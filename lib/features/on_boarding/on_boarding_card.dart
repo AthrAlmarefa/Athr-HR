@@ -35,22 +35,19 @@ class CustomOnboardingScreen extends StatelessWidget {
                 child: SizedBox(
                   width: 325.w,
                   height: 200.h,
-                  child: Image.asset(
-                    imageAsset,
-                    fit: BoxFit.contain,
-                  ),
+                  child: Image.asset(imageAsset, fit: BoxFit.contain),
                 ),
               ),
 
               SizedBox(height: 20.h),
               _TextSection(title: title, subtitle: subtitle),
-              const SizedBox(height: 30),
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
+              SizedBox(height: 30.h),
               DotsIndicator(currentIndex: currentIndex),
-              const SizedBox(height: 50),
+              SizedBox(height: 50.h),
               SizedBox(
-                width: 300.w,
-                height: 54.h,
+                width: 285.w,
+                height: 58.h,
                 child: CustomButton(
                   txt: buttonText,
                   onPressed: onButtonPressed,

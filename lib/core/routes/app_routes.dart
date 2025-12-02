@@ -1,6 +1,7 @@
 import 'package:athr_hr/core/routes/base_routes.dart';
 import 'package:athr_hr/features/auth/change_password/view/change_password_view.dart';
 import 'package:athr_hr/features/auth/login/view/login_view.dart';
+import 'package:athr_hr/features/leaves/view/leave_request_view.dart';
 import 'package:athr_hr/features/main/main_view.dart';
 import 'package:athr_hr/features/on_boarding/on_boarding.dart';
 import 'package:athr_hr/features/profile/view/profile_details_view.dart';
@@ -17,7 +18,7 @@ class AppRoutes {
   static const String changePassword = 'changePassword';
   static const String mainView = 'main';
   static const String personalDataView = 'personalDataView';
-  static const String createRequestView = 'createRequestView';
+  static const String leaveRequestView = 'leaveRequestView';
 
 
   static Route<void> onGenerateRoute(RouteSettings settings) {
@@ -52,10 +53,10 @@ class AppRoutes {
             page:
          const ProfileDetailsView(),
             );
-      case createRequestView:
+        case leaveRequestView:
         return BaseRoute(
           page:
-          const CreateRequestView(),
+          const LeaveRequestView(),
         );
       default:
         return BaseRoute(page:SizedBox());

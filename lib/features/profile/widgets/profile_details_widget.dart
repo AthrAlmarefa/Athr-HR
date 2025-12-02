@@ -23,7 +23,7 @@ class _ProfileDetailsWidgetState extends State<ProfileDetailsWidget> {
           iconPath: Assets.imagesUser,
         ),
         CustomCard(
-          title: context.translate(LangKeys.times),
+          title: context.translate(LangKeys.workingHours),
           subtitle: context.translate(LangKeys.timeRange),
           iconPath: Assets.imagesTimer,
         ),
@@ -41,6 +41,11 @@ class _ProfileDetailsWidgetState extends State<ProfileDetailsWidget> {
           title: context.translate(LangKeys.jobTitle),
           subtitle: context.translate(LangKeys.flutterDeveloper),
           iconPath: Assets.imagesCase,
+        ),
+        CustomCard(
+          title: context.translate(LangKeys.idNumber),
+          subtitle: context.translate(LangKeys.idNumberValue),
+          iconPath: Assets.imagesSlider,
         ),
         CustomCard(
           title: context.translate(LangKeys.workLocation),

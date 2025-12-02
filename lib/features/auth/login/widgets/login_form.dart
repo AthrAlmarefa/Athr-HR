@@ -116,8 +116,8 @@ class _LoginFormState extends State<LoginForm> {
           ),
           SizedBox(height: 10.h),
           SizedBox(
-            width: 280.w,
-            height: 54.h,
+            width: 285.w,
+            height: 58.h,
             child: CustomButton(
               txt: context.translate(LangKeys.login),
               onPressed: () {

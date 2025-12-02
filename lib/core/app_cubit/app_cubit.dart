@@ -15,11 +15,8 @@ class AppCubit extends Cubit<AppStates> {
 
   int selectedIndex = 0;
 
-  // * change Language logic *
-
-  void getSavedLanguage() {
-    final result =
-    SharedPrefHelper().containPreference(key: SharedPrefKeys.language)
+  Future<void> getSavedLanguage() async {
+    final result = SharedPrefHelper().containPreference(key: SharedPrefKeys.language)
         ? SharedPrefHelper().getString(key: SharedPrefKeys.language)
         : 'ar';
     currentLanguage = result!;

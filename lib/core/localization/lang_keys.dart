@@ -6,7 +6,6 @@ class LangKeys {
   static const String monthlyPerformanceReport = "monthly_performance_report";
   static const String leaveAndAdminTasks = "leave_and_admin_tasks";
   static const String startNow = "start_now";
-  static const String profile = "profile";
   static const String name = "name";
   static const String job = "job";
   static const String id = "id";
@@ -31,7 +30,6 @@ class LangKeys {
   static const String times = "times";
   static const String tasks = "tasks";
   static const String leaves = "leaves";
-  static const String account = "profile";
   static const login = 'login';
   static const email = 'email';
   static const password = 'password';
@@ -119,5 +117,36 @@ class LangKeys {
   static const String specialRequest = "special_request";
   static const String createRequest = "create_request";
   static const String selectRequestType = "select_request_type";
+  static const String leaveType = "leave_type";
+  static const String leaveStart = "leave_start";
+  static const String leaveEnd = "leave_end";
+  static const String noteOptional = "note_optional";
+  static const String generalNote = "general_note";
+  static const String medicalConsultation = "medical_consultation";
+  static const String addAttachments = "add_attachments";
+  static const String submitRequest = "submit_request";
+  static const String dateExampleMonday = "date_example_monday";
+  static const String dateExampleThursday = "date_example_thursday";
+  static const String profile = "profile";
+  static const String account = "account";
+  static const String cancel = "cancel";
+  static const String confirmExit = "confirm_exit";
+  static const thursday = 'thursday';
+  static const friday = 'friday';
+  static const String fileSavedSuccessfully = 'fileSavedSuccessfully';
+  static const String fileUploadedSuccessfully = 'fileUploadedSuccessfully';
+  static const String noFileFoundToDownload = 'noFileFoundToDownload';
+  static const String failedToDownloadFile = 'failedToDownloadFile';
+  static const String failedToUploadFile = 'failedToUploadFile';
+  static const String fileDownloadedSuccessfully = 'fileDownloadedSuccessfully';
+  static const String fileTypePdf = 'fileTypePdf';
+  static const String fileTypeJpg = 'fileTypeJpg';
+  static const String fileTypeJpeg = 'fileTypeJpeg';
+  static const String fileTypePng = 'fileTypePng';
+  static const permission = 'permission';
+  static const workLeave = 'workLeave';
+  static const annualLeave = 'annualLeave';
+  static const emergencyLeave = 'emergencyLeave';
+  static const sickLeave = 'sickLeave';
 
 }
