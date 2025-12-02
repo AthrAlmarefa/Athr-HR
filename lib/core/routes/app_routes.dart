@@ -1,6 +1,7 @@
 import 'package:athr_hr/core/routes/base_routes.dart';
 import 'package:athr_hr/features/auth/change_password/view/change_password_view.dart';
 import 'package:athr_hr/features/auth/login/view/login_view.dart';
+import 'package:athr_hr/features/on_boarding/on_boarding.dart';
 import 'package:athr_hr/features/main/main_view.dart';
 import 'package:athr_hr/features/on_boarding/on_boarding.dart';
 import 'package:athr_hr/features/profile/view/profile_details_view.dart';
@@ -23,6 +24,7 @@ class AppRoutes {
   static Route<void> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case onBoarding:
+        return BaseRoute(page: OnBoarding());
         return
           BaseRoute(
               page:
