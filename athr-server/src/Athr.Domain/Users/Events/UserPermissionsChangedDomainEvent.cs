@@ -7,9 +7,10 @@ using Athr.Domain.BuildingBlocks;
 
 namespace Athr.Domain.Users.Events
 {
-    public record AccountRecoveredDomainEvent(AccountId AccountId, string RecoveredByUserId) : IDomainEvent
+    public sealed record UserPermissionsChangedDomainEvent(
+    AccountId UserId) : IDomainEvent
     {
         public Guid Id { get; } = Guid.NewGuid();
-        public DateTime OccurredOn { get; } = DateTime.UtcNow;
+        public DateTimeOffset OccurredOn { get; } = DateTimeOffset.UtcNow;
     }
 }

@@ -25,4 +25,7 @@ public sealed record AccountId : ValueObject
             ?? throw new ArgumentException("UserId Is not valid");
         return accountId;
     }
+
+    public static implicit operator Guid(AccountId accountId) => accountId.Value;
+    public static implicit operator AccountId(Guid value) => new AccountId(value);
 }

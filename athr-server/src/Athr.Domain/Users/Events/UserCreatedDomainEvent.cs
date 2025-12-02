@@ -1,8 +1,8 @@
 ﻿using Athr.Domain.BuildingBlocks;
 namespace Athr.Domain.Users.Events;
 
-public sealed record UserCreatedDomainEvent(string CreatedById) : IDomainEvent
+public sealed record UserCreatedDomainEvent(AccountId UserId) : IDomainEvent
 {
-    public Guid Id { get; } = new Guid();
-    public DateTimeOffset OccurredOn { get; } = DateTimeOffset.UtcNow;
+    public Guid Id { get; } = Guid.NewGuid();
+    public DateTime OccurredOn { get; } = DateTime.UtcNow;
 }
