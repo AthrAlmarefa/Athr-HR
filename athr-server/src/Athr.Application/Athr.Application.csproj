@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Users\**" />
+    <EmbeddedResource Remove="Users\**" />
+    <None Remove="Users\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="MediatR" Version="12.2.0" />
 	<PackageReference Include="Dapper" Version="2.1.28" />
@@ -15,15 +21,12 @@
 	<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
 	<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	<PackageReference Include="Serilog" Version="3.1.1" />
+	<PackageReference Include="StackExchange.Redis" Version="2.10.1" />
 
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Athr.Domain\Athr.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Users\" />
   </ItemGroup>
 
 </Project>

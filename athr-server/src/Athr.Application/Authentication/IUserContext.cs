@@ -5,7 +5,7 @@ namespace Athr.Application.Abstractions.Authentication;
 public interface IUserContext
 {
     ClaimsPrincipal? User { get; }
-    Guid UserId { get; }
+    Guid? UserId { get; }
 
     public bool IsAuthenticated { get; }
 

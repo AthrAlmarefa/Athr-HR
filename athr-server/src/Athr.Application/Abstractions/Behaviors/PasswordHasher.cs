@@ -29,7 +29,7 @@ namespace Athr.Application.Abstractions.Behaviors
         /// Verifies the password against "{hashHex}${saltHex}".
         /// Throws if the stored format is invalid or truncated.
         /// </summary>
-        public static bool VerifyHashedPassword(string password, string storedHash)
+        public static bool VerifyHashedPassword(string storedHash, string password)
         {
             if (string.IsNullOrWhiteSpace(storedHash))
                 throw new ArgumentException("Stored password hash is empty.");
@@ -45,22 +45,34 @@ namespace Athr.Application.Abstractions.Behaviors
             // Validate lengths
             if (hashHex.Length != KeySize * 2)
                 return false;
+            try
+            {
+                // Convert back to bytes
+                var storedHashBytes = Convert.FromHexString(hashHex);
+                var saltBytes = Convert.FromHexString(saltHex);
 
-            // Convert back to bytes
-            var storedHashBytes = Convert.FromHexString(hashHex);
-            var saltBytes = Convert.FromHexString(saltHex);
+                // Derive new hash
+                var newHash = Rfc2898DeriveBytes.Pbkdf2(
+                    password,
+                    saltBytes,
+                    Iterations,
+                    HashAlgorithmName.SHA256,
+                    KeySize
+                );
 
-            // Derive new hash
-            var newHash = Rfc2898DeriveBytes.Pbkdf2(
-                password,
-                saltBytes,
-                Iterations,
-                HashAlgorithmName.SHA256,
-                KeySize
-            );
-
-            // Constant-time compare
-            return CryptographicOperations.FixedTimeEquals(newHash, storedHashBytes);
+                // Constant-time compare
+                return CryptographicOperations.FixedTimeEquals(newHash, storedHashBytes);
+            }
+            catch (FormatException)
+            {
+                // Hex string format invalid
+                return false;
+            }
+            catch (ArgumentException)
+            {
+                // Invalid hex string
+                return false;
+            }
         }
     }
 
