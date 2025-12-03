@@ -6,14 +6,9 @@ on:
         - develop
         - main
         - "feature/**"
-      paths: 
-        - "Client/Client.Admin"
-        - "Server/src/**"
+
   push:
     branches: [develop, main]
-    paths: 
-      - "Client/Client.Admin"
-      - "Server/src/**"
 
 env:
   NODE_VERSION: '20'
