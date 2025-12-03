@@ -6,10 +6,8 @@ on:
         - develop
         - main
         - "feature/**"
-
   push:
     branches: [develop, main]
-
 env:
   NODE_VERSION: '20'
   DOTNET_VERSION: '8.0.x'
@@ -17,7 +15,6 @@ env:
   API_IMAGE_NAME: athr.api
   DOCKER_REGISTRY: ""
   API_TAG: latest
-
 jobs:
   code-quality:
     runs-on: ubuntu-latest
@@ -72,15 +69,17 @@ jobs:
 
       - name: Build .NET backend
         run: dotnet build Server/Athr.sln --configuration Release --no-restore --verbosity minimal
-
   sonar-test:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     needs: code-quality
+
     steps:
-      # =========================
-      # SonarCloud Scan
-      # =========================
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: SonarCloud Scan
         if: ${{ env.RUN_SONAR == 'true' }}
         uses: SonarSource/sonarqube-scan-action@v6
@@ -89,7 +88,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           projectBaseDir: .
-          fetch-depth: 0
           args: >
             -Dsonar.projectKey=AthrAlmarefa_Athr-HR
             -Dsonar.organization=athralmarefa
@@ -101,11 +99,9 @@ jobs:
   docker-build:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    
     needs: [code-quality, sonar-test]
-
     steps:
-            # ----------------------------
+      # ----------------------------
       # DOCKER BUILD
       # ----------------------------
       - name: Build API Docker Image
