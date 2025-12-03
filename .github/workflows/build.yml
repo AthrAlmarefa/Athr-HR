@@ -83,14 +83,15 @@ jobs:
       # =========================
       - name: SonarCloud Scan
         if: ${{ env.RUN_SONAR == 'true' }}
-        uses: SonarSource/sonarcloud-github-action@v2
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           projectBaseDir: .
+          fetch-depth: 0
           args: >
-            -Dsonar.projectKey=Athr-HR
+            -Dsonar.projectKey=AthrAlmarefa_Athr-HR
             -Dsonar.organization=athralmarefa
             -Dsonar.sources=Client/Client.Admin,Server
             -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/wwwroot/**,**/bin/**,**/obj/**
