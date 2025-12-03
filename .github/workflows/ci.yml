@@ -24,6 +24,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      
+      - name: Validate SONAR_TOKEN availability
+        run: |
+          if [ -z "${{ secrets.SONAR_TOKEN }}" ]; then
+            echo "ERROR: SONAR_TOKEN is NOT available!"
+            exit 1
+          else
+            echo "SONAR_TOKEN is correctly configured and available."
+          fi
+
 
       # =========================
       # Frontend (Angular)
