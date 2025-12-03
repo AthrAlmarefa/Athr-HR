@@ -1,5 +1,4 @@
 ﻿using Asp.Versioning;
-using Dapper;
 using Athr.Application.Abstractions.Clock;
 using Athr.Application.Abstractions.DataFactory;
 using Athr.Application.Abstractions.Email;
@@ -7,19 +6,20 @@ using Athr.Domain.BuildingBlocks;
 using Athr.Domain.BusinessRoles;
 using Athr.Domain.Categories;
 using Athr.Domain.Qualification;
+using Athr.Domain.TaskWork;
 using Athr.Domain.Users;
 using Athr.Infrastructure.Clock;
 using Athr.Infrastructure.Data;
 using Athr.Infrastructure.Email;
 using Athr.Infrastructure.Interceptors;
 using Athr.Infrastructure.Repositories;
+using Dapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Quartz;
 using System.Globalization;
-using Athr.Domain.Tasks;
 using ArgumentNullException = System.ArgumentNullException;
 
 namespace Athr.Infrastructure;
@@ -73,6 +73,7 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IQualificationRepository, QualificationRepository>();
+        services.AddScoped<ITaskWorkRepository, TaskWorkRepository>();
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
         services.AddSingleton<ISqlConnectionFactory>(_ => new SqlConnectionFactory(connectionString));
