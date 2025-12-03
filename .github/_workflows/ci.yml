@@ -1,0 +1,85 @@
+name: CI - Code Quality & Scan
+
+on:
+  pull_request:
+    branches: [develop, main, 'feature/**']
+  push:
+    branches: [develop, main]
+
+env:
+  NODE_VERSION: '20'
+  DOTNET_VERSION: '8.0.x'
+  RUN_SONAR: 'true'
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # =========================
+      # Frontend (Angular)
+      # =========================
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: 'Client/Client.Admin/package-lock.json'
+
+      - name: Install Angular dependencies
+        working-directory: Client/Client.Admin
+        run: npm ci --no-audit
+
+      - name: Lint Angular
+        working-directory: Client/Client.Admin
+        run: npm run lint --if-present
+
+      - name: Build Angular
+        working-directory: Client/Client.Admin
+        run: npm run build --if-present
+
+      # =========================
+      # Backend (.NET 8)
+      # =========================
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore .NET backend
+        run: dotnet restore Server/Athr.sln
+
+      - name: Build .NET backend
+        run: dotnet build Server/Athr.sln --configuration Release --no-restore --verbosity minimal
+
+      # =========================
+      # SonarCloud Scan
+      # =========================
+      - name: SonarCloud Scan
+        if: ${{ env.RUN_SONAR == 'true' }}
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.projectKey=athralmarefa_Althr-HR
+            -Dsonar.organization=athralmarefa
+            -Dsonar.sources=Client/Client.Admin,Server
+            -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/wwwroot/**,**/bin/**,**/obj/**
+            -Dsonar.cpd.exclusions=**/Migrations/**
+            -Dsonar.verbose=false
