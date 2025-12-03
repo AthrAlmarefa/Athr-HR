@@ -2,9 +2,18 @@ name: CI - Code Quality & Scan
 
 on:
   pull_request:
-    branches: [develop, main, 'feature/**']
+      branches:
+        - develop
+        - main
+        - "feature/**"
+      paths: 
+        - "Client/Client.Admin"
+        - "Server/src/**"
   push:
     branches: [develop, main]
+    paths: 
+      - "Client/Client.Admin"
+      - "Server/src/**"
 
 env:
   NODE_VERSION: '20'
@@ -21,24 +30,9 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0
-      
-      - name: Validate SONAR_TOKEN availability
-        run: |
-          if [ -z "${{ secrets.SONAR_TOKEN }}" ]; then
-            echo "ERROR: SONAR_TOKEN is NOT available!"
-            exit 1
-          else
-            echo "SONAR_TOKEN is correctly configured and available."
-          fi
-
-      - name: Print branch info
-        run: |
-          echo "GITHUB_REF_NAME: ${{ github.ref_name }}"
-          echo "GITHUB_HEAD_REF (PR only): ${{ github.head_ref }}"
-          echo "Current Branch: ${{ github.head_ref || github.ref_name }}"
 
       # =========================
       # Frontend (Angular)
@@ -84,6 +78,11 @@ jobs:
       - name: Build .NET backend
         run: dotnet build Server/Athr.sln --configuration Release --no-restore --verbosity minimal
 
+  sonar-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: code-quality
+    steps:
       # =========================
       # SonarCloud Scan
       # =========================
@@ -91,18 +90,26 @@ jobs:
         if: ${{ env.RUN_SONAR == 'true' }}
         uses: SonarSource/sonarcloud-github-action@v2
         env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.projectKey=Athralmarefa_Athr-HR
-            -Dsonar.organization=AthrAlmarefa
+            -Dsonar.projectKey=Athr-HR
+            -Dsonar.organization=athralmarefa
             -Dsonar.sources=Client/Client.Admin,Server
             -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/wwwroot/**,**/bin/**,**/obj/**
             -Dsonar.cpd.exclusions=**/Migrations/**
             -Dsonar.verbose=false
 
-      # ----------------------------
+  docker-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    
+    needs: [code-quality, sonar-test]
+
+    steps:
+            # ----------------------------
       # DOCKER BUILD
       # ----------------------------
       - name: Build API Docker Image
