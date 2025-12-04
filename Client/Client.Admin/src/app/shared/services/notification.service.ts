@@ -1,5 +1,4 @@
-import {inject, Injectable} from "@angular/core";
-import {MessageToastComponent} from "../../components/bonus-ui/toast/widgets/message-toast/message-toast.component";
+import {Injectable} from "@angular/core";
 import { Subject } from "rxjs";
 
 @Injectable({
