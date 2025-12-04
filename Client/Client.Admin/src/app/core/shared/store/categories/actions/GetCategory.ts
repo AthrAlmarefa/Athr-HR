@@ -1,4 +1,5 @@
-import { CategoryResponse } from "../../../services/AthrHR";
+import { CategoryResponse } from "../../../../../shared/services/AthrHR";
+
 
 export class GetCategoryById {
     static readonly type = '[Category] Get By Id';

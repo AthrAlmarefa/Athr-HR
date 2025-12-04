@@ -1,28 +1,20 @@
-import {
-  HttpClient,
-  provideHttpClient,
-  withInterceptors,
-} from "@angular/common/http";
-import {
-  ApplicationConfig,
-  importProvidersFrom,
-  provideZoneChangeDetection,
-} from "@angular/core";
-import { provideAnimations } from "@angular/platform-browser/animations";
-import { provideRouter, withInMemoryScrolling } from "@angular/router";
-import { OWL_DATE_TIME_LOCALE } from "@danielmoncada/angular-datetime-picker";
-import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
-import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { CalendarModule, DateAdapter } from "angular-calendar";
-import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
-import { provideToastr } from "ngx-toastr";
-import { routes } from "./app.routes";
-import { provideStore } from "@ngxs/store";
-import { environment } from "../environments/environment";
-import { withNgxsReduxDevtoolsPlugin } from "@ngxs/devtools-plugin";
-import { withNgxsLoggerPlugin } from "@ngxs/logger-plugin";
-import { CategoryState } from "./shared/store/categories/states/CategoryState";
-import { interceptorGlobalHandlerInterceptor } from "./shared/interceptor/interceptor-global-handler.interceptor";
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { OWL_DATE_TIME_LOCALE } from '@danielmoncada/angular-datetime-picker';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { provideToastr } from 'ngx-toastr';
+import { routes } from './app.routes';
+import {provideStore} from "@ngxs/store";
+import {environment} from "../environments/environment";
+import {withNgxsReduxDevtoolsPlugin} from "@ngxs/devtools-plugin";
+import { withNgxsLoggerPlugin} from "@ngxs/logger-plugin";
+import { CategoryState } from './core/shared/store/categories/states/CategoryState';
+import { interceptorGlobalHandlerInterceptor } from './shared/interceptor/interceptor-global-handler.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
