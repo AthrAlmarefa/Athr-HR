@@ -116,4 +116,4 @@ jobs:
         run: |
           docker build -t ${{ env.API_IMAGE_NAME }}:${{ env.API_TAG }} \
             -f Server/src/Athr.Api/Dockerfile \
-            Server/src/Athr.Api
+            Server
