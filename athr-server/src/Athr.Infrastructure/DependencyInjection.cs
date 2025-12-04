@@ -13,14 +13,14 @@ using Athr.Infrastructure.Data;
 using Athr.Infrastructure.Email;
 using Athr.Infrastructure.Interceptors;
 using Athr.Infrastructure.Repositories;
-using Dapper;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Quartz;
-using System.Globalization;
 using ArgumentNullException = System.ArgumentNullException;
+using Athr.Application.Abstractions.Authentication;
+using Athr.Infrastructure.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Athr.Infrastructure;
 
@@ -38,6 +38,7 @@ public static class DependencyInjection
         AddHealthChecks(services, configuration);
 
         AddApiVersioning(services);
+        AddAuthentication(services, configuration);
     }
 
     private static void AddPersistence(
@@ -86,6 +87,13 @@ public static class DependencyInjection
         services.AddHealthChecks().AddSqlServer(configuration.GetConnectionString("Database")!);
     }
 
+    private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddHttpContextAccessor();
+
+        services.AddScoped<IUserContext, UserContext>();
+    }
+
     private static void AddApiVersioning(IServiceCollection services)
     {
         services.AddApiVersioning(options =>
@@ -98,13 +106,5 @@ public static class DependencyInjection
             options.GroupNameFormat = "'v'V";
             options.SubstituteApiVersionInUrl = true;
         });
-    }
-
-    private static string CreateSchedulerUniqueId(IServiceCollection services)
-    {
-        int hashCode = Guid.NewGuid().ToString().GetHashCode();
-        string uniqueId = hashCode.ToString("x", CultureInfo.InvariantCulture);
-        IWebHostEnvironment environment = services.BuildServiceProvider().GetRequiredService<IWebHostEnvironment>();
-        return $"{environment.ApplicationName}-{uniqueId}";
     }
 }
