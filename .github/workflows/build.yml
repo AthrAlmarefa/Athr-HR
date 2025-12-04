@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -95,6 +95,7 @@ jobs:
             -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/wwwroot/**,**/bin/**,**/obj/**
             -Dsonar.cpd.exclusions=**/Migrations/**
             -Dsonar.verbose=false
+
   docker-build:
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -105,9 +106,14 @@ jobs:
       # ----------------------------
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Print project structure
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Listing:"
+          ls -R .
       - name: Build API Docker Image
         run: |
           docker build -t ${{ env.API_IMAGE_NAME }}:${{ env.API_TAG }} \
-            -f src/Athr.Api/Dockerfile .
+            -f Server/src/Athr.Api/Dockerfile \
+            Server/src/Athr.Api
