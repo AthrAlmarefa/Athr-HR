@@ -1,4 +1,4 @@
-import { UpdateCategoryRequest } from "../../../../../shared/services/AthrHR";
+import { UpdateCategoryRequest } from "../../../services/AthrHR";
 
 
 export class UpdateCategory {

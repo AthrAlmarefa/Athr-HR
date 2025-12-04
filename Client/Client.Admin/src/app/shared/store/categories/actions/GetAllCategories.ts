@@ -1,4 +1,4 @@
-import { CategoryResponsePaginatedList } from "../../../../../shared/services/AthrHR";
+import { CategoryResponsePaginatedList } from "../../../services/AthrHR";
 
 export class GetAllCategories {
   static readonly type = "[Category] Get All Categories";

@@ -1,4 +1,4 @@
-import { CategoryResponse } from "../../../../../shared/services/AthrHR";
+import { CategoryResponse } from "../../../services/AthrHR";
 
 
 export class GetCategoryById {

@@ -19,16 +19,9 @@ import {
   UpdateCategoryFailure,
   UpdateCategorySuccess,
 } from "../actions/UpdateCategory";
-import {
-  CreateCategory,
-  CreateCategoryFailure,
-  CreateCategorySuccess,
-} from "../actions/CreateCategory";
-import { CategoryResponse } from "../../../../../shared/services/AthrHR/model/categoryResponse";
-import {
-  CategoryResponsePaginatedList,
-  CategoryService,
-} from "../../../../../shared/services/AthrHR";
+import { CategoryResponse, CategoryResponsePaginatedList, CategoryService } from "../../../services/AthrHR";
+import { CreateCategory, CreateCategoryFailure, CreateCategorySuccess } from "../actions/CreateCategory";
+
 
 export interface CategoryStateModel {
   categories: CategoryResponse[];

@@ -1,4 +1,4 @@
-import { AddCategoryRequest } from "../../../../../shared/services/AthrHR";
+import { AddCategoryRequest } from "../../../services/AthrHR";
 
 export class CreateCategory {
   static readonly type = "[Category] Create Category";
