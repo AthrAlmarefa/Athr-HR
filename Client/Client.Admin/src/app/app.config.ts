@@ -13,7 +13,7 @@ import {provideStore} from "@ngxs/store";
 import {environment} from "../environments/environment";
 import {withNgxsReduxDevtoolsPlugin} from "@ngxs/devtools-plugin";
 import { withNgxsLoggerPlugin} from "@ngxs/logger-plugin";
-import { CategoryState } from './shared/store/categories/states/CategoryState';
+import { CategoryState } from './core/shared/store/categories/states/CategoryState';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
