@@ -94,6 +94,7 @@ jobs:
             -Dsonar.sources=Client/Client.Admin,Server
             -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/wwwroot/**,**/bin/**,**/obj/**
             -Dsonar.cpd.exclusions=**/Migrations/**
+            -Dsonar.coverage.exclusions=Client/Client.Admin,Server,Client/Client.Mobile
             -Dsonar.verbose=false
 
   docker-build:
