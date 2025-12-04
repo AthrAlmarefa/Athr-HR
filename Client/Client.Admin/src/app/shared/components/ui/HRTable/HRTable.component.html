@@ -1,0 +1,105 @@
+<ng-container *ngIf="tableConfig">
+  <div class="top-body" *ngIf="pageSizeOptions.length > 0">
+    <select #pageSizeSelect (change)="changePageSize(+pageSizeSelect.value)">
+      <option
+        *ngFor="let pages of pageSizeOptions"
+        [value]="pages.value"
+        [selected]="pages.value === tableState.pageSize"
+      >
+        {{ pages.title }}
+      </option>
+    </select>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <ng-container *ngFor="let column of tableConfig.columns">
+          <th>{{ column.title }}</th>
+        </ng-container>
+
+        <th *ngIf="tableConfig.row_action && tableConfig.row_action.length > 0">
+          Actions
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngIf="paginatedData.length > 0; else noData">
+        <tr
+          *ngFor="
+            let row of paginatedData;
+            let i = index;
+            trackBy: trackByIndex
+          "
+        >
+          <td *ngFor="let col of tableConfig.columns">
+            {{ row[col.field_value] }}
+          </td>
+
+          <td
+            *ngIf="tableConfig.row_action && tableConfig.row_action.length > 0"
+            class="actions"
+          >
+            <div class="product-action common-align gap-2 justify-start">
+              <ng-container *ngFor="let act of tableConfig.row_action">
+                <!-- Button Type -->
+                <ng-container *ngIf="act.type === 'button'">
+                  <button
+                    [class]="act.class"
+                    (click)="handleAction(act, row)"
+                  >
+                    {{ act.label }}
+                  </button>
+                </ng-container>
+
+                <!-- Edit or Delete -->
+                <ng-container
+                  *ngIf="act.label === 'Edit' || act.label === 'Delete'"
+                >
+                  <a
+                    class="square-white"
+                    href="javascript:void(0)"
+                    [routerLink]="act.path"
+                    (click)="handleAction(act, row)"
+                  >
+                    <app-svg-icon
+                      [icon]="act.icon"
+                      *ngIf="act.icon"
+                    ></app-svg-icon>
+                    <span *ngIf="!act.icon">{{ act.label }}</span>
+                  </a>
+                </ng-container>
+              </ng-container>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+
+    <ng-template #noData>
+      <tbody>
+        <tr>
+          <td
+            [attr.colspan]="
+              tableConfig.columns.length + (tableConfig.row_action ? 1 : 0)
+            "
+            class="empty-data"
+          >
+            <span>No data found</span>
+          </td>
+        </tr>
+      </tbody>
+    </ng-template>
+  </table>
+
+  <app-HRPagination
+    [total]="tableState.total"
+    [pageSize]="tableState.pageSize"
+    [currentPage]="tableState.currentPage"
+    [paginateDetails]="true"
+    [paginate]="paginateObj"
+    (setPage)="setPage($event)"
+  >
+  </app-HRPagination>
+</ng-container>
