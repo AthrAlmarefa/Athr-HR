@@ -404,9 +404,10 @@ FodyWeavers.xsd
 
 Client/Client.Admin/.angular/
 .containers/
-/Server/src/Client.Api/.config
-/Server/src/Client.Api/documents
-/Clients/Client.Client/dist
-Clients/Client.Admin/src/environments/environment.ts
+.config
+/Server/src/Athr.Api/documents
+
+/Clients/Client.Admin/src/environments
 Server/.env
 
+/Client/Client.Admin/.angular
