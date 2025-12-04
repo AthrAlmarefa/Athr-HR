@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ArgumentNullException = System.ArgumentNullException;
 using Athr.Application.Abstractions.Authentication;
 using Athr.Infrastructure.Authentication;
+using Dapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication;
 

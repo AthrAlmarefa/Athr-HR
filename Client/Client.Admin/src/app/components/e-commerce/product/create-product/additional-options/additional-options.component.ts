@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { InventoryComponent } from "./inventory/inventory.component";
-// import { PublishComponent } from "./publish/publish.component";
 import { SeoTagsComponent } from "./seo-tags/seo-tags.component";
 import { ShippingComponent } from "./shipping/shipping.component";
 import { VariationsComponent } from "./variations/variations.component";
