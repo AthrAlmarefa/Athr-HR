@@ -7,7 +7,6 @@ import Swal, { SweetAlertPosition, SweetAlertIcon } from 'sweetalert2';
 export class SweetAlertService {
 
   constructor() { }
-
   show(
     title: string,
     icon: SweetAlertIcon = 'success',
