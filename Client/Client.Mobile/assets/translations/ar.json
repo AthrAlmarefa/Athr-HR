@@ -173,6 +173,7 @@
   "allLeavesValue": "(7)",
   "remainingValue": "15",
   "pendingValue": "3",
-  "approvedValue": "4"
+  "approvedValue": "4",
+  "logout_confirmation": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
 }
 

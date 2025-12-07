@@ -20,6 +20,7 @@ class Assets {
   static const String imagesCalendar = 'assets/images/calendar.png';
   static const String imagesCall = 'assets/images/call.png';
   static const String imagesCase = 'assets/images/case.png';
+  static const String imagesCheckIcon = 'assets/images/checkIcon.png';
   static const String imagesClock = 'assets/images/clock.png';
   static const String imagesDownload = 'assets/images/download.png';
   static const String imagesDownloadpdf = 'assets/images/downloadpdf.png';
