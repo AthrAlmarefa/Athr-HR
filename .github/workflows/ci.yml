@@ -10,6 +10,9 @@ env:
   NODE_VERSION: '20'
   DOTNET_VERSION: '8.0.x'
   RUN_SONAR: 'true'
+  API_IMAGE_NAME: athr.api
+  DOCKER_REGISTRY: ""
+  API_TAG: latest
 
 jobs:
   code-quality:
@@ -77,9 +80,17 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.projectKey=athralmarefa_Althr-HR
-            -Dsonar.organization=athralmarefa
+            -Dsonar.projectKey=Athr-HR
+            -Dsonar.organization=AthrAlmarefa
             -Dsonar.sources=Client/Client.Admin,Server
             -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts,**/wwwroot/**,**/bin/**,**/obj/**
             -Dsonar.cpd.exclusions=**/Migrations/**
             -Dsonar.verbose=false
+
+      # ----------------------------
+      # DOCKER BUILD
+      # ----------------------------
+      - name: Build API Docker Image
+        run: |
+          docker build -t ${{ env.API_IMAGE_NAME }}:${{ env.API_TAG }} \
+            -f src/Athr.Api/Dockerfile .
