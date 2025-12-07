@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-
 import { CardComponent } from "../../../../../shared/components/ui/card/card.component";
 import { FeatherIconComponent } from "../../../../../shared/components/ui/feather-icon/feather-icon.component";
 import { NotificationService } from "../../../../../shared/services/notification.service";
