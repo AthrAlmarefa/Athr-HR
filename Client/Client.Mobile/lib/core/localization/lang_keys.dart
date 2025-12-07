@@ -170,6 +170,69 @@ class LangKeys {
   static const String pendingValue = 'pendingValue';
   static const String approvedValue = 'approvedValue';
   static const logoutConfirmation = 'logout_confirmation';
+  // tasks
+  static const String addTask = "addTask";
+  static const String taskName = "taskName";
+  static const String enterTaskName = "enterTaskName";
+  static const String assignTo = "assignTo";
+  static const String selectEmployee = "selectEmployee";
+  static const String priority = "priority";
+  static const String high = "high";
+  static const String startDate = "startDate";
+  static const String selectDate = "selectDate";
+  static const String endDate = "endDate";
+  static const String taskDescription = "taskDescription";
+  static const String enterTaskDescription = "enterTaskDescription";
+  static const String requirementsFile = "requirementsFile";
+  static const String createTask = "createTask";
+   //
+  static const String somaya = "somaya";
+  static const String mahitab = "mahitab";
+  static const String reem = "reem";
+  static const String sara = "sara";
+  static const String medium = "medium";
+  static const String low = "low";
+  static const String totalTasks = "total_tasks";
+  static const String completed = "completed";
+  static const String inProgress = "in_progress";
+  static const String allTasksValue = "7";
+
+  static const String authenticationUnit = "authentication_unit";
+  static const String oauthIntegration = "oauth_integration";
+  static const String assignedBy = "assigned_by";
+  static const String abdullahMohamed = "abdullah_mohamed";
+  static const taskDetails = 'task_details';
+  static const progressPercentage = 'progress_percentage';
+  static const deliveryDate = 'delivery_date';
+  static const deleteTask = 'delete_task';
+  static const confirmDeleteTask = 'confirm_delete_task';
+  static const yesDelete = 'yes_delete';
+  static const delete = 'delete';
+  static const edit = 'edit';
+  // home
+  static const goodMorning = "goodMorning";
+  static const abdullah = "abdullah";
+  static const uiDesigner = "uiDesigner";
+  static const upcomingEvents = "upcomingEvents";
+  static const todayActivity = "todayActivity";
+  static const loggedIn = "loggedIn";
+  static const completedTasks = "completedTasks";
+  static const leaveRequestPending = "leaveRequestPending";
+  static const timeMorning = "timeMorning";
+  static const tasksProgress = "tasksProgress";
+  static const officialHoliday = 'official_holiday';
+  static const sinaiLiberationDay = 'sinai_liberation_day';
+  static const may6 = 'may_6';
+  static const year2025 = 'year_2025';
+  static const enableLocationTitle = "enable_location_title";
+  static const enableLocationNoThanks = "enable_location_no_thanks";
+  static const enableLocationOk = "enable_location_ok";
+  static const google = "Google.";
+
+
+
+
+
 
 
 }

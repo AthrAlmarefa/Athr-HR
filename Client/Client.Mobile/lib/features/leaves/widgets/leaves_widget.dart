@@ -11,9 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LeavesWidget extends StatefulWidget {
-
-
-  const LeavesWidget({super.key,});
+  const LeavesWidget({super.key});
 
   @override
   State<LeavesWidget> createState() => _LeavesWidgetState();
@@ -32,49 +30,59 @@ class _LeavesWidgetState extends State<LeavesWidget> {
               BuildRow(
                 titleKey: context.translate(LangKeys.leaves),
                 image: Assets.imagesLeavebutton,
-                onPressed: (){
+                onPressed: () {
                   Navigator.pushNamed(context, AppRoutes.leaveRequestView);
                 },
               ),
               SizedBox(height: 20.h),
               StateLeavesColumn(),
               SizedBox(height: 24.h),
-              BuildLeavesTypesRow(),
+              BuildCustomRow(
+                text: context.translate(LangKeys.leaves),
+                imagePath: Assets.imagesLeavetype,
+                onTap: () {},
+              ),
               SizedBox(height: 16.h),
-              TabsRow(),
+              CustomTabsRow(
+                tabs: [
+                  "${context.translate(LangKeys.all)} ${context.translate(LangKeys.allLeavesValue)}",
+                  "${context.translate(LangKeys.approved)} (${context.translate(LangKeys.approvedValue)})",
+                  "${context.translate(LangKeys.pending)} (${context.translate(LangKeys.pendingValue)})",
+                ],
+              ),
               SizedBox(height: 16.h),
               Expanded(
                 child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    LeaveCard(
-                      status: context.translate(LangKeys.approvedStatus),
-                      leaveType: context.translate(LangKeys.familyLeave),
-                      duration: context.translate(LangKeys.oneDay),
-                      fromDate: context.translate(LangKeys.date20251110),
-                      toDate: context.translate(LangKeys.date20251115),
-                    ),
-                    SizedBox(height: 12),
-                    LeaveCard(
-                      status: context.translate(LangKeys.pendingStatus),
-                      leaveType: context.translate(LangKeys.familyLeave),
-                      duration: context.translate(LangKeys.oneDay),
-                      fromDate: context.translate(LangKeys.date20251110),
-                      toDate: context.translate(LangKeys.date20251115),
-                    ),
-                    SizedBox(height: 12),
-                    LeaveCard(
-                      status: context.translate(LangKeys.approvedStatus),
-                      leaveType: context.translate(LangKeys.familyLeave),
-                      duration: context.translate(LangKeys.oneDay),
-                      fromDate: context.translate(LangKeys.date20251110),
-                      toDate: context.translate(LangKeys.date20251115),
-                    ),
-                  ],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      LeaveCard(
+                        status: context.translate(LangKeys.approvedStatus),
+                        leaveType: context.translate(LangKeys.familyLeave),
+                        duration: context.translate(LangKeys.oneDay),
+                        fromDate: context.translate(LangKeys.date20251110),
+                        toDate: context.translate(LangKeys.date20251115),
+                      ),
+                      SizedBox(height: 12),
+                      LeaveCard(
+                        status: context.translate(LangKeys.pendingStatus),
+                        leaveType: context.translate(LangKeys.familyLeave),
+                        duration: context.translate(LangKeys.oneDay),
+                        fromDate: context.translate(LangKeys.date20251110),
+                        toDate: context.translate(LangKeys.date20251115),
+                      ),
+                      SizedBox(height: 12),
+                      LeaveCard(
+                        status: context.translate(LangKeys.approvedStatus),
+                        leaveType: context.translate(LangKeys.familyLeave),
+                        duration: context.translate(LangKeys.oneDay),
+                        fromDate: context.translate(LangKeys.date20251110),
+                        toDate: context.translate(LangKeys.date20251115),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
               SizedBox(height: 20.h),
             ],
           ),
