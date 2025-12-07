@@ -59,6 +59,10 @@ class MyFonts {
     fontWeight: FontWeight.w500,
     fontSize: 16.sp,
   );
+  static TextStyle styleMedium500_15 =  TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 15.sp,
+  );
   static TextStyle styleMedium500_11 =  TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 11.sp,
@@ -70,6 +74,18 @@ class MyFonts {
   static TextStyle styleRegular400_14 =  TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 14.sp,
+  );
+  static TextStyle styleRegular400_16 =  TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 16.sp,
+  );
+  static TextStyle styleRegular400_12 =  TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 12.sp,
+  );
+  static TextStyle styleRegular400_10 =  TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 10.sp,
   );
 
 }
