@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { TranslateService } from "@ngx-translate/core";
 
@@ -13,8 +13,9 @@ export interface ToastData {
 export class NotificationService {
   private readonly toastSubject = new Subject<ToastData>();
   toastState$ = this.toastSubject.asObservable();
+  
+  private readonly translate = inject(TranslateService);
 
-  constructor(private readonly translate: TranslateService) {}
 
   showSuccess(message: string) {
     const translatedMsg = this.translate.instant(message);
