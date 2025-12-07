@@ -25,5 +25,11 @@ class MyColors {
   static const deleteColor = Color(0xffFF5252);
   static const deleteTextColor = Color(0xff053BFA);
   static const confirmLogoutColor = Color(0xffE7E8EA);
+  static const blueColor = Color(0xff1198F3);
+  static const assignedByColor = Color(0xffBAC0C9);
+  static const progressBackgroundColor = Color(0xffBAC0C9);
+  static const circleAvatarColor = Color(0xff29ABE2);
+  static const lineColor = Color(0xffF1F5F7);
+  static const textLocationColor = Color(0xff4E7FFF);
 
 }
