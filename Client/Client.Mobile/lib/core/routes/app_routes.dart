@@ -6,6 +6,8 @@ import 'package:athr_hr/features/main/main_view.dart';
 import 'package:athr_hr/features/on_boarding/on_boarding.dart';
 import 'package:athr_hr/features/profile/view/profile_details_view.dart';
 import 'package:athr_hr/features/profile/view/profile_view.dart';
+import 'package:athr_hr/features/tasks/view/tasks_view.dart';
+import 'package:athr_hr/features/times/view/time_view.dart';
 import 'package:flutter/material.dart';
 
 
@@ -18,7 +20,10 @@ class AppRoutes {
   static const String mainView = 'main';
   static const String personalDataView = 'personalDataView';
   static const String leaveRequestView = 'leaveRequestView';
-
+  static const String createTaskView = 'createTaskView';
+  static const String tasksView = 'tasksView';
+  static const String tasksDetailsView = 'tasksDetailsView';
+  static const String timesView = 'timesView';
 
   static Route<void> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -56,6 +61,16 @@ class AppRoutes {
         return BaseRoute(
           page:
           const LeaveRequestView(),
+        );
+        case tasksView:
+        return BaseRoute(
+          page:
+          const TasksView(),
+        );
+      case timesView:
+        return BaseRoute(
+          page:
+          const TimeView(),
         );
       default:
         return BaseRoute(page:SizedBox());

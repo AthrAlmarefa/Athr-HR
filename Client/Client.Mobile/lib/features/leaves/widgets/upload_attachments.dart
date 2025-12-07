@@ -1,22 +1,54 @@
-import 'package:athr_hr/core/localization/lang_keys.dart';
 import 'package:athr_hr/core/styles/colors/my_colors.dart';
 import 'package:athr_hr/core/styles/fonts/my_fonts.dart';
-import 'package:athr_hr/core/utils/extension/my_context.dart';
 import 'package:athr_hr/core/widgets/custom_button.dart';
 import 'package:athr_hr/core/widgets/custom_text_form_field.dart';
 import 'package:athr_hr/data/implementation/offline_data_source_impl.dart';
-import 'package:athr_hr/generated/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class UploadAttachments extends StatefulWidget {
-  const UploadAttachments({super.key});
+class UploadAttachmentsWidget extends StatefulWidget {
+  final String pdfIconPath;
+  final String downloadIconPath;
+  final String uploadButtonImagePath;
+  final String prefixText;
+  final String submitText;
+  final String titleText;
+  final VoidCallback? onSubmit;
+
+  final String? fieldText;
+  final TextEditingController? controller;
+
+  const UploadAttachmentsWidget({
+    super.key,
+    required this.pdfIconPath,
+    required this.downloadIconPath,
+    required this.uploadButtonImagePath,
+    required this.prefixText,
+    required this.submitText,
+    required this.titleText,
+    this.onSubmit,
+    this.fieldText,
+    this.controller,
+  });
 
   @override
-  State<UploadAttachments> createState() => _UploadAttachmentsState();
+  State<UploadAttachmentsWidget> createState() =>
+      _UploadAttachmentsWidgetState();
 }
 
-class _UploadAttachmentsState extends State<UploadAttachments> {
+class _UploadAttachmentsWidgetState extends State<UploadAttachmentsWidget> {
+  late TextEditingController textController;
+
+  @override
+  void initState() {
+    super.initState();
+    textController = widget.controller ?? TextEditingController();
+
+    if (widget.fieldText != null) {
+      textController.text = widget.fieldText!;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +56,7 @@ class _UploadAttachmentsState extends State<UploadAttachments> {
         Align(
           alignment: Alignment.centerRight,
           child: Text(
-            context.translate(LangKeys.attachments),
+            widget.titleText,
             style: MyFonts.styleMedium500_16.copyWith(color: MyColors.black),
           ),
         ),
@@ -35,19 +67,20 @@ class _UploadAttachmentsState extends State<UploadAttachments> {
           child: Stack(
             children: [
               CustomTextFormField(
+                controller: textController,
                 readOnly: true,
                 showCursor: false,
                 prefix: Row(
                   children: [
                     Image.asset(
-                      Assets.imagesPdffile,
+                      widget.pdfIconPath,
                       width: 24.w,
                       height: 24.h,
                       fit: BoxFit.contain,
                     ),
                     SizedBox(width: 12.w),
                     Text(
-                      context.translate(LangKeys.medicalConsultation),
+                      widget.prefixText,
                       style: MyFonts.semiBold600_18.copyWith(
                         color: MyColors.black,
                       ),
@@ -62,20 +95,16 @@ class _UploadAttachmentsState extends State<UploadAttachments> {
                 bottom: 0,
                 child: Align(
                   alignment: const Alignment(-0.9, -0.3),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(8),
-                      onTap: () async {
-                        final dataSource = OfflineDataSourceImpl();
-                        await dataSource.handleFileDownload(context);
-                      },
-                      child: Image.asset(
-                        Assets.imagesDownloadpdf,
-                        width: 24.w,
-                        height: 24.h,
-                        fit: BoxFit.contain,
-                      ),
+                  child: InkWell(
+                    onTap: () async {
+                      final dataSource = OfflineDataSourceImpl();
+                      await dataSource.handleFileDownload(context);
+                    },
+                    child: Image.asset(
+                      widget.downloadIconPath,
+                      width: 24.w,
+                      height: 24.h,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
@@ -90,7 +119,7 @@ class _UploadAttachmentsState extends State<UploadAttachments> {
             dataSource.handleFileUpload(context);
           },
           child: Image.asset(
-            Assets.imagesAttachmentsbutton,
+            widget.uploadButtonImagePath,
             width: 398.w,
             height: 58.h,
             fit: BoxFit.fill,
@@ -101,8 +130,8 @@ class _UploadAttachmentsState extends State<UploadAttachments> {
           width: 400.w,
           height: 58.h,
           child: CustomButton(
-            txt: context.translate(LangKeys.submitRequest),
-            onPressed: () {},
+            txt: widget.submitText,
+            onPressed: widget.onSubmit,
           ),
         ),
       ],
