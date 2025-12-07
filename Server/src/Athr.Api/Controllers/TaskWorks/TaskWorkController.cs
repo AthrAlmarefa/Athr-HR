@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using Athr.Application.TaskWork.Create_TaskWork;
+using Athr.Application.TaskWork.UpdateTaskWork;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,21 @@ namespace Athr.Api.Controllers.TaskWorks
             CreateTaskWorkCommand command = request;
             var taskId = await _sender.Send(command);
             return taskId;
+        }
+        [HttpPut("{taskId:guid}/user/{userId:guid}")]
+        public async Task<Guid> UpdateTask(Guid taskId, Guid userId, [FromBody] UpdateTaskWorkRequest request)
+        {
+            var command = new UpdateTaskWorkCommand(
+                taskId,
+                request.Name,
+                userId,
+                request.PriorityKey,
+                request.StartDate,
+                request.EndDate,
+                request.Description
+            );
+
+            return await _sender.Send(command);
         }
     }
 }
