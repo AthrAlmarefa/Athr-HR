@@ -1,7 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { CardComponent } from "../../../../../shared/components/ui/card/card.component";
 import { FeatherIconComponent } from "../../../../../shared/components/ui/feather-icon/feather-icon.component";
-import { NotificationService } from "../../../../../shared/services/notification.service";
 
 @Component({
   selector: "app-message-toast",
@@ -9,22 +8,27 @@ import { NotificationService } from "../../../../../shared/services/notification
   templateUrl: "./message-toast.component.html",
   styleUrl: "./message-toast.component.scss",
 })
-export class MessageToastComponent  implements OnInit {
+export class MessageToastComponent {
   toast = {
     success: false,
     warning: false,
     error: false,
   };
 
-  constructor(private readonly notificationService: NotificationService) {}
-
-  ngOnInit() {
-    this.notificationService.toastState$.subscribe((type) => {
-      this.showToast(type);
-    });
-  }
+  toastMessage: string = ""; 
 
   showToast(type: keyof typeof this.toast) {
+    
+    if (type === "success") {
+      this.toastMessage = "Success: We've updated your info";
+    } else if (type === "warning") {
+      this.toastMessage = "Software drivers needed to be updated in advance";
+    } else if (type === "error") {
+      this.toastMessage = "A database connection error has occurred";
+    }
+
+
+    this.toast = { success: false, warning: false, error: false }; 
     this.toast[type] = true;
 
     setTimeout(() => {
