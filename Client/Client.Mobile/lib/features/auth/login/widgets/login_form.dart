@@ -97,7 +97,7 @@ class _LoginFormState extends State<LoginForm> {
                   });
                 },
                 child: Image.asset(
-                  isPassword ? Assets.imagesEye : Assets.imagesEyeSlash,
+                  isPassword ?Assets.imagesEyeSlash : Assets.imagesEye,
                   width: 28.w,
                   height: 28.h,
                   fit: BoxFit.contain,

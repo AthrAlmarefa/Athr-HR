@@ -3,14 +3,15 @@ import 'package:athr_hr/core/styles/fonts/my_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SelectableStateCard extends StatefulWidget {
+class SelectableStateCard extends StatelessWidget {
   final String title;
   final Color titleColor;
   final String value;
   final String iconPath;
   final Color valueContainerColor;
   final Color valueTextColor;
-  final bool isInitiallySelected;
+  final bool isSelected;
+  final VoidCallback? onSelect;
 
   const SelectableStateCard({
     super.key,
@@ -20,30 +21,14 @@ class SelectableStateCard extends StatefulWidget {
     this.valueContainerColor = Colors.blue,
     this.valueTextColor = Colors.white,
     required this.titleColor,
-    this.isInitiallySelected = false,
+    this.isSelected = false,
+    this.onSelect,
   });
-
-  @override
-  SelectableStateCardState createState() => SelectableStateCardState();
-}
-
-class SelectableStateCardState extends State<SelectableStateCard> {
-  late bool isSelected;
-
-  @override
-  void initState() {
-    super.initState();
-    isSelected = widget.isInitiallySelected;
-  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          isSelected = !isSelected;
-        });
-      },
+      onTap: onSelect,
       child: Container(
         width: 175.w,
         height: 125.h,
@@ -65,16 +50,16 @@ class SelectableStateCardState extends State<SelectableStateCard> {
         child: Column(
           children: [
             Image.asset(
-              widget.iconPath,
+              iconPath,
               width: 32,
               height: 32,
               fit: BoxFit.contain,
             ),
             SizedBox(height: 4.h),
             Text(
-              widget.title,
+              title,
               style: MyFonts.semiBold600_14.copyWith(
-                color:(isSelected)? widget.titleColor : MyColors.black,
+                color: (isSelected) ? titleColor : MyColors.black,
               ),
             ),
             SizedBox(height: 6.h),
@@ -83,13 +68,13 @@ class SelectableStateCardState extends State<SelectableStateCard> {
               height: 29.h,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: widget.valueContainerColor,
+                color: valueContainerColor,
                 borderRadius: BorderRadius.circular(6.sp),
               ),
               child: Text(
-                widget.value,
+                value,
                 style: MyFonts.semiBold600_16.copyWith(
-                  color:(isSelected)? widget.valueTextColor: MyColors.green,
+                  color: (isSelected) ? valueTextColor : MyColors.green,
                 ),
               ),
             ),

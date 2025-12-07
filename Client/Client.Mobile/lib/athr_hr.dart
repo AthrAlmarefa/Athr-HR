@@ -30,6 +30,7 @@ class AthrHr extends StatelessWidget {
               theme: ThemeData(
                 fontFamily: 'Cairo',
               ),
+              restorationScopeId: 'app',
               debugShowCheckedModeBanner: false,
               locale: Locale(cubit.currentLanguage),
               supportedLocales: AppLocalizationsSetup.supportedLocales,
