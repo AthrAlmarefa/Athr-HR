@@ -209,7 +209,6 @@ class LangKeys {
   static const yesDelete = 'yes_delete';
   static const delete = 'delete';
   static const edit = 'edit';
-
   // home
   static const goodMorning = "goodMorning";
   static const abdullah = "abdullah";
