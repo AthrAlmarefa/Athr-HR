@@ -1,24 +1,30 @@
-import 'package:athr_hr/core/localization/lang_keys.dart';
-import 'package:athr_hr/core/utils/extension/my_context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TabsRow extends StatefulWidget {
-  const TabsRow({super.key});
+class CustomTabsRow extends StatefulWidget {
+  final List<String> tabs;
+  final int initialSelectedIndex;
+  final ValueChanged<int>? onTabSelected;
+
+  const CustomTabsRow({
+    super.key,
+    required this.tabs,
+    this.initialSelectedIndex = 0,
+    this.onTabSelected,
+  });
 
   @override
-  State<TabsRow> createState() => _TabsRowState();
+  State<CustomTabsRow> createState() => _CustomTabsRowState();
 }
 
-class _TabsRowState extends State<TabsRow> {
+class _CustomTabsRowState extends State<CustomTabsRow> {
+  late int selectedIndex;
 
- late final List<String> tabs = [
-   "${context.translate(LangKeys.all)} ${context.translate(LangKeys.allLeavesValue)}",
-   "${context.translate(LangKeys.approved)} (${context.translate(LangKeys.approvedValue)})",
-   "${context.translate(LangKeys.pending)} (${context.translate(LangKeys.pendingValue)})",
- ];
-
-  int selectedIndex = 1;
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = widget.initialSelectedIndex;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,46 +37,48 @@ class _TabsRowState extends State<TabsRow> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(
-          tabs.length,
+          widget.tabs.length,
               (index) => GestureDetector(
             onTap: () {
               setState(() {
                 selectedIndex = index;
               });
+              if (widget.onTabSelected != null) {
+                widget.onTabSelected!(index);
+              }
             },
-            child: _tabItem(tabs[index], index == selectedIndex),
+            child: _tabItem(widget.tabs[index], index == selectedIndex),
           ),
         ),
       ),
     );
   }
 
- Widget _tabItem(String title, bool selected) {
-   return Container(
-     height: selected ? 41.h : null,
-     padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 18.w),
-     decoration: BoxDecoration(
-       borderRadius: BorderRadius.circular(20.sp),
-       gradient: selected
-           ? const LinearGradient(
-         colors: [Color(0xFF1BABB6), Color(0xCC005157)],
-       )
-           : null,
-       color: selected ? null : Colors.transparent,
-     ),
-     alignment: Alignment.center,
-     child: FittedBox(
-       fit: BoxFit.scaleDown,
-       child: Text(
-         title,
-         style: TextStyle(
-           fontSize: 12.sp,
-           fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
-           color: selected ? Colors.white : Colors.black,
-         ),
-       ),
-     ),
-   );
- }
-
+  Widget _tabItem(String title, bool selected) {
+    return Container(
+      height: selected ? 41.h : null,
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 18.w),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.sp),
+        gradient: selected
+            ? const LinearGradient(
+          colors: [Color(0xFF1BABB6), Color(0xCC005157)],
+        )
+            : null,
+        color: selected ? null : Colors.transparent,
+      ),
+      alignment: Alignment.center,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: 12.sp,
+            fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
+            color: selected ? Colors.white : Colors.black,
+          ),
+        ),
+      ),
+    );
+  }
 }
