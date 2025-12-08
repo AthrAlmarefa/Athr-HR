@@ -42,10 +42,10 @@ export const language: Language[] = [
     },
     {
         id: 7,
-        name: 'لعربية',
+        name: 'العربية',
         code: 'ae',
-        icon: 'ae',
-        country_code: "ae"
+        icon: 'sa',
+        country_code: "SA"
     }
 ]
 
