@@ -18,7 +18,6 @@ import { CategoryState } from './core/shared/store/categories/states/CategorySta
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-console.log('from config: ********************************', environment.name)
 export const MY_NATIVE_FORMATS = {
   fullPickerInput: {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'},
   datePickerInput: {year: 'numeric', month: 'numeric', day: 'numeric'},
